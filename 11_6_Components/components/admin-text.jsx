@@ -6,4 +6,3 @@ const AdminText = ({ content, align = 'left' }) => {
 };
 
 export default AdminText;
-Htanhfhfhfhfhh
