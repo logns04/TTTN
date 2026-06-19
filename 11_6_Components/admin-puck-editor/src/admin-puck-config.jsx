@@ -194,9 +194,9 @@ export const puckConfig = {
     },
   // ĐĂNG KÝ GD Sen Hồng
     SenHong: {
-      label: 'Giao diện Sen Hồng',
+      label: 'Sen Hồng',
       fields: {
-        topText: { type: 'text', label: 'Dòng chữ nhỏ phía trên', contentEditable: true },
+        topText: { type: 'text', label: 'Text', contentEditable: true },
         title: { type: 'text', label: 'Tiêu đề lớn' },
         titleColor: { type: 'text', label: 'Màu chữ tiêu đề' },
         titleSize: {
@@ -221,7 +221,7 @@ export const puckConfig = {
               type: 'select',
               label: 'Kiểu dáng bo góc',
               options: [
-                { label: 'Dáng chiếc lá chéo đối xứng', value: 'leaf' },
+                { label: 'Dáng chiếc lá', value: 'leaf' },
                 { label: 'Bo tròn đều cả 4 góc', value: 'round' }
               ]
             },

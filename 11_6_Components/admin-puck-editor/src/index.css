@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS bổ trợ lớp quét điều khiển của Puck Admin */
+[data-puck-component] {
+  outline: 1px dashed rgba(255, 255, 255, 0.2) !important;
+  outline-offset: -1px;
+}
+
+[data-puck-component]:hover {
+  outline: 2px solid #3b82f6 !important;
+}
+
+/* Đảm bảo vùng chọn thanh Action không bị khuất dưới hiệu ứng mờ backdrop-blur */
+.puck-action-bar {
+  z-index: 9999 !important;
+}
