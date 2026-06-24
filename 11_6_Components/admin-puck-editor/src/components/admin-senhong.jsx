@@ -36,10 +36,19 @@ const AdminSenHong = (props) => {
   const titleSizeMap = { 'sm': 'text-2xl', 'base': 'text-4xl', 'lg': 'text-5xl', 'xl': 'text-6xl', '2xl': 'text-7xl' };
   const subtitleSizeMap = { 'sm': 'text-sm', 'base': 'text-base', 'lg': 'text-lg', 'xl': 'text-xl' };
 
-  const radiusValue = cardStyle?.borderRadius !== undefined ? cardStyle.borderRadius : 48;
-  const cardBorderRadiusStyle = cardStyle?.styleType === 'round'
-    ? `${radiusValue}px`
-    : `${radiusValue}px 0px ${radiusValue}px 0px`;
+const cardBorderRadiusStyle = {
+  borderTopLeftRadius:
+    `${cardStyle?.topLeftRadius ?? 40}px`,
+
+  borderTopRightRadius:
+    `${cardStyle?.topRightRadius ?? 120}px`,
+
+  borderBottomRightRadius:
+    `${cardStyle?.bottomRightRadius ?? 40}px`,
+
+  borderBottomLeftRadius:
+    `${cardStyle?.bottomLeftRadius ?? 120}px`
+};
 
   return (
     <section className="relative w-full py-24 px-6 min-h-[580px] flex items-center transition-all duration-300" style={getBackgroundStyle()}>
@@ -48,10 +57,10 @@ const AdminSenHong = (props) => {
         {}
         <div 
           className="backdrop-blur-md bg-white/10 border border-white/20 p-8 md:p-12 max-w-xl w-full shadow-2xl transition-all duration-300"
-          style={{ 
-            borderRadius: cardBorderRadiusStyle,
-            textAlign: layout?.align || 'left'
-          }}
+          style={{
+          ...cardBorderRadiusStyle,
+           textAlign: layout?.align || 'left'
+            }}
         >
           {}
           {topText && (

@@ -16,3 +16,25 @@
 .puck-action-bar {
   z-index: 9999 !important;
 }
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-track {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.logo-track:hover {
+  animation-play-state: paused;
+}

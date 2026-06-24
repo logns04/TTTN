@@ -1,203 +1,498 @@
 import React from 'react';
-import AdminHeading from './components/admin-heading';
-import AdminText from './components/admin-text';
-import AdminImage from './components/admin-image';
-import AdminSection from './components/admin-section';
-import AdminHero from './components/admin-hero';
+
 import AdminSenHong from './components/admin-senhong';
 import AdminBanChuyenMon from './components/admin-banchuyenmon';
 import AdminAboutStructure from './components/admin-about-structure';
+import AdminMemberLogos from './components/admin-member-logos';
+import AdminStatsSection from'./components/admin-stats-section';
+import AdminHeader from "./components/admin-header";
+import AdminFooter from "./components/admin-footer";
 //Config — đăng ký 5 components với fields + defaultProps + render.
 
 export const puckConfig = {
   components: {
-    Heading: {
-      label: 'Tiêu đề',
-      fields: {
-        content: { type: 'text', label: 'Nội dung', contentEditable: true },
-        level: {
-          type: 'select', label: 'Cấp độ',
-          options: [
-            { label: 'H1', value: 1 }, { label: 'H2', value: 2 },
-            { label: 'H3', value: 3 }, { label: 'H4', value: 4 },
-            { label: 'H5', value: 5 }, { label: 'H6', value: 6 }
-          ]
-        },
-        align: {
-          type: 'select', label: 'Căn lề',
-          options: [
-            { label: 'Trái', value: 'left' },
-            { label: 'Giữa', value: 'center' },
-            { label: 'Phải', value: 'right' }
-          ]
-        }
+Header: {
+label: "Header",
+
+fields: {
+
+  logo: {
+    type: "object",
+    label: "Logo",
+
+    objectFields: {
+
+      imageUrl: {
+        type: "text",
+        label: "Link Logo"
       },
-      defaultProps: { content: 'Tiêu đề', level: 2, align: 'left' },
-      render: (props) => <AdminHeading {...props} />
+
+      width: {
+        type: "number",
+        label: "Chiều rộng"
+      },
+
+      height: {
+        type: "number",
+        label: "Chiều cao"
+      },
+
+      borderWidth: {
+        type: "number",
+        label: "Độ dày viền"
+      },
+
+      borderColor: {
+        type: "text",
+        label: "Màu viền"
+      },
+
+      borderRadius: {
+        type: "number",
+        label: "Bo góc"
+      }
+    }
+  },
+
+  clubName: {
+    type: "textarea",
+    label: "Tên CLB"
+  },
+
+  clubNameColor: {
+    type: "text",
+    label: "Màu tên CLB"
+  },
+
+  clubNameSize: {
+    type: "number",
+    label: "Kích thước tên"
+  },
+
+  clubNameWeight: {
+    type: "select",
+    label: "Độ đậm",
+
+    options: [
+      { label: "400", value: "400" },
+      { label: "500", value: "500" },
+      { label: "600", value: "600" },
+      { label: "700", value: "700" },
+      { label: "800", value: "800" }
+    ]
+  },
+
+
+  headerHeight: {
+    type: "number",
+    label: "Chiều cao Header"
+  },
+
+  backgroundColor: {
+    type: "text",
+    label: "Màu nền"
+  },
+
+  backgroundImage: {
+    type: "text",
+    label: "Ảnh nền"
+  },
+
+  containerWidth: {
+    type: "number",
+    label: "Chiều rộng tối đa"
+  },
+
+  paddingX: {
+    type: "number",
+    label: "Padding ngang"
+  },
+
+  overlayEnable: {
+    type: "radio",
+
+    options: [
+      { label: "Bật", value: true },
+      { label: "Tắt", value: false }
+    ]
+  },
+
+  overlayColor: {
+    type: "text",
+    label: "Màu Overlay"
+  },
+
+  headerJustify: {
+    type: "select",
+    label: "Canh Header",
+
+    options: [
+      { label: "Space Between", value: "space-between" },
+      { label: "Center", value: "center" },
+      { label: "Space Around", value: "space-around" }
+    ]
+  },
+
+  logoGap: {
+    type: "number",
+    label: "Khoảng cách Logo"
+  },
+
+  menuGap: {
+    type: "number",
+    label: "Khoảng cách Menu"
+  },
+
+  menuColor: {
+    type: "text",
+    label: "Màu Menu"
+  },
+
+  menuHoverColor: {
+    type: "text",
+    label: "Màu Hover"
+  },
+
+  menuFontSize: {
+    type: "number",
+    label: "Kích thước Menu"
+  },
+
+  menuFontWeight: {
+    type: "select",
+    label: "Độ đậm Menu",
+
+    options: [
+      { label: "400", value: "400" },
+      { label: "500", value: "500" },
+      { label: "600", value: "600" },
+      { label: "700", value: "700" }
+    ]
+  },
+
+  menus: {
+    type: "array",
+    label: "Danh sách Menu",
+
+    arrayFields: {
+
+      text: {
+        type: "text",
+        label: "Tên Menu"
+      },
+
+      url: {
+        type: "text",
+        label: "Link"
+      }
     },
 
-    Text: {
-      label: 'Văn bản',
-      fields: {
-        content: { type: 'textarea', label: 'Nội dung', contentEditable: true },
-        align: {
-          type: 'select', label: 'Căn lề',
-          options: [
-            { label: 'Trái', value: 'left' },
-            { label: 'Giữa', value: 'center' },
-            { label: 'Phải', value: 'right' },
-            { label: 'Đều', value: 'justify' }
-          ]
-        }
-      },
-      defaultProps: { content: 'Nhập văn bản ở đây...', align: 'left' },
-      render: (props) => <AdminText {...props} />
+    getItemSummary: (item) => item.text
+  },
+
+  showLanguage: {
+    type: "radio",
+
+    options: [
+      { label: "Hiện", value: true },
+      { label: "Ẩn", value: false }
+    ]
+  }
+},
+
+defaultProps: {
+
+  backgroundColor: "#0f47af",
+
+  headerHeight: 120,
+
+  clubName:
+    "CÂU LẠC BỘ DOANH NHÂN ĐỒNG THÁP\nTẠI TP.HCM",
+
+  clubNameColor: "#ffffff",
+
+  clubNameSize: 28,
+
+  clubNameWeight: "700",
+
+  logoGap: 16,
+
+  menuGap: 40,
+
+  menuColor: "#ffffff",
+
+  menuHoverColor: "#facc15",
+
+  menuFontSize: 16,
+
+  menuFontWeight: "600",
+
+  containerWidth: 1400,
+
+  paddingX: 30,
+
+  overlayEnable: false,
+
+  overlayColor: "rgba(0,0,0,.25)",
+
+  showLanguage: true,
+
+  logo: {
+    imageUrl: "",
+    width: 70,
+    height: 70,
+    borderWidth: 2,
+    borderColor: "#ffffff",
+    borderRadius: 999
+  },
+
+  menus: [
+    {
+      text: "Trang chủ",
+      url: "#"
+    },
+    {
+      text: "Giới thiệu",
+      url: "#"
+    },
+    {
+      text: "Hội viên",
+      url: "#"
+    },
+    {
+      text: "Liên hệ",
+      url: "#"
+    }
+  ]
+},
+
+render: (props) => <AdminHeader {...props} />
+
+},
+
+Footer: {
+label: "Footer",
+
+fields: {
+  footerLinksTitle: {
+  type: "text",
+  label: "Tiêu đề cột Link"
+},
+
+footerLinks: {
+  type: "array",
+  label: "Danh sách Link",
+
+  arrayFields: {
+    text: {
+      type: "text",
+      label: "Tên menu"
     },
 
-    Image: {
-      label: 'Ảnh',
-      fields: {
-        src: { type: 'text', label: 'URL ảnh' },
-        alt: { type: 'text', label: 'Alt text' },
-        width: { type: 'text', label: 'Chiều rộng', default: '100%' },
-        height: { type: 'text', label: 'Chiều cao', default: 'auto' },
-        borderRadius: { type: 'text', label: 'Bo góc', default: '0' },
-        align: {
-          type: 'select', label: 'Căn lề',
-          options: [
-            { label: 'Trái', value: 'left' },
-            { label: 'Giữa', value: 'center' },
-            { label: 'Phải', value: 'right' }
-          ]
-        }
-      },
-      defaultProps: {
-        src: 'https://via.placeholder.com/800x400',
-        alt: 'Ảnh minh họa',
-        width: '100%', height: 'auto', borderRadius: '0', align: 'center'
-      },
-      render: (props) => <AdminImage {...props} />
+    url: {
+      type: "text",
+      label: "Link"
+    }
+  }
+},
+
+otherTitle: {
+  type: "text",
+  label: "Tiêu đề cột Khác"
+},
+
+otherLinks: {
+  type: "array",
+  label: "Danh sách cột Khác",
+
+  arrayFields: {
+    text: {
+      type: "text",
+      label: "Tên"
     },
 
-    Section: {
-      label: 'Khoảng (Section)',
-      fields: {
-        container: {
-          type: 'select', label: 'Chiều rộng',
-          options: [
-            { label: 'Small (640px)', value: 'sm' },
-            { label: 'Medium (768px)', value: 'md' },
-            { label: 'Large (1024px)', value: 'lg' },
-            { label: 'XL (1280px)', value: 'xl' }
-          ]
-        },
-        background: {
-          type: 'object', label: 'Background',
-          objectFields: {
-            type: {
-              type: 'select', label: 'Loại',
-              options: [
-                { label: 'Màu', value: 'color' },
-                { label: 'Gradient', value: 'gradient' },
-                { label: 'Ảnh', value: 'image' }
-              ]
-            },
-            color: { type: 'text', label: 'Màu nền', default: '#ffffff' },
-            fromColor: { type: 'text', label: 'Gradient từ', default: '#667eea' },
-            toColor: { type: 'text', label: 'Gradient đến', default: '#764ba2' },
-            direction: { type: 'text', label: 'Hướng gradient', default: 'to right' },
-            bg_image: { type: 'text', label: 'URL ảnh nền' },
-            opacity: { type: 'number', label: 'Độ mờ', min: 0, max: 1, step: 0.1, default: 1 }
-          }
-        },
-        padding_x: { type: 'number', label: 'Padding ngang', min: 0, max: 16, default: 4 },
-        padding_y: { type: 'number', label: 'Padding dọc', min: 0, max: 16, default: 4 },
-        content: { type: 'slot' } // Cho phép nested components
-      },
-      defaultProps: {
-        container: 'lg',
-        background: { type: 'color', color: '#ffffff' },
-        padding_x: 4, padding_y: 4,
-        content: []
-      },
-      render: (props) => <AdminSection {...props} />
-    },
+    url: {
+      type: "text",
+      label: "Link"
+    }
+  }
+},
+  logo: {
+    type: "text",
+    label: "Logo"
+  },
 
-    Hero: {
-      label: 'Hero Banner',
-      fields: {
-        title: { type: 'text', label: 'Tiêu đề', contentEditable: true },
-        subtitle: { type: 'textarea', label: 'Mô tả ngắn', contentEditable: true },
-        buttons: {
-          type: 'array', label: 'Danh sách nút',
-          arrayFields: {
-            text: { type: 'text', label: 'Text nút', contentEditable: true },
-            url: { type: 'text', label: 'URL' },
-            style: {
-              type: 'select', label: 'Style',
-              options: [
-                { label: 'Primary', value: 'primary' },
-                { label: 'Secondary', value: 'secondary' },
-                { label: 'Outline', value: 'outline' }
-              ]
-            }
-          },
-          getItemSummary: (item) => item.text
-        },
-        background: {
-          type: 'object', label: 'Background',
-          objectFields: {
-            type: {
-              type: 'select', label: 'Loại',
-              options: [
-                { label: 'Màu', value: 'color' },
-                { label: 'Gradient', value: 'gradient' },
-                { label: 'Ảnh', value: 'image' }
-              ]
-            },
-            color: { type: 'text', label: 'Màu nền', default: '#ffffff' },
-            gradientFrom: { type: 'text', label: 'Gradient từ', default: '#667eea' },
-            gradientTo: { type: 'text', label: 'Gradient đến', default: '#764ba2' },
-            gradientDirection: { type: 'text', label: 'Hướng', default: 'to bottom right' },
-            imageUrl: { type: 'text', label: 'URL ảnh nền' }
-          }
-        },
-        layout: {
-          type: 'object', label: 'Bố cục',
-          objectFields: {
-            align: {
-              type: 'select', label: 'Căn lề',
-              options: [
-                { label: 'Trái', value: 'left' },
-                { label: 'Giữa', value: 'center' },
-                { label: 'Phải', value: 'right' }
-              ]
-            }
-          }
-        }
+  clubName: {
+    type: "textarea",
+    label: "Tên CLB"
+  },
+
+  address: {
+    type: "textarea",
+    label: "Địa chỉ"
+  },
+
+  phone: {
+    type: "text",
+    label: "Điện thoại"
+  },
+
+  email: {
+    type: "text",
+    label: "Email"
+  },
+
+  website: {
+    type: "text",
+    label: "Website"
+  },
+
+  backgroundColor: {
+    type: "text",
+    label: "Màu nền"
+  },
+
+  backgroundImage: {
+    type: "text",
+    label: "Ảnh nền"
+  },
+
+  overlayEnable: {
+    type: "radio",
+
+    options: [
+      { label: "Bật", value: true },
+      { label: "Tắt", value: false }
+    ]
+  },
+
+  overlayColor: {
+    type: "text",
+    label: "Màu Overlay"
+  },
+
+  titleColor: {
+    type: "text",
+    label: "Màu tiêu đề"
+  },
+
+  textColor: {
+    type: "text",
+    label: "Màu nội dung"
+  },
+
+  socials: {
+    type: "array",
+    label: "Mạng xã hội",
+
+    arrayFields: {
+
+      name: {
+        type: "text",
+        label: "Tên"
       },
-      defaultProps: {
-        title: 'Chào mừng đến với website',
-        subtitle: 'Chúng tôi cung cấp những sản phẩm và dịch vụ tốt nhất',
-        buttons: [
-          { text: 'Tìm hiểu thêm', url: '#', style: 'primary' },
-          { text: 'Liên hệ', url: '#contact', style: 'outline' }
-        ],
-        background: {
-          type: 'gradient',
-          gradientFrom: '#667eea', gradientTo: '#764ba2',
-          gradientDirection: 'to bottom right'
-        },
-        layout: { align: 'center' }
+
+      url: {
+        type: "text",
+        label: "Link"
+      }
+    }
+  },
+
+  quickLinks: {
+    type: "array",
+    label: "Liên kết nhanh",
+
+    arrayFields: {
+
+      text: {
+        type: "text",
+        label: "Tên"
       },
-      render: (props) => <AdminHero {...props} />
+
+      url: {
+        type: "text",
+        label: "Link"
+      }
+    }
+  },
+
+  copyright: {
+    type: "text",
+    label: "Copyright"
+  }
+},
+
+defaultProps: {
+  
+  clubName:
+    "CÂU LẠC BỘ DOANH NHÂN ĐỒNG THÁP TẠI TP.HCM",
+
+  address:
+    "123 Nguyễn Huệ, Quận 1, TP.HCM",
+
+  phone:
+    "0909 999 999",
+
+  email:
+    "info@dongthapbusiness.vn",
+
+  website:
+    "www.dongthapbusiness.vn",
+
+  backgroundColor:
+    "#1f4aa8",
+
+  titleColor:
+    "#ffffff",
+
+  textColor:
+    "#dbeafe",
+
+  overlayEnable: false,
+
+  overlayColor:
+    "rgba(0,0,0,.25)",
+
+  socials: [
+    {
+      name: "Facebook",
+      url: "#"
     },
-  // ĐĂNG KÝ GD Sen Hồng
+    {
+      name: "Youtube",
+      url: "#"
+    }
+  ],
+
+  quickLinks: [
+    {
+      text: "Trang chủ",
+      url: "#"
+    },
+    {
+      text: "Giới thiệu",
+      url: "#"
+    },
+    {
+      text: "Hội viên",
+      url: "#"
+    }
+  ],
+
+  copyright:
+    "© 2026 CLB Doanh Nhân Đồng Tháp tại TP.HCM"
+},
+
+render: (props) => <AdminFooter {...props} />
+
+},
     SenHong: {
       label: 'Sen Hồng',
       fields: {
+        
         topText: { type: 'text', label: 'Text', contentEditable: true },
-        title: { type: 'text', label: 'Tiêu đề lớn' },
+        title: { type: 'text', label: 'Tiêu đề lớn' ,contentEditable: true,},
         titleColor: { type: 'text', label: 'Màu chữ tiêu đề' },
         titleSize: {
           type: 'select', label: 'Kích cỡ tiêu đề',
@@ -206,7 +501,7 @@ export const puckConfig = {
             { label: 'Lớn', value: 'lg' }, { label: 'Rất lớn', value: 'xl' }, { label: 'Cực đại', value: '2xl' }
           ]
         },
-        subtitle: { type: 'textarea', label: 'Đoạn văn bản mô tả' },
+        subtitle: { type: 'textarea', label: 'Đoạn văn bản mô tả',contentEditable: true, },
         subtitleColor: { type: 'text', label: 'Màu chữ mô tả' },
         subtitleSize: {
           type: 'select', label: 'Kích cỡ chữ mô tả',
@@ -214,20 +509,42 @@ export const puckConfig = {
             { label: 'Thấp', value: 'sm' }, { label: 'Mặc định', value: 'base' }, { label: 'Cao', value: 'lg' }
           ]
         },
-        cardStyle: {
-          type: 'object', label: 'Kiểu dáng khối kính mờ',
-          objectFields: {
-            styleType: {
-              type: 'select',
-              label: 'Kiểu dáng bo góc',
-              options: [
-                { label: 'Dáng chiếc lá', value: 'leaf' },
-                { label: 'Bo tròn đều cả 4 góc', value: 'round' }
-              ]
-            },
-            borderRadius: { type: 'number', label: 'Độ bo góc khối (px)', min: 0, max: 120 }
-          }
-        },
+cardStyle: {
+  type: 'object',
+  label: 'Bo góc khối kính mờ',
+
+  objectFields: {
+
+    topLeftRadius: {
+      type: 'number',
+      label: 'Góc trên trái',
+      min: 0,
+      max: 200
+    },
+
+    topRightRadius: {
+      type: 'number',
+      label: 'Góc trên phải',
+      min: 0,
+      max: 200
+    },
+
+    bottomRightRadius: {
+      type: 'number',
+      label: 'Góc dưới phải',
+      min: 0,
+      max: 200
+    },
+
+    bottomLeftRadius: {
+      type: 'number',
+      label: 'Góc dưới trái',
+      min: 0,
+      max: 200
+    }
+
+  }
+},
         buttons: {
           type: 'array', label: 'Cấu hình danh sách nút',
           arrayFields: {
@@ -281,13 +598,18 @@ export const puckConfig = {
         subtitle: 'CLB Doanh nhân Đồng Tháp tại TPHCM quy tụ những người con quê hương Đất Sen Hồng. Với tinh thần Hợp tác - Đổi mới - Phát triển, CLB đóng vai trò là cầu nối chiến lược, hợp tác, thúc đẩy giá trị kinh doanh và lan toả sẻ chia nghĩa tình quê hương.',
         subtitleColor: '#ffffff',
         subtitleSize: 'base',
-        cardStyle: { styleType: 'leaf', borderRadius: 48 }, 
+        cardStyle: {
+        topLeftRadius: 40,
+        topRightRadius: 120,
+        bottomRightRadius: 40,
+        bottomLeftRadius: 120
+      },
         buttons: [{ text: 'Tham gia cộng đồng', bgColor: '#2563eb', textColor: '#ffffff', borderRadius: 999 }],
         background: { type: 'image', imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920' },
         layout: { align: 'left' }
       },
       render: (props) => <AdminSenHong {...props} />
-    },
+    },  
     // ĐĂNG KÝ COMPONENT BAN CHUYÊN MÔN
     BanChuyenMon: {
       label: 'Các Ban Chuyên Môn',
@@ -302,15 +624,42 @@ export const puckConfig = {
             title: { type: 'text', label: 'Tên Ban chuyên môn' },
             iconUrl: { type: 'text', label: 'URL ảnh Icon (PNG trắng/SVG)' },
   
-            styleType: {
-              type: 'select',
-              label: 'Kiểu dáng khối',
-              options: [
-                { label: 'Dáng chiếc lá (Chéo đối xứng)', value: 'leaf' },
-                { label: 'Bo tròn đều 4 góc', value: 'round' }
-              ]
+        cardStyle: {
+          type: 'object',
+          label: 'Bo góc khối',
+
+          objectFields: {
+
+            topLeftRadius: {
+              type: 'number',
+              label: 'Góc trên trái',
+              min: 0,
+              max: 200
             },
-            cardBorderRadius: { type: 'number', label: 'Độ bo góc khối (px)', min: 0, max: 100 },
+
+            topRightRadius: {
+              type: 'number',
+              label: 'Góc trên phải',
+              min: 0,
+              max: 200
+            },
+
+            bottomRightRadius: {
+              type: 'number',
+              label: 'Góc dưới phải',
+              min: 0,
+              max: 200
+            },
+
+            bottomLeftRadius: {
+              type: 'number',
+              label: 'Góc dưới trái',
+              min: 0,
+              max: 200
+            }
+
+          }
+        },
 
             buttonText: { type: 'text', label: 'Chữ trong nút' },
             buttonUrl: { type: 'text', label: 'Đường dẫn nút (URL)' },
@@ -357,7 +706,7 @@ export const puckConfig = {
       render: (props) => <AdminBanChuyenMon {...props} />
     },
     // ĐĂNG KÝ THÀNH PHẦN ABOUT & STRUCTURE
-    AboutStructure: {
+    AboutStructure: { 
       label: 'Giới thiệu & Cơ cấu tổ chức',
       fields: {
         columns: {
@@ -449,15 +798,556 @@ export const puckConfig = {
         ]
       },
       render: (props) => <AdminAboutStructure {...props} />
-    }
+    },
+    MemberLogos: {  
+  label: 'LOGO',
+
+  fields: {
     
+    title: {
+      type: 'text',
+      label: 'Tiêu đề',
+      contentEditable: true
+    },
+      titleColor: {
+      type: 'text',
+      label: 'Màu tiêu đề'
+    },
+
+      titleSize: {
+      type: 'select',
+      label: 'Kích thước tiêu đề',
+
+      options: [
+        { label: 'Nhỏ', value: 'sm' },
+        { label: 'Vừa', value: 'base' },
+        { label: 'Lớn', value: 'lg' },
+        { label: 'Rất lớn', value: 'xl' },
+        { label: 'Cực lớn', value: '2xl' }
+      ]
+    },
+
+    titleAlign: {
+      type: 'select',
+      label: 'Vị trí tiêu đề',
+
+      options: [
+        { label: 'Trái', value: 'left' },
+        { label: 'Giữa', value: 'center' },
+        { label: 'Phải', value: 'right' }
+      ]
+    },
+    speed: {
+      type: 'number',
+      label: 'Tốc độ chạy (giây)'
+    },
+
+    hoverEffect: {
+      type: 'select',
+      label: 'Hiệu ứng hover',
+
+      options: [
+        { label: 'Zoom', value: 'zoom' },
+        { label: 'Nổi lên', value: 'lift' },
+        { label: 'Xoay nhẹ', value: 'rotate' }
+      ]
+    },
+
+    logoWidth: {
+      type: 'number',
+      label: 'Chiều rộng logo'
+    },
+
+    logoHeight: {
+      type: 'number',
+      label: 'Chiều cao logo'
+    },
+
+    cardRadius: {
+      type: 'number',
+      label: 'Bo góc card'
+    },
+
+    logos: {
+      type: 'array',
+      label: 'Danh sách logo',
+
+      arrayFields: {
+
+        imageUrl: {
+          type: 'text',
+          label: 'URL Logo'
+        },
+
+        alt: {
+          type: 'text',
+          label: 'Tên Logo'
+        },
+        overlay: {
+  type: 'object',
+  label: 'Lớp phủ Gradient',
+},
+      },
+
+      getItemSummary: (item) =>
+        item.alt || 'Logo'
+    },
+
+    background: {
+      type: 'object',
+      label: 'Nền',
+
+      objectFields: {
+
+        type: {
+          type: 'select',
+          label: 'Loại nền',
+
+          options: [
+            { label: 'Màu', value: 'color' },
+            { label: 'Gradient', value: 'gradient' },
+            { label: 'Ảnh', value: 'image' }
+          ]
+        },
+
+        color: {
+          type: 'text',
+          label: 'Màu nền'
+        },
+
+        imageUrl: {
+          type: 'text',
+          label: 'URL ảnh'
+        },
+
+        gradientFrom: {
+          type: 'text',
+          label: 'Gradient From'
+        },
+
+        gradientTo: {
+          type: 'text',
+          label: 'Gradient To'
+        },
+
+        gradientDirection: {
+          type: 'text',
+          label: 'Direction'
+        }
+      }
+    }
+  },
+
+  defaultProps: {
+    
+  titleColor: {
+  type: 'text',
+  label: 'Màu tiêu đề'
+},
+  overlay: {
+  enabled: 'true',
+  gradientFrom: '#0f172a',
+  gradientTo: '#2563eb',
+  direction: 'to right',
+  opacity: 0.5
+},
+titleSize: {
+  type: 'select',
+  label: 'Kích thước tiêu đề',
+  options: [
+    { label: 'Nhỏ', value: 'sm' },
+    { label: 'Vừa', value: 'base' },
+    { label: 'Lớn', value: 'lg' },
+    { label: 'Rất lớn', value: 'xl' },
+    { label: 'Cực lớn', value: '2xl' }
+  ]
+},
+
+titleAlign: {
+  type: 'select',
+  label: 'Vị trí tiêu đề',
+  options: [
+    { label: 'Trái', value: 'left' },
+    { label: 'Giữa', value: 'center' },
+    { label: 'Phải', value: 'right' }
+  ]
+},
+    title:
+      'HỘI VIÊN CLB DOANH NHÂN ĐỒNG THÁP TẠI TP. HỒ CHÍ MINH',
+    titleColor: '#0f2f6e',
+
+    titleSize: 'xl',
+
+    titleAlign: 'center',
+    speed: 20,
+
+    hoverEffect: 'zoom',
+
+    logoWidth: 220,
+
+    logoHeight: 130,
+
+    cardRadius: 24,
+    titleColor: {
+  type: 'text',
+  label: 'Màu tiêu đề'
+},
+
+titleSize: {
+  type: 'select',
+  label: 'Kích thước tiêu đề',
+  options: [
+    { label: 'Nhỏ', value: 'sm' },
+    { label: 'Vừa', value: 'base' },
+    { label: 'Lớn', value: 'lg' },
+    { label: 'Rất lớn', value: 'xl' },
+    { label: 'Cực lớn', value: '2xl' }
+  ]
+},
+
+titleAlign: {
+  type: 'select',
+  label: 'Vị trí tiêu đề',
+  options: [
+    { label: 'Trái', value: 'left' },
+    { label: 'Giữa', value: 'center' },
+    { label: 'Phải', value: 'right' }
+  ]
+},
+
+    background: {
+      overlay: {
+  type: 'object',
+  label: 'Gradient phủ trên nền',
+
+  objectFields: {
+    enabled: {
+      type: 'select',
+      label: 'Bật/Tắt Overlay',
+      options: [
+        { label: 'Bật', value: 'true' },
+        { label: 'Tắt', value: 'false' }
+      ]
+    },
+
+    gradientFrom: {
+      type: 'text',
+      label: 'Màu bắt đầu'
+    },
+
+    gradientTo: {
+      type: 'text',
+      label: 'Màu kết thúc'
+    },
+
+    direction: {
+      type: 'text',
+      label: 'Hướng Gradient'
+    },
+
+    opacity: {
+      type: 'number',
+      label: 'Độ trong suốt',
+      min: 0,
+      max: 1
+    }
+  }
+},
+      type: 'color',
+      color: '#dff4ff'
+    },
+
+    logos: [
+      {
+        imageUrl: 'https://via.placeholder.com/200x100',
+        alt: 'Logo 1'
+      },
+      {
+        imageUrl: 'https://via.placeholder.com/200x100',
+        alt: 'Logo 2'
+      }
+    ]
+  },
+
+  render: (props) =>
+    <AdminMemberLogos {...props} />
+},
+    StatsSection: {
+  label: "Thống kê",
+
+  fields: {
+
+    title: {
+      type: "text",
+      label: "Tiêu đề"
+    },
+
+    titleColor: {
+      type: "text",
+      label: "Màu tiêu đề"
+    },
+
+    titleSize: {
+      type: "select",
+      label: "Kích cỡ",
+
+      options: [
+        {label:"Nhỏ",value:"sm"},
+        {label:"Vừa",value:"base"},
+        {label:"Lớn",value:"lg"},
+        {label:"Rất lớn",value:"xl"},
+        {label:"Cực lớn",value:"2xl"}
+      ]
+    },
+
+    titleAlign: {
+      type: "select",
+      label: "Vị trí",
+
+      options: [
+        {label:"Trái",value:"left"},
+        {label:"Giữa",value:"center"},
+        {label:"Phải",value:"right"}
+      ]
+    },
+
+    stats: {
+      type: "array",
+
+      label: "Danh sách thống kê",
+
+arrayFields: {
+
+  number: {
+    type: "number",
+    label: "Số"
+  },
+
+  suffix: {
+    type: "text",
+    label: "Ký hiệu phía sau"
+  },
+
+  text: {
+    type: "textarea",
+    label: "Mô tả"
+  },
+
+  numberColor: {
+    type: "text",
+    label: "Màu số"
+  },
+
+  numberSize: {
+    type: "select",
+    label: "Kích cỡ số",
+
+    options: [
+      { label: "Nhỏ", value: "sm" },
+      { label: "Vừa", value: "base" },
+      { label: "Lớn", value: "lg" },
+      { label: "Rất lớn", value: "xl" },
+      { label: "Cực lớn", value: "2xl" }
+    ]
+  },
+
+  textColor: {
+    type: "text",
+    label: "Màu mô tả"
+  },
+
+  textSize: {
+    type: "select",
+    label: "Kích cỡ mô tả",
+
+    options: [
+      { label: "Nhỏ", value: "sm" },
+      { label: "Vừa", value: "base" },
+      { label: "Lớn", value: "lg" }
+    ]
+  },
+
+  align: {
+    type: "select",
+    label: "Căn lề",
+
+    options: [
+      { label: "Trái", value: "left" },
+      { label: "Giữa", value: "center" },
+      { label: "Phải", value: "right" }
+    ]
+  },
+
+  backgroundColor: {
+    type: "text",
+    label: "Màu nền cụm"
+  },
+
+  borderRadius: {
+    type: "number",
+    label: "Bo góc"
+  },
+
+  padding: {
+    type: "number",
+    label: "Padding"
+  }
+
+},
+
+      getItemSummary: (item) =>
+        item.text || "Thống kê"
+    },
+
+    background: {
+      type: "object",
+
+      label: "Nền",
+
+      objectFields: {
+
+        type: {
+          type: "select",
+
+          options: [
+            {
+              label:"Màu",
+              value:"color"
+            },
+            {
+              label:"Ảnh",
+              value:"image"
+            },
+            {
+              label:"GIF",
+              value:"gif"
+            },
+            {
+              label:"Gradient",
+              value:"gradient"
+            }
+          ]
+        },
+
+        color: {
+          type:"text"
+        },
+
+        imageUrl: {
+          type:"text"
+        },
+
+        gradientFrom: {
+          type:"text"
+        },
+
+        gradientTo: {
+          type:"text"
+        },
+
+        gradientDirection: {
+          type:"text"
+        }
+
+      }
+    },
+
+    overlay: {
+      type:"object",
+
+      label:"Gradient phủ",
+
+      objectFields: {
+
+        enabled: {
+          type:"radio",
+
+          options:[
+            {
+              label:"Bật",
+              value:true
+            },
+            {
+              label:"Tắt",
+              value:false
+            }
+          ]
+        },
+
+        gradientFrom:{
+          type:"text"
+        },
+
+        gradientTo:{
+          type:"text"
+        },
+
+        direction:{
+          type:"text"
+        },
+
+        opacity:{
+          type:"number"
+        }
+
+      }
+    }
+
+  },
+
+  defaultProps: {
+
+    title:
+      "HÀNH TRÌNH KIẾN TẠO & GẮN KẾT GIÁ TRỊ",
+
+    titleColor:"#0f4c81",
+
+    titleSize:"xl",
+
+    titleAlign:"center",
+
+stats: [
+  {
+    number: 500,
+    suffix: "+",
+
+    text: "Hội viên là các doanh nghiệp",
+
+    numberColor: "#0f4c81",
+    numberSize: "2xl",
+
+    textColor: "#374151",
+    textSize: "base",
+
+    align: "center",
+
+    backgroundColor: "#ffffff",
+
+    borderRadius: 20,
+
+    padding: 24
+  }
+]
+  },
+
+  render:(props)=>
+    <AdminStatsSection
+      {...props}
+    />
+}
   },
 
   // Sidebar categories
   categoryGroups: [
     { title: 'Cơ bản', components: ['Heading', 'Text', 'Image'] },
     { title: 'Layout', components: ['Section'] },
-    { title: 'Nâng cao', components: ['Hero','SenHong','BanChuyenMon','AboutStructure'] }
+    { title: 'Nâng cao', components: ["Header",
+      "Footer",
+      "SenHong",
+      "BanChuyenMon",
+      "AboutStructure",
+      "MemberLogos",
+      "StatsSection"] }
   ],
 
   // Root config
