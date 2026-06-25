@@ -1,5 +1,5 @@
 import React from "react";
-
+import SectionTransition from "../common/SectionTransition";
 const HeroBanner = ({
   height = 760,
 
@@ -11,7 +11,29 @@ const HeroBanner = ({
 
   backgroundImage = "",
 
-  blocks = [],
+  overlayEnable = true,
+  overlayFrom = "rgba(0,61,165,0.85)",
+  overlayTo = "rgba(0,61,165,0.25)",
+  overlayDirection = "135deg",
+  overlayOpacity = 100,
+
+blocks = [],
+
+showTransition = true,
+
+transitionHeight = 150,
+
+transitionColorFrom =
+  "rgba(255,255,255,0)",
+
+transitionColorTo =
+  "rgba(255,255,255,1)",
+
+transitionBlur = 0,
+
+transitionDirection =
+  "to bottom",
+
 }) => {
   const getBackgroundStyle = () => {
     if (
@@ -44,7 +66,22 @@ const HeroBanner = ({
         ...getBackgroundStyle(),
       }}
     >
-      {blocks.map((block, index) => (
+          {/* OVERLAY */}
+    {overlayEnable && (
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background: `linear-gradient(
+            ${overlayDirection},
+            ${overlayFrom},
+            ${overlayTo}
+          )`,
+          opacity: overlayOpacity / 100,
+        }}
+      />
+    )}
+      <div className="relative z-[2]">
+       {blocks.map((block, index) => (
         <div
           key={index}
           className="absolute backdrop-blur-md"
@@ -233,7 +270,16 @@ const HeroBanner = ({
   )}
 </div>
         </div>
-      ))}
+            ))}
+</div>
+    <SectionTransition
+  show={showTransition}
+  height={transitionHeight}
+  colorFrom={transitionColorFrom}
+  colorTo={transitionColorTo}
+  blur={transitionBlur}
+  direction={transitionDirection}
+/>
     </section>
   );
 };

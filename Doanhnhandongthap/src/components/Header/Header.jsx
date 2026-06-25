@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import useResponsive from "../../hooks/useResponsive";
+import { getResponsiveValue }
+from "../../utils/responsive";
 
 function MenuItem({
   item = {},
@@ -19,7 +22,13 @@ function MenuItem({
       style={{
         color: hover ? menuHoverColor : menuColor,
         fontSize: `${menuFontSize}px`,
-        fontWeight: menuFontWeight,
+        fontSize:
+        getResponsiveValue(
+          menuFontSize,
+          menuFontSize * 0.85,
+          menuFontSize * 0.7,
+          window.innerWidth
+           ),
         transform: hover
           ? `scale(${menuHoverScale})`
           : "scale(1)",
@@ -79,6 +88,10 @@ const Header = ({
   languageTextColor = "#ffffff",
   languageBorderRadius = 50,
 }) => {
+  const {
+  screenWidth,
+  isMobile,
+} = useResponsive();
   return (
     <header
       className="sticky top-0 z-50 w-full"
@@ -100,8 +113,19 @@ const Header = ({
             alt="Logo"
             className="absolute object-contain"
             style={{
-              width: `${logoWidth}px`,
-              height: `${logoHeight}px`,
+              width: `${getResponsiveValue(
+              logoWidth,
+              logoWidth * 0.8,
+              logoWidth * 0.6,
+              screenWidth
+            )}px`,
+
+            height: `${getResponsiveValue(
+              logoHeight,
+              logoHeight * 0.8,
+              logoHeight * 0.6,
+              screenWidth
+            )}px`,
               left: `${logoX}px`,
               top: `${logoY}px`,
               border: `${logoBorderWidth}px solid ${logoBorderColor}`,
@@ -117,26 +141,49 @@ const Header = ({
             left: `${titleX}px`,
             top: `${titleY}px`,
             color: titleColor,
-            fontSize: `${titleFontSize}px`,
+            fontSize: `${getResponsiveValue(
+            titleFontSize,
+            titleFontSize * 0.8,
+            titleFontSize * 0.65,
+            screenWidth
+          )}px`,
             fontWeight: titleFontWeight,
             lineHeight: 1.4,
           }}
         >
           {clubName}
         </div>
-
+{isMobile && (
+  <button
+    className="absolute text-white"
+    style={{
+      right: "20px",
+      top: "20px",
+      fontSize: "32px",
+    }}
+  >
+    ☰
+  </button>
+)}
         {/* MENU */}
+      {!isMobile && (  
         <ul
           className="absolute flex items-center"
           style={{
             left: `${menuX}px`,
             top: `${menuY}px`,
-            gap: `${menuGap}px`,
+            gap: `${getResponsiveValue(
+            menuGap,
+            menuGap * 0.7,
+            menuGap * 0.4,
+            screenWidth
+          )}px`,
             listStyle: "none",
             margin: 0,
             padding: 0,
           }}
         >
+
           {Array.isArray(menuItems) &&
             menuItems.map((item, index) => (
               <li key={index}>
@@ -152,7 +199,7 @@ const Header = ({
               </li>
             ))}
         </ul>
-
+)}
         {/* LANGUAGE */}
         {showLanguage && (
           <div
@@ -167,8 +214,19 @@ const Header = ({
             <button
               type="button"
               style={{
-                width: `${languageSize}px`,
-                height: `${languageSize}px`,
+              width: `${getResponsiveValue(
+                languageSize,
+                languageSize * 0.8,
+                languageSize * 0.65,
+                screenWidth
+              )}px`,
+
+              height: `${getResponsiveValue(
+                languageSize,
+                languageSize * 0.8,
+                languageSize * 0.65,
+                screenWidth
+              )}px`,
                 backgroundColor: languageActiveColor,
                 color: languageTextColor,
                 border: "none",
