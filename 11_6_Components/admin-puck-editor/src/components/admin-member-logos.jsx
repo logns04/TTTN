@@ -1,7 +1,13 @@
 import React from 'react';
 
 const AdminMemberLogos = (props) => {
-
+const sectionHeight =
+  props.sectionHeight ??
+  props.puck?.render?.sectionHeight ??
+  500;
+const titlePosition =
+  props.titlePosition ??
+  props.puck?.render?.titlePosition;
 const {
 title,
 titleColor,
@@ -66,26 +72,34 @@ const duplicatedLogos = [
 ];
 
 return ( <section
-  className="relative py-20 overflow-hidden" 
-   style={getBackgroundStyle()}
+  className="relative overflow-hidden"
+  style={{
+    ...getBackgroundStyle(),
+    height: `${sectionHeight}px`
+  }}
  >
 
   <div className="max-w-7xl mx-auto px-auto">
 
     {title && (
 <h2
-    className={`
-        ${titleSizeMap[titleSize] || 'text-5xl'}
-        font-bold
-        mb-12
-    `}
-    style={{
-        color: titleColor,
-        textAlign: titleAlign
-    }}
-    >
-            {title}
-      </h2>
+  className={`
+    ${titleSizeMap[titleSize] || 'text-5xl'}
+    font-bold
+  `}
+  style={{
+    color: titleColor,
+    textAlign: titleAlign,
+
+    marginTop: `${titlePosition?.marginTop ?? 0}px`,
+    marginBottom: `${titlePosition?.marginBottom ?? 50}px`,
+
+    paddingLeft: `${titlePosition?.paddingLeft ?? 0}px`,
+    paddingRight: `${titlePosition?.paddingRight ?? 0}px`
+  }}
+>
+  {title}
+</h2>
     )}
 
    <div className="overflow-hidden relative">

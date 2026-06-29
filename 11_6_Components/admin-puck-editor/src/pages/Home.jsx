@@ -1,8 +1,9 @@
-import { Puck } from "@measured/puck";
+import { Render } from "@measured/puck";
 import puckConfig from "../admin-puck-config";
+
 import homepage from "../data/homepage.json";
 
-export default function EditorPage(){
+export default function Home(){
 
 const data =
 JSON.parse(localStorage.getItem("homepage"))
@@ -11,22 +12,10 @@ homepage;
 
 return(
 
-<Puck
-
+<Render
 config={puckConfig}
-
 data={data}
-
-onPublish={(data)=>{
-
-localStorage.setItem(
-"homepage",
-JSON.stringify(data)
-);
-
-}}
-
- />
+/>
 
 );
 

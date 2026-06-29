@@ -238,7 +238,7 @@ cardShadow =
                   width:
                     `${fadeWidth}px`,
                   background:
-                    "linear-gradient(to right,#BCE6F4,transparent)",
+                    "linear-gradient(to right,#DDF6FF,transparent)",
                 }}
               />
 
@@ -250,7 +250,7 @@ cardShadow =
                   width:
                     `${fadeWidth}px`,
                   background:
-                    "linear-gradient(to left,#0D6EFD,transparent)",
+                    "linear-gradient(to left,#F7E4FF,transparent)",
                 }}
               />
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
 const AdminBanChuyenMon = (props) => {
-
+  
   const sectionTitle = props.sectionTitle ?? props.puck?.render?.sectionTitle;
   const sectionSubtitle = props.sectionSubtitle ?? props.puck?.render?.sectionSubtitle;
   const cards = props.cards ?? props.puck?.render?.cards ?? [];
   const background = props.background ?? props.puck?.render?.background;
-
+  
   const getBackgroundStyle = () => {
     const bg = background || {};
     if (bg.type === 'gradient') {
@@ -22,11 +22,31 @@ const AdminBanChuyenMon = (props) => {
     }
     return { backgroundColor: bg.color || '#f3f4f6' };
   };
+  const getOverlayStyle = () => {
+  const bg = background || {};
 
+  if (!bg.overlayEnable) return {};
+
+  return {
+    background: `linear-gradient(
+      ${bg.overlayDirection || "to right"},
+      ${bg.overlayFrom || "rgba(0,0,0,.5)"},
+      ${bg.overlayTo || "rgba(0,0,0,.2)"}
+    )`,
+    opacity: bg.overlayOpacity ?? 1
+  };
+};
   return (
-    <section className="relative w-full py-20 px-6 transition-all duration-300" style={getBackgroundStyle()}>
-      <div className="max-w-7xl mx-auto">
-        
+    <section className="relative w-full py-20 px-6 overflow-hidden transition-all duration-300" style={getBackgroundStyle()}>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {
+        background?.overlayEnable && (
+          <div
+            className="absolute inset-0 z-0"
+            style={getOverlayStyle()}
+          />
+        )
+      }
         {}
         <div className="text-center mb-16">
           {sectionTitle && (
@@ -99,6 +119,7 @@ const AdminBanChuyenMon = (props) => {
 
       </div>
     </section>
+    
   );
 };
 

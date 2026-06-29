@@ -20,11 +20,39 @@ const AdminAboutStructure = (props) => {
     }
     return { backgroundColor: bg.color || '#f1f5f9' };
   };
+  const getOverlayStyle = () => {
+
+  const bg = background || {};
+
+  if (!bg.overlayEnable) return {};
+
+  return {
+
+    background: `linear-gradient(
+      ${bg.overlayDirection || "to right"},
+      ${bg.overlayFrom || "rgba(0,0,0,.45)"},
+      ${bg.overlayTo || "rgba(0,0,0,.15)"}
+    )`,
+
+    opacity: bg.overlayOpacity ?? 1
+
+  };
+
+};
 
   return (
-    <section className="relative w-full py-16 px-6 min-h-[600px] transition-all duration-300" style={getBackgroundStyle()}>
-      <div className="max-w-7xl mx-auto">
-        
+    <section className="relative w-full py-16 px-6 min-h-[600px] overflow-hidden transition-all duration-300" style={getBackgroundStyle()}>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {
+          background?.overlayEnable && (
+
+          <div
+          className="absolute inset-0 z-0"
+          style={getOverlayStyle()}
+          />
+
+          )
+          }
         {}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8 items-start">
           {columns.map((col, colIdx) => (
