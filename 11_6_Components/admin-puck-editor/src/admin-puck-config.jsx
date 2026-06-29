@@ -8,6 +8,8 @@ import AdminStatsSection from'./components/admin-stats-section';
 import AdminHeader from "./components/admin-header";
 import AdminFooter from "./components/admin-footer";
 import AdminBlurTransition from "./components/admin-blur-transition";
+import AdminNewsSection from "./components/admin-news";
+
 //Config — đăng ký 5 components với fields + defaultProps + render.
 
 export const puckConfig = {
@@ -1395,15 +1397,14 @@ titleAlign: {
   label: "Thống kê",
 
   fields: {
-    sectionHeight: {
+  sectionHeight: {
   type: "number",
   label: "Chiều cao Section"
 },
     title: {
       type: "text",
       label: "Tiêu đề"
-    },
-
+    }, 
     titleColor: {
       type: "text",
       label: "Màu tiêu đề"
@@ -1432,6 +1433,30 @@ titleAlign: {
         {label:"Phải",value:"right"}
       ]
     },
+    titlePaddingTop: {
+  type: "number",
+  label: "Padding trên Title"
+},
+
+titlePaddingBottom: {
+  type: "number",
+  label: "Padding dưới Title"
+},
+
+statsPaddingTop: {
+  type: "number",
+  label: "Padding trên Khối thống kê"
+},
+
+statsPaddingBottom: {
+  type: "number",
+  label: "Padding dưới Khối thống kê"
+},
+
+statsGap: {
+  type: "number",
+  label: "Khoảng cách giữa các mục"
+},
 
     stats: {
       type: "array",
@@ -1618,7 +1643,7 @@ arrayFields: {
   },
 
   defaultProps: {
-    sectionHeight: 500,
+    sectionHeight: 284,
     title:
       "HÀNH TRÌNH KIẾN TẠO & GẮN KẾT GIÁ TRỊ",
 
@@ -1627,7 +1652,13 @@ arrayFields: {
     titleSize:"xl",
 
     titleAlign:"center",
+    titlePaddingTop: 38,
 
+    titlePaddingBottom: 28,
+
+    statsPaddingTop: 0,
+
+    statsPaddingBottom: 0,
 stats: [
   {
     number: 500,
@@ -1648,15 +1679,449 @@ stats: [
     borderRadius: 20,
 
     padding: 24
-  }
-]
+  },
+    {
+    number: 515,
+    suffix: "+",
+
+    text: "Hội viên là các doanh nghiệp",
+
+    numberColor: "#0f4c81",
+    numberSize: "base",
+
+    textColor: "#374151",
+    textSize: "base",
+
+    align: "center",
+
+    backgroundColor: "#ffffff",
+
+    borderRadius: 20,
+
+    padding: 24
+  },
+    {
+    number: 500,
+    suffix: "+",
+
+    text: "Hội viên là các doanh nghiệp",
+
+    numberColor: "#0f4c81",
+    numberSize: "2xl",
+
+    textColor: "#374151",
+    textSize: "base",
+
+    align: "center",
+
+    backgroundColor: "#ffffff",
+
+    borderRadius: 20,
+
+    padding: 24
+  },
+    {
+    number: 500,
+    suffix: "+",
+
+    text: "Hội viên là các doanh nghiệp",
+
+    numberColor: "#0f4c81",
+    numberSize: "2xl",
+
+    textColor: "#374151",
+    textSize: "base",
+
+    align: "center",
+
+    backgroundColor: "#ffffff",
+
+    borderRadius: 20,
+
+    padding: 24
+  },
+  
+],
+    statsGap: 40,
   },
 
   render:(props)=>
     <AdminStatsSection
       {...props}
     />
-}
+},
+  NewsSection: {
+  label: "Tin tức",
+
+  fields: {
+
+    /* ==========================
+        SECTION
+    ========================== */
+
+    sectionHeight: {
+      type: "number",
+      label: "Chiều cao Section"
+    },
+
+    sectionPaddingTop: {
+      type: "number",
+      label: "Padding trên"
+    },
+
+    sectionPaddingBottom: {
+      type: "number",
+      label: "Padding dưới"
+    },
+
+    cardGap: {
+      type: "number",
+      label: "Khoảng cách giữa Card"
+    },
+
+    cardsPerRow: {
+      type: "number",
+      label: "Số card / hàng"
+    },
+
+    /* ==========================
+        TITLE
+    ========================== */
+
+    title: {
+      type: "text",
+      label: "Tiêu đề",
+      contentEditable: true
+    },
+
+    titleColor: {
+      type: "text",
+      label: "Màu tiêu đề"
+    },
+
+    titleSize: {
+      type: "select",
+      label: "Kích thước",
+
+      options: [
+        { label: "Nhỏ", value: "sm" },
+        { label: "Vừa", value: "base" },
+        { label: "Lớn", value: "lg" },
+        { label: "Rất lớn", value: "xl" },
+        { label: "Cực lớn", value: "2xl" }
+      ]
+    },
+
+    titleAlign: {
+      type: "select",
+      label: "Canh lề",
+
+      options: [
+        { label: "Trái", value: "left" },
+        { label: "Giữa", value: "center" },
+        { label: "Phải", value: "right" }
+      ]
+    },
+
+    titlePaddingTop: {
+      type: "number",
+      label: "Padding trên Title"
+    },
+
+    titlePaddingBottom: {
+      type: "number",
+      label: "Padding dưới Title"
+    },
+
+    /* ==========================
+        CARD
+    ========================== */
+
+    cardRadius: {
+      type: "number",
+      label: "Bo góc Card"
+    },
+
+    imageHeight: {
+      type: "number",
+      label: "Chiều cao ảnh"
+    },
+
+    cardShadow: {
+      type: "text",
+      label: "Shadow Card"
+    },
+
+    cardBackground: {
+      type: "text",
+      label: "Màu nền Card"
+    },
+
+    cardBorder: {
+      type: "text",
+      label: "Border Card"
+    },
+
+    cardPadding: {
+      type: "number",
+      label: "Padding Card"
+    },
+
+    /* ==========================
+        BUTTON
+    ========================== */
+
+    buttonText: {
+      type: "text",
+      label: "Nội dung nút"
+    },
+
+    buttonBg: {
+      type: "text",
+      label: "Màu nền nút"
+    },
+
+    buttonColor: {
+      type: "text",
+      label: "Màu chữ nút"
+    },
+
+    buttonRadius: {
+      type: "number",
+      label: "Bo góc nút"
+    },
+
+    /* ==========================
+        BACKGROUND
+    ========================== */
+
+    background: {
+      type: "object",
+      label: "Background",
+
+      objectFields: {
+
+        type: {
+          type: "select",
+          label: "Loại nền",
+
+          options: [
+            { label: "Màu", value: "color" },
+            { label: "Gradient", value: "gradient" },
+            { label: "Ảnh", value: "image" },
+            { label: "GIF", value: "gif" }
+          ]
+        },
+
+        color: {
+          type: "text",
+          label: "Màu nền"
+        },
+
+        imageUrl: {
+          type: "text",
+          label: "Ảnh nền"
+        },
+
+        gradientFrom: {
+          type: "text",
+          label: "Gradient From"
+        },
+
+        gradientTo: {
+          type: "text",
+          label: "Gradient To"
+        },
+
+        gradientDirection: {
+          type: "text",
+          label: "Hướng Gradient"
+        }
+
+      }
+
+    },
+
+    /* ==========================
+        OVERLAY
+    ========================== */
+
+    overlay: {
+      type: "object",
+      label: "Gradient Overlay",
+
+      objectFields: {
+
+        enabled: {
+          type: "radio",
+          label: "Hiển thị",
+
+          options: [
+            { label: "Bật", value: true },
+            { label: "Tắt", value: false }
+          ]
+        },
+
+        gradientFrom: {
+          type: "text",
+          label: "Màu đầu"
+        },
+
+        gradientTo: {
+          type: "text",
+          label: "Màu cuối"
+        },
+
+        direction: {
+          type: "text",
+          label: "Hướng"
+        },
+
+        opacity: {
+          type: "number",
+          label: "Độ mờ"
+        }
+
+      }
+
+    },
+
+    /* ==========================
+        NEWS
+    ========================== */
+
+    news: {
+      type: "array",
+      label: "Danh sách Tin tức",
+
+      arrayFields: {
+
+        image: {
+          type: "text",
+          label: "Ảnh"
+        },
+
+        day: {
+          type: "text",
+          label: "Ngày"
+        },
+
+        month: {
+          type: "text",
+          label: "Tháng"
+        },
+
+        date: {
+          type: "text",
+          label: "Ngày đầy đủ"
+        },
+
+        title: {
+          type: "text",
+          label: "Tiêu đề"
+        },
+
+        description: {
+          type: "textarea",
+          label: "Mô tả"
+        },
+
+        url: {
+          type: "text",
+          label: "Liên kết"
+        }
+
+      },
+
+      getItemSummary: (item) =>
+        item.title || "Tin tức"
+
+    }
+
+  },
+
+  defaultProps: {
+
+    sectionHeight: 900,
+    sectionPaddingTop: 80,
+    sectionPaddingBottom: 80,
+
+    cardGap: 40,
+    cardsPerRow: 3,
+
+    title: "TIN TỨC",
+    titleColor: "#0f2f6e",
+    titleSize: "xl",
+    titleAlign: "center",
+
+    titlePaddingTop: 0,
+    titlePaddingBottom: 70,
+
+    cardRadius: 24,
+    imageHeight: 260,
+
+    cardShadow: "0 15px 40px rgba(0,0,0,.08)",
+    cardBackground: "#ffffff",
+    cardBorder: "1px solid #e5e7eb",
+    cardPadding: 24,
+
+    buttonText: "Xem chi tiết",
+    buttonBg: "#0f47af",
+    buttonColor: "#ffffff",
+    buttonRadius: 999,
+
+    background: {
+      type: "color",
+      color: "#ffffff",
+      imageUrl: "",
+      gradientFrom: "#ffffff",
+      gradientTo: "#edf6ff",
+      gradientDirection: "to bottom"
+    },
+
+    overlay: {
+      enabled: false,
+      gradientFrom: "rgba(15,71,175,.75)",
+      gradientTo: "rgba(0,0,0,.15)",
+      direction: "to bottom",
+      opacity: 0.4
+    },
+
+    news: [
+      {
+        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+        day: "29",
+        month: "JUN",
+        date: "29/06/2026",
+        title: "CLB Doanh nhân Đồng Tháp tổ chức chương trình kết nối hội viên",
+        description: "Buổi gặp mặt kết nối các doanh nghiệp hội viên, mở rộng hợp tác và phát triển kinh doanh bền vững.",
+        url: "#"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+        day: "18",
+        month: "JUN",
+        date: "18/06/2026",
+        title: "Chương trình thiện nguyện hướng về quê hương Đồng Tháp",
+        description: "Lan tỏa tinh thần sẻ chia đến cộng đồng.",
+        url: "#"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1511578314322-379afb476865",
+        day: "08",
+        month: "JUN",
+        date: "08/06/2026",
+        title: "Hội thảo chuyển đổi số dành cho doanh nghiệp",
+        description: "Chia sẻ các giải pháp AI và chuyển đổi số.",
+        url: "#"
+      }
+    ]
+
+  },
+
+  render: (props) => <AdminNewsSection {...props} />
+
+},
   },
 
   // Sidebar categories

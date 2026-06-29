@@ -7,15 +7,26 @@ import { countUp } from '../utils/countUp';
 const AdminStatsSection = (props) => {
 console.log("Stats mới:", props.stats);
   const {
+    sectionHeight,
     title,
     titleColor,
     titleSize,
     titleAlign,
-
     stats,
-
     background,
-    overlay
+    overlay, 
+    titlePaddingTop,
+
+    titlePaddingBottom,
+
+    statsPaddingTop,
+
+    statsPaddingBottom,
+
+    statsGap,
+
+    titleVertical,
+
   } = props;
 
   const refs = useRef([]);
@@ -115,14 +126,19 @@ console.log("Stats mới:", props.stats);
 }, [stats]);
 
   return (
-    <section
-      className="
-        relative
-        py-28
-        overflow-hidden
-      "
-      style={getBackgroundStyle()}
-    >
+<section
+
+className="relative overflow-hidden"
+
+style={{
+
+...getBackgroundStyle(),
+
+minHeight: `${sectionHeight}px`
+
+}}
+
+>
 
       {overlay?.enabled && (
         <div
@@ -152,28 +168,64 @@ console.log("Stats mới:", props.stats);
           px-6
         "
       >
+<div
 
-        <h2
-          className={`
-            font-bold
-            mb-20
-            ${titleSizeMap[titleSize]}
-          `}
-          style={{
-            color: titleColor,
-            textAlign: titleAlign
-          }}
-        >
-          {title}
-        </h2>
+style={{
 
-        <div
-          className="
-            grid
-            md:grid-cols-4
-            gap-10
-          "
-        >
+display: "flex",
+
+justifyContent: titleVertical,
+
+paddingTop: `${titlePaddingTop}px`,
+
+paddingBottom: `${titlePaddingBottom}px`
+
+}}
+
+>
+
+<h2
+
+className={`
+
+font-bold
+
+w-full
+
+${titleSizeMap[titleSize]}
+
+`}
+
+style={{
+
+color: titleColor,
+
+textAlign: titleAlign
+
+}}
+
+>
+
+{title}
+
+</h2>
+
+</div>
+<div
+
+className="grid md:grid-cols-4"
+
+style={{
+
+gap: `${statsGap}px`,
+
+paddingTop: `${statsPaddingTop}px`,
+
+paddingBottom: `${statsPaddingBottom}px`
+
+}}
+
+>
 
 {stats?.map((item, index) => (
   <div
