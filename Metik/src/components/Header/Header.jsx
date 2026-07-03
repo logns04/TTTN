@@ -18,9 +18,6 @@ const Header = ({
 }) => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  /* ================= Header ================= */
-
   const {
     height = 100,
     maxWidth = 1400,
@@ -40,8 +37,6 @@ const Header = ({
 
   } = header;
 
-  /* ================= Logo ================= */
-
   const {
     image = "",
     link = "/",
@@ -57,8 +52,6 @@ const Header = ({
     borderRadius = 0
 
   } = logo;
-
-  /* ================= Menu ================= */
 
   const {
 
@@ -79,30 +72,20 @@ const Header = ({
     positionY: menuY = 0
 
   } = menu;
-
-  /* ================= Social ================= */
-
   const {
-
     gap: socialGap = 12,
-
     positionX: socialX = 0,
     positionY: socialY = 0
 
   } = social;
-
   const menuEnter = (e) => {
     e.currentTarget.style.color = hoverColor;
   };
-
   const menuLeave = (e, active) => {
     e.currentTarget.style.color = active ? activeColor : color;
   };
-
   return (
-
     <>
-
       <header
 
         style={{
