@@ -5,7 +5,7 @@ import { FaTiktok } from "react-icons/fa6";
 const iconMap = {
   facebook: FaFacebookF,
   linkedin: FaLinkedinIn,
-  tiktok: FaTiktok
+  tiktok: FaTiktok,
 };
 
 const Header = ({
@@ -14,9 +14,8 @@ const Header = ({
   menu = {},
   menus = [],
   social = {},
-  socials = []
+  socials = [],
 }) => {
-
   const [mobileOpen, setMobileOpen] = useState(false);
   const {
     height = 100,
@@ -33,8 +32,7 @@ const Header = ({
     borderBottom = true,
 
     logoWidth = 240,
-    socialWidth = 180
-
+    socialWidth = 180,
   } = header;
 
   const {
@@ -49,12 +47,10 @@ const Header = ({
 
     borderWidth = 0,
     borderColor = "#ddd",
-    borderRadius = 0
-
+    borderRadius = 0,
   } = logo;
 
   const {
-
     fontSize = 16,
     fontWeight = 600,
 
@@ -69,14 +65,12 @@ const Header = ({
     letterSpacing = 0,
 
     positionX: menuX = 0,
-    positionY: menuY = 0
-
+    positionY: menuY = 0,
   } = menu;
   const {
     gap: socialGap = 12,
     positionX: socialX = 0,
-    positionY: socialY = 0
-
+    positionY: socialY = 0,
   } = social;
   const menuEnter = (e) => {
     e.currentTarget.style.color = hoverColor;
@@ -87,9 +81,7 @@ const Header = ({
   return (
     <>
       <header
-
         style={{
-
           width: "100%",
 
           height,
@@ -104,16 +96,11 @@ const Header = ({
 
           borderBottom: borderBottom ? "1px solid #ececec" : "none",
 
-          boxShadow: shadow ? "0 3px 12px rgba(0,0,0,.08)" : "none"
-
+          boxShadow: shadow ? "0 3px 12px rgba(0,0,0,.08)" : "none",
         }}
-
       >
-
         <div
-
           style={{
-
             maxWidth,
 
             height: "100%",
@@ -126,40 +113,29 @@ const Header = ({
 
             gridTemplateColumns: `${logoWidth}px 1fr ${socialWidth}px`,
 
-            alignItems: "center"
-
+            alignItems: "center",
           }}
-
         >
-
           {/* ================= Logo ================= */}
 
           <div
-
             style={{
-
               display: "flex",
 
               alignItems: "center",
 
               justify: "flex-start",
 
-              transform: `translate(${positionX}px,${positionY}px)`
-
+              transform: `translate(${positionX}px,${positionY}px)`,
             }}
-
           >
-
             <a href={link}>
-
               <img
-
                 src={image}
 
                 alt="logo"
 
                 style={{
-
                   width,
 
                   height: logoHeight,
@@ -168,22 +144,16 @@ const Header = ({
 
                   border: `${borderWidth}px solid ${borderColor}`,
 
-                  borderRadius
-
+                  borderRadius,
                 }}
-
               />
-
             </a>
-
           </div>
 
           {/* ================= Menu ================= */}
 
           <nav
-
             style={{
-
               display: "flex",
 
               justifyContent: "center",
@@ -192,22 +162,16 @@ const Header = ({
 
               gap,
 
-              transform: `translate(${menuX}px,${menuY}px)`
-
+              transform: `translate(${menuX}px,${menuY}px)`,
             }}
-
           >
-
             {menus.map((item, index) => (
-
               <a
-
                 key={index}
 
                 href={item.url}
 
                 style={{
-
                   textDecoration: "none",
 
                   color: item.active ? activeColor : color,
@@ -220,29 +184,21 @@ const Header = ({
 
                   textTransform: uppercase ? "uppercase" : "none",
 
-                  transition: ".3s"
-
+                  transition: ".3s",
                 }}
 
                 onMouseEnter={menuEnter}
 
                 onMouseLeave={(e) => menuLeave(e, item.active)}
-
               >
-
                 {item.title}
-
               </a>
-
             ))}
-
           </nav>
           {/* ================= Social ================= */}
 
           <div
-
             style={{
-
               display: "flex",
 
               justifyContent: "flex-end",
@@ -251,22 +207,16 @@ const Header = ({
 
               gap: socialGap,
 
-              transform: `translate(${socialX}px,${socialY}px)`
-
+              transform: `translate(${socialX}px,${socialY}px)`,
             }}
-
           >
-
             {socials.map((item, index) => {
-
               const Icon = iconMap[item.icon];
 
               if (!Icon) return null;
 
               return (
-
                 <a
-
                   key={index}
 
                   href={item.url}
@@ -276,7 +226,6 @@ const Header = ({
                   rel="noreferrer"
 
                   style={{
-
                     width: item.size ?? 40,
 
                     height: item.size ?? 40,
@@ -299,199 +248,154 @@ const Header = ({
 
                     transition: ".3s",
 
-                    transform: `translate(${item.positionX ?? 0}px,${item.positionY ?? 0}px) scale(${item.scale ?? 1})`
-
+                    transform: `translate(${item.positionX ?? 0}px,${item.positionY ?? 0}px) scale(${item.scale ?? 1})`,
                   }}
 
-                  onMouseEnter={(e)=>{
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background =
+                      item.hoverBackground ?? item.background;
 
-                    e.currentTarget.style.background=item.hoverBackground ?? item.background;
+                    e.currentTarget.style.color = item.hoverColor ?? item.color;
 
-                    e.currentTarget.style.color=item.hoverColor ?? item.color;
-
-                    e.currentTarget.style.transform=`translate(${item.positionX ?? 0}px,${item.positionY ?? 0}px) scale(${item.hoverScale ?? 1.1})`;
-
+                    e.currentTarget.style.transform = `translate(${item.positionX ?? 0}px,${item.positionY ?? 0}px) scale(${item.hoverScale ?? 1.1})`;
                   }}
 
-                  onMouseLeave={(e)=>{
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background =
+                      item.background ?? "#eee";
 
-                    e.currentTarget.style.background=item.background ?? "#eee";
+                    e.currentTarget.style.color = item.color ?? "#fff";
 
-                    e.currentTarget.style.color=item.color ?? "#fff";
-
-                    e.currentTarget.style.transform=`translate(${item.positionX ?? 0}px,${item.positionY ?? 0}px) scale(${item.scale ?? 1})`;
-
+                    e.currentTarget.style.transform = `translate(${item.positionX ?? 0}px,${item.positionY ?? 0}px) scale(${item.scale ?? 1})`;
                   }}
-
                 >
-
-                  <Icon size={item.iconSize ?? 18}/>
-
+                  <Icon size={item.iconSize ?? 18} />
                 </a>
-
               );
-
             })}
-
           </div>
-
         </div>
 
         {/* ================= Mobile Button ================= */}
 
         <button
-
-          onClick={()=>setMobileOpen(true)}
+          onClick={() => setMobileOpen(true)}
 
           style={{
+            display: "none",
 
-            display:"none",
+            position: "absolute",
 
-            position:"absolute",
+            right: 20,
 
-            right:20,
+            top: "50%",
 
-            top:"50%",
+            transform: "translateY(-50%)",
 
-            transform:"translateY(-50%)",
+            background: "transparent",
 
-            background:"transparent",
+            border: 0,
 
-            border:0,
-
-            cursor:"pointer"
-
+            cursor: "pointer",
           }}
-
         >
-
-          <FaBars size={24}/>
-
+          <FaBars size={24} />
         </button>
-
       </header>
 
       {/* ================= Mobile Drawer ================= */}
 
-      {
-
-        mobileOpen &&
-
+      {mobileOpen && (
         <>
-
           <div
-
-            onClick={()=>setMobileOpen(false)}
+            onClick={() => setMobileOpen(false)}
 
             style={{
+              position: "fixed",
 
-              position:"fixed",
+              inset: 0,
 
-              inset:0,
+              background: "rgba(0,0,0,.4)",
 
-              background:"rgba(0,0,0,.4)",
-
-              zIndex:9998
-
+              zIndex: 9998,
             }}
-
           />
 
           <div
-
             style={{
+              position: "fixed",
 
-              position:"fixed",
+              top: 0,
 
-              top:0,
+              right: 0,
 
-              right:0,
+              width: 320,
 
-              width:320,
+              height: "100vh",
 
-              height:"100vh",
+              background: "#fff",
 
-              background:"#fff",
+              zIndex: 9999,
 
-              zIndex:9999,
+              display: "flex",
 
-              display:"flex",
+              flexDirection: "column",
 
-              flexDirection:"column",
-
-              boxShadow:"-5px 0 15px rgba(0,0,0,.1)"
-
+              boxShadow: "-5px 0 15px rgba(0,0,0,.1)",
             }}
-
           >
-
             <div
-
               style={{
+                height: 70,
 
-                height:70,
+                display: "flex",
 
-                display:"flex",
+                alignItems: "center",
 
-                alignItems:"center",
+                justifyContent: "space-between",
 
-                justifyContent:"space-between",
+                padding: "0 20px",
 
-                padding:"0 20px",
-
-                borderBottom:"1px solid #eee"
-
+                borderBottom: "1px solid #eee",
               }}
-
             >
-
               <strong>MENU</strong>
 
               <FaTimes
-
                 size={22}
 
-                style={{cursor:"pointer"}}
+                style={{ cursor: "pointer" }}
 
-                onClick={()=>setMobileOpen(false)}
-
+                onClick={() => setMobileOpen(false)}
               />
-
             </div>
 
             {/* ĐÃ SỬA LỖI: Thẻ div mở bọc trọn vẹn vòng lặp map bên dưới */}
             <div
-
               style={{
+                flex: 1,
 
-                flex:1,
+                padding: 20,
 
-                padding:20,
-
-                overflowY:"auto"
-
+                overflowY: "auto",
               }}
-
             >
               {menus.map((item, index) => (
-
                 <a
-
                   key={index}
 
                   href={item.url}
 
-                  onClick={()=>setMobileOpen(false)}
+                  onClick={() => setMobileOpen(false)}
 
                   style={{
+                    display: "block",
 
-                    display:"block",
+                    padding: "14px 0",
 
-                    padding:"14px 0",
+                    textDecoration: "none",
 
-                    textDecoration:"none",
-
-                    color:item.active ? activeColor : color,
+                    color: item.active ? activeColor : color,
 
                     fontSize,
 
@@ -499,60 +403,52 @@ const Header = ({
 
                     letterSpacing,
 
-                    textTransform:uppercase ? "uppercase" : "none",
+                    textTransform: uppercase ? "uppercase" : "none",
 
-                    borderBottom:"1px solid #f3f3f3",
+                    borderBottom: "1px solid #f3f3f3",
 
-                    transition:".3s"
-
+                    transition: ".3s",
                   }}
 
-                  onMouseEnter={(e)=>e.currentTarget.style.color=hoverColor}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = hoverColor)
+                  }
 
-                  onMouseLeave={(e)=>e.currentTarget.style.color=item.active ? activeColor : color}
-
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = item.active
+                      ? activeColor
+                      : color)
+                  }
                 >
-
                   {item.title}
-
                 </a>
-
               ))}
-
             </div>
 
             {/* ================= Drawer Social ================= */}
 
             <div
-
               style={{
+                display: "flex",
 
-                display:"flex",
+                justifyContent: "center",
 
-                justifyContent:"center",
+                alignItems: "center",
 
-                alignItems:"center",
+                gap: socialGap,
 
-                gap:socialGap,
+                padding: 20,
 
-                padding:20,
-
-                borderTop:"1px solid #eee"
-
+                borderTop: "1px solid #eee",
               }}
-
             >
+              {socials.map((item, index) => {
+                const Icon = iconMap[item.icon];
 
-              {socials.map((item,index)=>{
+                if (!Icon) return null;
 
-                const Icon=iconMap[item.icon];
-
-                if(!Icon) return null;
-
-                return(
-
+                return (
                   <a
-
                     key={index}
 
                     href={item.url}
@@ -562,69 +458,54 @@ const Header = ({
                     rel="noreferrer"
 
                     style={{
+                      width: item.size ?? 40,
 
-                      width:item.size ?? 40,
+                      height: item.size ?? 40,
 
-                      height:item.size ?? 40,
+                      display: "flex",
 
-                      display:"flex",
+                      justifyContent: "center",
 
-                      justifyContent:"center",
+                      alignItems: "center",
 
-                      alignItems:"center",
+                      background: item.background ?? "#eee",
 
-                      background:item.background ?? "#eee",
+                      color: item.color ?? "#fff",
 
-                      color:item.color ?? "#fff",
+                      border: `${item.borderWidth ?? 0}px solid ${item.borderColor ?? "#ddd"}`,
 
-                      border:`${item.borderWidth ?? 0}px solid ${item.borderColor ?? "#ddd"}`,
+                      borderRadius: item.radius ?? "50%",
 
-                      borderRadius:item.radius ?? "50%",
+                      textDecoration: "none",
 
-                      textDecoration:"none",
-
-                      transition:".3s"
-
+                      transition: ".3s",
                     }}
 
-                    onMouseEnter={(e)=>{
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background =
+                        item.hoverBackground ?? item.background;
 
-                      e.currentTarget.style.background=item.hoverBackground ?? item.background;
-
-                      e.currentTarget.style.color=item.hoverColor ?? item.color;
-
+                      e.currentTarget.style.color =
+                        item.hoverColor ?? item.color;
                     }}
 
-                    onMouseLeave={(e)=>{
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background =
+                        item.background ?? "#eee";
 
-                      e.currentTarget.style.background=item.background ?? "#eee";
-
-                      e.currentTarget.style.color=item.color ?? "#fff";
-
+                      e.currentTarget.style.color = item.color ?? "#fff";
                     }}
-
                   >
-
-                    <Icon size={item.iconSize ?? 18}/>
-
+                    <Icon size={item.iconSize ?? 18} />
                   </a>
-
                 );
-
               })}
-
             </div>
-
           </div>
-
         </>
-
-      }
-
+      )}
     </>
-
   );
-
 };
 
 export default Header;

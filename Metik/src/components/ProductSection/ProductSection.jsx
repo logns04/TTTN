@@ -4,18 +4,17 @@ const ProductSection = ({
   section = {},
   title = {},
   card = {},
-  products = []
+  products = [],
 }) => {
-
-const {
-  width = 1400,
-  height = 700,
-  background = "#ffffff",
-  paddingTop = 60,
-  paddingBottom = 60,
-  paddingLeft = 20,
-  paddingRight = 20
-} = section;
+  const {
+    width = 1400,
+    height = 700,
+    background = "#ffffff",
+    paddingTop = 60,
+    paddingBottom = 60,
+    paddingLeft = 20,
+    paddingRight = 20,
+  } = section;
 
   const {
     text = "SẢN PHẨM MỚI",
@@ -28,7 +27,7 @@ const {
     lineHeight = 8,
     lineColor = "#FFC107",
     positionX = 0,
-    positionY = 0
+    positionY = 0,
   } = title;
 
   const {
@@ -45,27 +44,27 @@ const {
     nameWeight = 700,
     nameColor = "#F28C28",
     hoverColor = "#0f9d58",
-    padding = 22
+    padding = 22,
   } = card;
 
   return (
-<section
-  style={{
-width: "100%",
-maxWidth: `${width}px`,
-height: `${height}px`,
-margin: "0 auto",
-    background,
-    padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
-    boxSizing: "border-box"
-  }}
->
-<div
-  style={{
-    width: "100%",
-    margin: "0 auto"
-  }}
->
+    <section
+      style={{
+        width: "100%",
+        maxWidth: `${width}px`,
+        height: `${height}px`,
+        margin: "0 auto",
+        background,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          margin: "0 auto",
+        }}
+      >
         {}
         <div
           style={{
@@ -74,10 +73,10 @@ margin: "0 auto",
               align === "center"
                 ? "center"
                 : align === "right"
-                ? "flex-end"
-                : "flex-start",
+                  ? "flex-end"
+                  : "flex-start",
             transform: `translate(${positionX}px,${positionY}px)`,
-            marginBottom
+            marginBottom,
           }}
         >
           <div>
@@ -87,7 +86,7 @@ margin: "0 auto",
                 fontSize,
                 fontWeight,
                 color,
-                textTransform: "uppercase"
+                textTransform: "uppercase",
               }}
             >
               {text}
@@ -97,7 +96,7 @@ margin: "0 auto",
                 width: lineWidth,
                 height: lineHeight,
                 background: lineColor,
-                marginTop: 8
+                marginTop: 8,
               }}
             />
           </div>
@@ -108,7 +107,7 @@ margin: "0 auto",
           style={{
             display: "grid",
             gridTemplateColumns: `repeat(${columns}, 1fr)`,
-            gap
+            gap,
           }}
         >
           {products.map((item, index) => (
@@ -117,7 +116,7 @@ margin: "0 auto",
               href={item.link || "#"}
               style={{
                 textDecoration: "none",
-                color: "inherit"
+                color: "inherit",
               }}
             >
               <div
@@ -128,7 +127,7 @@ margin: "0 auto",
                   overflow: "hidden",
                   boxShadow: shadow,
                   transition: ".35s",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = `scale(${hoverScale})`;
@@ -149,7 +148,7 @@ margin: "0 auto",
                   style={{
                     width: "100%",
                     height: imageHeight,
-                    overflow: "hidden"
+                    overflow: "hidden",
                   }}
                 >
                   <img
@@ -159,7 +158,7 @@ margin: "0 auto",
                       width: "100%",
                       height: "100%",
                       objectFit: item.objectFit || "cover",
-                      transition: ".4s"
+                      transition: ".4s",
                     }}
                   />
                 </div>
@@ -168,7 +167,7 @@ margin: "0 auto",
                 <div
                   style={{
                     padding,
-                    textAlign: "center"
+                    textAlign: "center",
                   }}
                 >
                   <h3
@@ -177,7 +176,7 @@ margin: "0 auto",
                       fontSize: nameSize,
                       fontWeight: nameWeight,
                       color: nameColor,
-                      transition: ".3s"
+                      transition: ".3s",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.color = hoverColor;

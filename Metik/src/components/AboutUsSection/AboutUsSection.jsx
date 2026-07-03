@@ -1,11 +1,6 @@
 import React from "react";
 
-const AboutUsSection = ({
-  section = {},
-  title = {},
-  blocks = []
-}) => {
-
+const AboutUsSection = ({ section = {}, title = {}, blocks = [] }) => {
   const {
     width = 1400,
     height = 900,
@@ -14,7 +9,7 @@ const AboutUsSection = ({
     paddingBottom = 80,
     paddingLeft = 20,
     paddingRight = 20,
-    gap = 80
+    gap = 80,
   } = section;
 
   const {
@@ -34,7 +29,7 @@ const AboutUsSection = ({
     lineHeight = 8,
     lineColor = "#FFC107",
     positionX = 0,
-    positionY = 0
+    positionY = 0,
   } = title;
 
   return (
@@ -46,7 +41,7 @@ const AboutUsSection = ({
         margin: "0 auto",
         background,
         padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
-        boxSizing: "border-box"
+        boxSizing: "border-box",
       }}
     >
       {/* ================= Title ================= */}
@@ -57,10 +52,10 @@ const AboutUsSection = ({
             align === "center"
               ? "center"
               : align === "right"
-              ? "flex-end"
-              : "flex-start",
+                ? "flex-end"
+                : "flex-start",
           transform: `translate(${positionX}px,${positionY}px)`,
-          marginBottom
+          marginBottom,
         }}
       >
         <div>
@@ -70,7 +65,7 @@ const AboutUsSection = ({
               fontSize,
               fontWeight,
               color,
-              textTransform: "uppercase"
+              textTransform: "uppercase",
             }}
           >
             {text}
@@ -81,7 +76,7 @@ const AboutUsSection = ({
               width: lineWidth,
               height: lineHeight,
               background: lineColor,
-              marginTop: 8
+              marginTop: 8,
             }}
           />
 
@@ -93,7 +88,7 @@ const AboutUsSection = ({
                 fontSize: subtitleSize,
                 fontWeight: subtitleWeight,
                 color: subtitleColor,
-                lineHeight: 1.8
+                lineHeight: 1.8,
               }}
             >
               {subtitle}
@@ -107,7 +102,7 @@ const AboutUsSection = ({
         style={{
           display: "flex",
           flexDirection: "column",
-          gap
+          gap,
         }}
       >
         {blocks.map((item, index) => (
@@ -118,7 +113,7 @@ const AboutUsSection = ({
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               alignItems: "center",
-              gap: item.contentGap || 50
+              gap: item.contentGap || 50,
             }}
           >
             {/* ================= Media Left ================= */}
@@ -141,7 +136,7 @@ const AboutUsSection = ({
                       borderBottomLeftRadius: item.radiusBottomLeft || 0,
                       borderBottomRightRadius: item.radiusBottomRight || 0,
                       transition: ".35s",
-                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)"
+                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = `scale(${item.hoverScale || 1.03})`;
@@ -163,7 +158,7 @@ const AboutUsSection = ({
                       borderBottomLeftRadius: item.radiusBottomLeft || 0,
                       borderBottomRightRadius: item.radiusBottomRight || 0,
                       transition: ".35s",
-                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)"
+                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = `scale(${item.hoverScale || 1.03})`;
@@ -181,7 +176,7 @@ const AboutUsSection = ({
               style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               <h3
@@ -189,7 +184,7 @@ const AboutUsSection = ({
                   margin: "0 0 25px",
                   fontSize: item.titleSize || 34,
                   fontWeight: item.titleWeight || 700,
-                  color: item.titleColor || "#222"
+                  color: item.titleColor || "#222",
                 }}
               >
                 {item.title}
@@ -201,7 +196,7 @@ const AboutUsSection = ({
                   fontSize: item.textSize || 18,
                   color: item.textColor || "#666",
                   lineHeight: item.lineHeight || 1.9,
-                  textAlign: "justify"
+                  textAlign: "justify",
                 }}
               >
                 {item.description}
@@ -228,7 +223,7 @@ const AboutUsSection = ({
                       borderBottomLeftRadius: item.radiusBottomLeft || 0,
                       borderBottomRightRadius: item.radiusBottomRight || 0,
                       transition: ".35s",
-                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)"
+                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = `scale(${item.hoverScale || 1.03})`;
@@ -242,7 +237,7 @@ const AboutUsSection = ({
                     src={item.image}
                     alt={item.title}
                     style={{
-                      width:`${item.mediaWidth || 600}px`,
+                      width: `${item.mediaWidth || 600}px`,
                       height: item.mediaHeight || 450,
                       objectFit: item.objectFit || "cover",
                       borderTopLeftRadius: item.radiusTopLeft || 0,
@@ -250,7 +245,7 @@ const AboutUsSection = ({
                       borderBottomLeftRadius: item.radiusBottomLeft || 0,
                       borderBottomRightRadius: item.radiusBottomRight || 0,
                       transition: ".35s",
-                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)"
+                      boxShadow: item.shadow || "0 8px 20px rgba(0,0,0,.15)",
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = `scale(${item.hoverScale || 1.03})`;

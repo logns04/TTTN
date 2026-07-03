@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const Hero = ({
-  banner = {},
-  slides = [],
-  arrow = {},
-  dot = {}
-}) => {
-
+const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
   const [current, setCurrent] = useState(0);
   const [startX, setStartX] = useState(0);
 
@@ -23,7 +17,7 @@ const Hero = ({
     overlay = false,
     overlayColor = "rgba(0,0,0,.25)",
     objectFit = "cover",
-    objectPosition = "center"
+    objectPosition = "center",
   } = banner;
 
   const {
@@ -34,7 +28,7 @@ const Hero = ({
     hoverBackground = "#F28C28",
     hoverColor = "#ffffff",
     radius = "50%",
-    offset = 15 // Đặt mặc định 15px nếu không truyền vào
+    offset = 15, // Đặt mặc định 15px nếu không truyền vào
   } = arrow;
 
   const {
@@ -43,7 +37,7 @@ const Hero = ({
     color: dotColor = "#ffffff",
     activeColor = "#F28C28",
     gap = 10,
-    bottom = 25
+    bottom = 25,
   } = dot;
 
   useEffect(() => {
@@ -57,7 +51,7 @@ const Hero = ({
   const next = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
   };
-  
+
   const prev = () => {
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
@@ -86,7 +80,7 @@ const Hero = ({
         overflow: "hidden",
         background,
         borderRadius,
-        boxShadow: shadow ? "0 5px 15px rgba(0,0,0,.15)" : "none"
+        boxShadow: shadow ? "0 5px 15px rgba(0,0,0,.15)" : "none",
       }}
     >
       <img
@@ -97,7 +91,7 @@ const Hero = ({
           height: "100%",
           objectFit: slides[current].objectFit || objectFit,
           objectPosition: slides[current].objectPosition || objectPosition,
-          transition: ".5s"
+          transition: ".5s",
         }}
       />
 
@@ -106,9 +100,9 @@ const Hero = ({
         <div
           style={{
             position: "absolute",
-            inset: 0, 
+            inset: 0,
             background: overlayColor,
-            zIndex: 1
+            zIndex: 1,
           }}
         />
       )}
@@ -122,7 +116,7 @@ const Hero = ({
           style={{
             position: "absolute",
             inset: 0,
-            zIndex: 2
+            zIndex: 2,
           }}
         />
       )}
@@ -148,18 +142,18 @@ const Hero = ({
             alignItems: "center",
             cursor: "pointer",
             transition: ".3s",
-            zIndex: 3
+            zIndex: 3,
           }}
-          onMouseEnter={(e)=>{
+          onMouseEnter={(e) => {
             e.currentTarget.style.background = hoverBackground;
             e.currentTarget.style.color = hoverColor;
           }}
-          onMouseLeave={(e)=>{
+          onMouseLeave={(e) => {
             e.currentTarget.style.background = arrowBg;
             e.currentTarget.style.color = color;
           }}
         >
-          <FaChevronLeft size={iconSize}/>
+          <FaChevronLeft size={iconSize} />
         </button>
       )}
 
@@ -184,18 +178,18 @@ const Hero = ({
             alignItems: "center",
             cursor: "pointer",
             transition: ".3s",
-            zIndex: 3
+            zIndex: 3,
           }}
-          onMouseEnter={(e)=>{
+          onMouseEnter={(e) => {
             e.currentTarget.style.background = hoverBackground;
             e.currentTarget.style.color = hoverColor;
           }}
-          onMouseLeave={(e)=>{
+          onMouseLeave={(e) => {
             e.currentTarget.style.background = arrowBg;
             e.currentTarget.style.color = color;
           }}
         >
-          <FaChevronRight size={iconSize}/>
+          <FaChevronRight size={iconSize} />
         </button>
       )}
 
@@ -210,7 +204,7 @@ const Hero = ({
             display: "flex",
             alignItems: "center",
             gap,
-            zIndex: 3
+            zIndex: 3,
           }}
         >
           {slides.map((item, index) => (
@@ -223,7 +217,7 @@ const Hero = ({
                 borderRadius: "50%",
                 background: current === index ? activeColor : dotColor,
                 cursor: "pointer",
-                transition: ".3s"
+                transition: ".3s",
               }}
             />
           ))}

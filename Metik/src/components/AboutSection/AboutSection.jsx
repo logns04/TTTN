@@ -1,11 +1,6 @@
 import React from "react";
 
-const AboutSection = ({
-  section = {},
-  title = {},
-  blocks = []
-}) => {
-
+const AboutSection = ({ section = {}, title = {}, blocks = [] }) => {
   const {
     width = 1400,
     height = 900,
@@ -14,42 +9,42 @@ const AboutSection = ({
     paddingBottom = 70,
     paddingLeft = 20,
     paddingRight = 20,
-    gap = 80
+    gap = 80,
   } = section;
 
-const {
-  text = "GIỚI THIỆU VỀ METIK",
-  subtitle = "",
-  fontSize = 42,
-  fontWeight = 700,
-  color = "#45B649",
-  subtitleSize = 18,
-  subtitleWeight = 400,
-  subtitleColor = "#666",
-  subtitleWidth = 700,
-  subtitleMarginTop = 20,
-  align = "left",
-  marginBottom = 60,
-  lineWidth = 180,
-  lineHeight = 8,
-  lineColor = "#FFC107",
-  positionX = 0,
-  positionY = 0
-} = title;
+  const {
+    text = "GIỚI THIỆU VỀ METIK",
+    subtitle = "",
+    fontSize = 42,
+    fontWeight = 700,
+    color = "#45B649",
+    subtitleSize = 18,
+    subtitleWeight = 400,
+    subtitleColor = "#666",
+    subtitleWidth = 700,
+    subtitleMarginTop = 20,
+    align = "left",
+    marginBottom = 60,
+    lineWidth = 180,
+    lineHeight = 8,
+    lineColor = "#FFC107",
+    positionX = 0,
+    positionY = 0,
+  } = title;
 
   return (
-<section
-  style={{
-width: `${width}px`,
-maxWidth: "100%",
-height: `${height}px`,
-    margin: "0 auto",
-    background,
-    padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
-    boxSizing: "border-box",
-    overflow: "hidden"
-  }}
->
+    <section
+      style={{
+        width: `${width}px`,
+        maxWidth: "100%",
+        height: `${height}px`,
+        margin: "0 auto",
+        background,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
+    >
       {/* ================= Title ================= */}
       <div
         style={{
@@ -58,10 +53,10 @@ height: `${height}px`,
             align === "center"
               ? "center"
               : align === "right"
-              ? "flex-end"
-              : "flex-start",
+                ? "flex-end"
+                : "flex-start",
           transform: `translate(${positionX}px,${positionY}px)`,
-          marginBottom
+          marginBottom,
         }}
       >
         <div>
@@ -71,7 +66,7 @@ height: `${height}px`,
               fontSize,
               fontWeight,
               color,
-              textTransform: "uppercase"
+              textTransform: "uppercase",
             }}
           >
             {text}
@@ -81,24 +76,24 @@ height: `${height}px`,
               width: lineWidth,
               height: lineHeight,
               marginTop: 8,
-              background: lineColor
+              background: lineColor,
             }}
           />
           {subtitle && (
-  <p
-    style={{
-      marginTop: subtitleMarginTop,
-      marginBottom: 0,
-      maxWidth: subtitleWidth,
-      fontSize: subtitleSize,
-      fontWeight: subtitleWeight,
-      color: subtitleColor,
-      lineHeight: 1.8
-    }}
-  >
-    {subtitle}
-  </p>
-)}
+            <p
+              style={{
+                marginTop: subtitleMarginTop,
+                marginBottom: 0,
+                maxWidth: subtitleWidth,
+                fontSize: subtitleSize,
+                fontWeight: subtitleWeight,
+                color: subtitleColor,
+                lineHeight: 1.8,
+              }}
+            >
+              {subtitle}
+            </p>
+          )}
         </div>
       </div>
 
@@ -107,7 +102,7 @@ height: `${height}px`,
         style={{
           display: "flex",
           flexDirection: "column",
-          gap
+          gap,
         }}
       >
         {blocks.map((item, index) => (
@@ -118,7 +113,7 @@ height: `${height}px`,
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               alignItems: "center",
-              gap: 60
+              gap: 60,
             }}
           >
             {/* ================= Image Left ================= */}
@@ -133,7 +128,7 @@ height: `${height}px`,
                     objectFit: item.objectFit || "cover",
                     borderRadius: item.radius || 30,
                     display: "block",
-                    transition: ".4s"
+                    transition: ".4s",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "scale(1.03)";
@@ -150,7 +145,7 @@ height: `${height}px`,
               style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center"
+                justifyContent: "center",
               }}
             >
               <h3
@@ -158,7 +153,7 @@ height: `${height}px`,
                   margin: "0 0 20px",
                   fontSize: item.titleSize || 34,
                   fontWeight: item.titleWeight || 700,
-                  color: item.titleColor || "#222"
+                  color: item.titleColor || "#222",
                 }}
               >
                 {item.title}
@@ -169,7 +164,7 @@ height: `${height}px`,
                   fontSize: item.textSize || 18,
                   color: item.textColor || "#666",
                   lineHeight: item.lineHeight || 1.8,
-                  textAlign: "justify"
+                  textAlign: "justify",
                 }}
               >
                 {item.description}
@@ -188,7 +183,7 @@ height: `${height}px`,
                     objectFit: item.objectFit || "cover",
                     borderRadius: item.radius || 30,
                     display: "block",
-                    transition: ".4s"
+                    transition: ".4s",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "scale(1.03)";
