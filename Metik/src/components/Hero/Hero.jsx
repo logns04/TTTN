@@ -28,7 +28,7 @@ const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
     hoverBackground = "#F28C28",
     hoverColor = "#ffffff",
     radius = "50%",
-    offset = 15, // Đặt mặc định 15px nếu không truyền vào
+    offset = 15, 
   } = arrow;
 
   const {
@@ -95,7 +95,7 @@ const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
         }}
       />
 
-      {/* ĐÃ FIX: Sửa lỗi cú pháp tại inset */}
+      {}
       {overlay && (
         <div
           style={{
@@ -107,7 +107,7 @@ const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
         />
       )}
 
-      {/* ================= Link ================= */}
+      {}
       {slides[current].link && (
         <a
           href={slides[current].link}
@@ -121,7 +121,7 @@ const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
         />
       )}
 
-      {/* ================= Prev ================= */}
+      {}
       {showArrow && slides.length > 1 && (
         <button
           onClick={prev}
@@ -157,7 +157,7 @@ const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
         </button>
       )}
 
-      {/* ================= Next ================= */}
+      {}
       {showArrow && slides.length > 1 && (
         <button
           onClick={next}
@@ -193,7 +193,7 @@ const Hero = ({ banner = {}, slides = [], arrow = {}, dot = {} }) => {
         </button>
       )}
 
-      {/* ================= Dots ================= */}
+      {}
       {showDot && slides.length > 1 && (
         <div
           style={{

@@ -150,7 +150,7 @@ const Header = ({
             </a>
           </div>
 
-          {/* ================= Menu ================= */}
+          {}
 
           <nav
             style={{
@@ -195,7 +195,7 @@ const Header = ({
               </a>
             ))}
           </nav>
-          {/* ================= Social ================= */}
+          {}
 
           <div
             style={{
@@ -276,7 +276,7 @@ const Header = ({
           </div>
         </div>
 
-        {/* ================= Mobile Button ================= */}
+        {}
 
         <button
           onClick={() => setMobileOpen(true)}
@@ -303,7 +303,7 @@ const Header = ({
         </button>
       </header>
 
-      {/* ================= Mobile Drawer ================= */}
+      {}
 
       {mobileOpen && (
         <>
@@ -370,7 +370,7 @@ const Header = ({
               />
             </div>
 
-            {/* ĐÃ SỬA LỖI: Thẻ div mở bọc trọn vẹn vòng lặp map bên dưới */}
+            {}
             <div
               style={{
                 flex: 1,
@@ -425,7 +425,7 @@ const Header = ({
               ))}
             </div>
 
-            {/* ================= Drawer Social ================= */}
+            {}
 
             <div
               style={{

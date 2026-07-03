@@ -1462,16 +1462,8 @@ export const config = {
               ],
             },
 
-            title: {
-              type: "text",
-              label: "Title",
-            },
-
-            description: {
-              type: "textarea",
-              label: "Description",
-            },
-
+            title: {type: "text",label: "Title",},
+            description: {type: "textarea",label: "Description",},
             mediaWidth: {
               type: "number",
               label: "Media Width",
@@ -1662,7 +1654,6 @@ export const config = {
           },
         ],
       },
-
       render: (props) => <AboutUsSection {...props} />,
     },
   },

@@ -45,7 +45,7 @@ const AboutSection = ({ section = {}, title = {}, blocks = [] }) => {
         overflow: "hidden",
       }}
     >
-      {/* ================= Title ================= */}
+      {}
       <div
         style={{
           display: "flex",
@@ -97,7 +97,7 @@ const AboutSection = ({ section = {}, title = {}, blocks = [] }) => {
         </div>
       </div>
 
-      {/* ================= About List (ĐÃ SỬA LỖI TẠI ĐÂY) ================= */}
+      {}
       <div
         style={{
           display: "flex",
@@ -116,7 +116,7 @@ const AboutSection = ({ section = {}, title = {}, blocks = [] }) => {
               gap: 60,
             }}
           >
-            {/* ================= Image Left ================= */}
+            {}
             {!item.reverse && (
               <div>
                 <img
@@ -140,7 +140,7 @@ const AboutSection = ({ section = {}, title = {}, blocks = [] }) => {
               </div>
             )}
 
-            {/* ================= Content ================= */}
+            {}
             <div
               style={{
                 display: "flex",
@@ -171,7 +171,7 @@ const AboutSection = ({ section = {}, title = {}, blocks = [] }) => {
               </p>
             </div>
 
-            {/* ================= Image Right ================= */}
+            {}
             {item.reverse && (
               <div>
                 <img

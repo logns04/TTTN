@@ -44,7 +44,7 @@ const AboutUsSection = ({ section = {}, title = {}, blocks = [] }) => {
         boxSizing: "border-box",
       }}
     >
-      {/* ================= Title ================= */}
+      {}
       <div
         style={{
           display: "flex",
@@ -97,7 +97,7 @@ const AboutUsSection = ({ section = {}, title = {}, blocks = [] }) => {
         </div>
       </div>
 
-      {/* ================= About Us Blocks (ĐÃ SỬA LỖI ĐÓNG THẺ TẠI ĐÂY) ================= */}
+      {}
       <div
         style={{
           display: "flex",
@@ -116,7 +116,7 @@ const AboutUsSection = ({ section = {}, title = {}, blocks = [] }) => {
               gap: item.contentGap || 50,
             }}
           >
-            {/* ================= Media Left ================= */}
+            {}
             {!item.reverse && (
               <div>
                 {item.mediaType === "video" ? (
@@ -171,7 +171,7 @@ const AboutUsSection = ({ section = {}, title = {}, blocks = [] }) => {
               </div>
             )}
 
-            {/* ================= Content ================= */}
+            {}
             <div
               style={{
                 display: "flex",
@@ -203,7 +203,7 @@ const AboutUsSection = ({ section = {}, title = {}, blocks = [] }) => {
               </p>
             </div>
 
-            {/* ================= Media Right ================= */}
+            {}
             {item.reverse && (
               <div>
                 {item.mediaType === "video" ? (
