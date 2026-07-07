@@ -28,11 +28,7 @@ export default function App() {
     const exist = pages.find((p) => p.id === page.id);
 
     if (exist) {
-      setPages(
-        pages.map((p) =>
-          p.id === page.id ? page : p
-        )
-      );
+      setPages(pages.map((p) => (p.id === page.id ? page : p)));
     } else {
       setPages([...pages, page]);
     }
@@ -53,12 +49,7 @@ export default function App() {
   }
 
   if (screen === "view") {
-    return (
-      <View
-        page={currentPage}
-        back={() => setScreen("admin")}
-      />
-    );
+    return <View page={currentPage} back={() => setScreen("admin")} />;
   }
 
   return (

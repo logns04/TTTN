@@ -1,17 +1,6 @@
-import {
-  FileText,
-  Plus,
-  Copy,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { FileText, Plus, Copy, Pencil, Trash2 } from "lucide-react";
 
-export default function Admin({
-  pages,
-  setPages,
-  openEditor,
-  openView,
-}) {
+export default function Admin({ pages, setPages, openEditor, openView }) {
   const handleCopy = (page) => {
     const copy = {
       ...page,
@@ -59,9 +48,7 @@ export default function Admin({
       <div className="mb-8 rounded-2xl bg-white p-6 shadow-sm">
         <div className="grid grid-cols-3 gap-6">
           <div>
-            <label className="mb-2 block text-lg">
-              Ngôn ngữ
-            </label>
+            <label className="mb-2 block text-lg">Ngôn ngữ</label>
 
             <select className="w-full rounded-xl border px-4 py-4 outline-none">
               <option>Tất cả</option>
@@ -71,9 +58,7 @@ export default function Admin({
           </div>
 
           <div>
-            <label className="mb-2 block text-lg">
-              Trạng thái
-            </label>
+            <label className="mb-2 block text-lg">Trạng thái</label>
 
             <select className="w-full rounded-xl border px-4 py-4 outline-none">
               <option>Tất cả</option>
@@ -82,9 +67,7 @@ export default function Admin({
           </div>
 
           <div>
-            <label className="mb-2 block text-lg">
-              Ngày cập nhật
-            </label>
+            <label className="mb-2 block text-lg">Ngày cập nhật</label>
 
             <input
               type="date"
@@ -112,10 +95,7 @@ export default function Admin({
           <tbody>
             {pages.length === 0 ? (
               <tr>
-                <td
-                  colSpan="6"
-                  className="p-10 text-center text-slate-400"
-                >
+                <td colSpan="6" className="p-10 text-center text-slate-400">
                   Chưa có Page nào
                 </td>
               </tr>
@@ -124,22 +104,17 @@ export default function Admin({
                 <tr key={page.id} className="border-b">
                   <td className="p-6">
                     <div className="flex gap-4">
-                      <FileText
-                        size={22}
-                        className="mt-1 text-slate-400"
-                      />
+                      <FileText size={22} className="mt-1 text-slate-400" />
 
                       <div>
-<button
-  onClick={() => openView(page)}
-  className="text-left text-xl font-semibold transition hover:text-blue-600"
->
-  {page.title}
-</button>
+                        <button
+                          onClick={() => openView(page)}
+                          className="text-left text-xl font-semibold transition hover:text-blue-600"
+                        >
+                          {page.title}
+                        </button>
 
-                        <div className="text-slate-500">
-                          SEO: {page.seo}
-                        </div>
+                        <div className="text-slate-500">SEO: {page.seo}</div>
                       </div>
                     </div>
                   </td>

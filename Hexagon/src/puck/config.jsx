@@ -8,9 +8,7 @@ export const config = {
       },
 
       render: ({ title }) => (
-        <h1 className="text-4xl font-bold py-8">
-          {title}
-        </h1>
+        <h1 className="text-4xl font-bold py-8">{title}</h1>
       ),
     },
 
@@ -21,11 +19,7 @@ export const config = {
         },
       },
 
-      render: ({ text }) => (
-        <p className="py-2">
-          {text}
-        </p>
-      ),
+      render: ({ text }) => <p className="py-2">{text}</p>,
     },
 
     Button: {

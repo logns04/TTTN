@@ -18,10 +18,7 @@ export default function View({ page, back }) {
         </button>
       </div>
 
-      <Render
-        config={config}
-        data={page.data}
-      />
+      <Render config={config} data={page.data} />
     </div>
   );
 }
