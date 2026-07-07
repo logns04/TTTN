@@ -1265,10 +1265,10 @@ export const config = {
       defaultProps: {
         section: {
           width: 1250,
-          height: 1050,
+          height: 550,
           background: "#fff",
-          paddingTop: 80,
-          paddingBottom: 80,
+          paddingTop: 17,
+          paddingBottom:2,
           paddingLeft: 20,
           paddingRight: 20,
           gap: 80,
