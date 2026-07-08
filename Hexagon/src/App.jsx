@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Admin from "./pages/Admin";
 import Editor from "./pages/Editor";
 import View from "./pages/View";
 
 export default function App() {
-  const [pages, setPages] = useState([]);
-
+  const [pages, setPages] = useState(() => {
+  const data = localStorage.getItem("pages");
+  return data ? JSON.parse(data) : [];
+});
+useEffect(() => {
+  localStorage.setItem(
+    "pages",
+    JSON.stringify(pages)
+  );
+}, [pages]);
   const [screen, setScreen] = useState("admin");
 
   const [currentPage, setCurrentPage] = useState(null);

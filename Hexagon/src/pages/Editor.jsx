@@ -80,7 +80,7 @@ export default function Editor({ page, back, save }) {
             onClick={() => setOpenSetting(false)}
           />
 
-          <div className="absolute left-0 top-0 h-full w-[340px] bg-white shadow-xl">
+          <div className="absolute left-0 top-0 h-full w-85 bg-white shadow-xl">
             <div className="border-b p-5 flex justify-between">
               <h2 className="font-bold text-xl">Thông tin Page</h2>
 
