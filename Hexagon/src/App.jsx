@@ -5,46 +5,70 @@ import Editor from "./pages/Editor";
 import View from "./pages/View";
 
 export default function App() {
+  // ==========================
+  // Load pages từ localStorage
+  // ==========================
+
   const [pages, setPages] = useState(() => {
-  const data = localStorage.getItem("pages");
-  return data ? JSON.parse(data) : [];
-});
-useEffect(() => {
-  localStorage.setItem(
-    "pages",
-    JSON.stringify(pages)
-  );
-}, [pages]);
+    const saved = localStorage.getItem("pages");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // ==========================
+  // Lưu lại mỗi khi pages đổi
+  // ==========================
+
+  useEffect(() => {
+    localStorage.setItem("pages", JSON.stringify(pages));
+  }, [pages]);
+
+  // ==========================
+
   const [screen, setScreen] = useState("admin");
 
   const [currentPage, setCurrentPage] = useState(null);
 
-  // Mở Editor
+  // ==========================
+  // Editor
+  // ==========================
+
   const openEditor = (page = null) => {
     setCurrentPage(page);
     setScreen("editor");
   };
 
-  // Mở View
+  // ==========================
+  // View
+  // ==========================
+
   const openView = (page) => {
     setCurrentPage(page);
     setScreen("view");
   };
 
+  // ==========================
   // Publish
-  const savePage = (page) => {
-    const exist = pages.find((p) => p.id === page.id);
+  // ==========================
 
-    if (exist) {
-      setPages(pages.map((p) => (p.id === page.id ? page : p)));
+  const savePage = (page) => {
+    const index = pages.findIndex((p) => p.id === page.id);
+
+    if (index >= 0) {
+      const newPages = [...pages];
+      newPages[index] = page;
+      setPages(newPages);
     } else {
       setPages([...pages, page]);
     }
 
+    setCurrentPage(page);
+
     setScreen("admin");
   };
 
-  // =========================
+  // ==========================
+  // Router
+  // ==========================
 
   if (screen === "editor") {
     return (
@@ -57,7 +81,13 @@ useEffect(() => {
   }
 
   if (screen === "view") {
-    return <View page={currentPage} back={() => setScreen("admin")} />;
+    return (
+      <View
+        page={currentPage}
+        pages={pages}
+        setCurrentPage={setCurrentPage}
+      />
+    );
   }
 
   return (

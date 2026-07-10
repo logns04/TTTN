@@ -1,24 +1,46 @@
-import { ArrowLeft } from "lucide-react";
+import { useMemo } from "react";
 import { Render } from "@puckeditor/core";
 import "@puckeditor/core/puck.css";
 
 import { config } from "../puck/config";
 
-export default function View({ page, back }) {
+export default function View({
+  page,
+  pages,
+  setCurrentPage,
+}) {
   if (!page) return null;
+
+  const renderConfig = useMemo(() => {
+    return {
+      ...config,
+
+      components: {
+        ...config.components,
+
+        Header: {
+          ...config.components.Header,
+
+          render: (props) => (
+            <config.components.Header.render
+              {...props}
+              pages={pages}
+              currentPage={page}
+              setCurrentPage={setCurrentPage}
+            />
+          ),
+        },
+      },
+    };
+  }, [page, pages, setCurrentPage]);
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="flex items-center border-b px-6 py-4">
-        <button
-          onClick={back}
-          className="rounded-lg border px-4 py-2 hover:bg-slate-100"
-        >
-          <ArrowLeft size={18} />
-        </button>
-      </div>
-
-      <Render config={config} data={page.data} />
+<Render
+  key={page.id}
+  config={renderConfig}
+  data={page.data}
+/>
     </div>
   );
 }

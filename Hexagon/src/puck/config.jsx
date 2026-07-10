@@ -2,7 +2,7 @@ import Header from "./components/Header";
 import Banner from "./components/Banner";
 export const config = {
   components: {
-Header: {
+    Header: {
       label: "Header",
 
       fields: {
@@ -189,24 +189,6 @@ Header: {
           },
         },
 
-        /* CTA */
-
-        showButton: {
-          type: "radio",
-          label: "Show Button",
-
-          options: [
-            {
-              label: "Off",
-              value: false,
-            },
-            {
-              label: "On",
-              value: true,
-            },
-          ],
-        },
-
         buttonText: {
           type: "text",
           label: "Button Text",
@@ -228,26 +210,41 @@ Header: {
         },
 
         /* Language */
+/* Language */
 
-        showLanguage: {
-          type: "radio",
-          label: "Show Language",
+showLanguage: {
+  type: "radio",
+  label: "Show Language",
+  options: [
+    {
+      label: "Off",
+      value: false,
+    },
+    {
+      label: "On",
+      value: true,
+    },
+  ],
+},
 
-          options: [
-            {
-              label: "Off",
-              value: false,
-            },
-            {
-              label: "On",
-              value: true,
-            },
-          ],
-        },
+defaultLanguage: {
+  type: "select",
+  label: "Default Language",
+  options: [
+    {
+      label: "Vietnamese",
+      value: "vi",
+    },
+    {
+      label: "English",
+      value: "en",
+    },
+  ],
+},
       },
 
       defaultProps: {
-        logo: "https://placehold.co/60x60",
+        logo: "https://beta.hexagon.xyz/assets/images/logo-hhc.png",
 
         logoText: "HEXAGON",
 
@@ -303,356 +300,391 @@ Header: {
             link: "#",
           },
         ],
-
-        showButton: false,
-
-        buttonText: "Liên hệ",
-
-        buttonLink: "#",
-
-        buttonColor: "#ffffff",
-
-        buttonTextColor: "#257447",
-
         showLanguage: true,
+
+defaultLanguage: "vi",
       },
 
       render: Header,
     },
-Banner: {
-  fields: {
+    Banner: {
+      fields: {
+        /* -------------------- CONTENT -------------------- */
 
-    /* -------------------- CONTENT -------------------- */
+        badge: {
+          type: "text",
+          label: "Badge",
+        },
 
-    badge: {
-      type: "text",
-      label: "Badge",
-    },
+        showBadge: {
+          type: "radio",
+          label: "Hiển thị Badge",
+          options: [
+            { label: "Hiện", value: true },
+            { label: "Ẩn", value: false },
+          ],
+        },
 
-    showBadge: {
-      type: "radio",
-      label: "Hiển thị Badge",
-      options: [
-        { label: "Hiện", value: true },
-        { label: "Ẩn", value: false },
-      ],
-    },
+        title: {
+          type: "text",
+          label: "Tiêu đề",
+        },
 
-    title: {
-      type: "text",
-      label: "Tiêu đề",
-    },
+        highlight: {
+          type: "text",
+          label: "Highlight",
+        },
 
-    highlight: {
-      type: "text",
-      label: "Highlight",
-    },
+        description: {
+          type: "textarea",
+          label: "Mô tả",
+        },
 
-    description: {
-      type: "textarea",
-      label: "Mô tả",
-    },
+        /* -------------------- IMAGE -------------------- */
 
-    /* -------------------- IMAGE -------------------- */
+        image: {
+          type: "text",
+          label: "Link ảnh / GIF",
+        },
 
-    image: {
-      type: "text",
-      label: "Link ảnh / GIF",
-    },
+        imageAlt: {
+          type: "text",
+          label: "Alt",
+        },
 
-    imageAlt: {
-      type: "text",
-      label: "Alt",
-    },
+        imageWidth: {
+          type: "number",
+          label: "Chiều rộng ảnh",
+        },
 
-    imageWidth: {
-      type: "number",
-      label: "Chiều rộng ảnh",
-    },
+        imageHeight: {
+          type: "number",
+          label: "Chiều cao ảnh",
+        },
 
-    imageHeight: {
-      type: "number",
-      label: "Chiều cao ảnh",
-    },
+        imageRadius: {
+          type: "number",
+          label: "Bo góc ảnh",
+        },
 
-    imageRadius: {
-      type: "number",
-      label: "Bo góc ảnh",
-    },
+        imageShadow: {
+          type: "radio",
+          label: "Shadow",
+          options: [
+            { label: "Có", value: true },
+            { label: "Không", value: false },
+          ],
+        },
 
-    imageShadow: {
-      type: "radio",
-      label: "Shadow",
-      options: [
-        { label: "Có", value: true },
-        { label: "Không", value: false },
-      ],
-    },
+        /* -------------------- BUTTON 1 -------------------- */
 
-    /* -------------------- BUTTON 1 -------------------- */
+        button1Text: {
+          type: "text",
+          label: "Text Button 1",
+        },
 
-    button1Text: {
-      type: "text",
-      label: "Text Button 1",
-    },
+        button1Link: {
+          type: "text",
+          label: "Link Button 1",
+        },
 
-    button1Link: {
-      type: "text",
-      label: "Link Button 1",
-    },
+        button1Color: {
+          type: "text",
+          label: "Background Button 1",
+        },
 
-    button1Color: {
-      type: "text",
-      label: "Background Button 1",
-    },
+        button1TextColor: {
+          type: "text",
+          label: "Text Button 1",
+        },
 
-    button1TextColor: {
-      type: "text",
-      label: "Text Button 1",
-    },
+        /* -------------------- BUTTON 2 -------------------- */
 
-    /* -------------------- BUTTON 2 -------------------- */
+        showButton2: {
+          type: "radio",
+          label: "Hiện Button 2",
+          options: [
+            { label: "Hiện", value: true },
+            { label: "Ẩn", value: false },
+          ],
+        },
 
-    showButton2: {
-      type: "radio",
-      label: "Hiện Button 2",
-      options: [
-        { label: "Hiện", value: true },
-        { label: "Ẩn", value: false },
-      ],
-    },
+        button2Text: {
+          type: "text",
+          label: "Text Button 2",
+        },
 
-    button2Text: {
-      type: "text",
-      label: "Text Button 2",
-    },
+        button2Link: {
+          type: "text",
+          label: "Link Button 2",
+        },
 
-    button2Link: {
-      type: "text",
-      label: "Link Button 2",
-    },
+        button2Color: {
+          type: "text",
+          label: "Background Button 2",
+        },
 
-    button2Color: {
-      type: "text",
-      label: "Background Button 2",
-    },
+        button2TextColor: {
+          type: "text",
+          label: "Text Button 2",
+        },
 
-    button2TextColor: {
-      type: "text",
-      label: "Text Button 2",
-    },
+        /* -------------------- TYPOGRAPHY -------------------- */
 
-    /* -------------------- TYPOGRAPHY -------------------- */
+        badgeSize: {
+          type: "number",
+          label: "Badge Size",
+        },
 
-    badgeSize: {
-      type: "number",
-      label: "Badge Size",
-    },
+        titleSize: {
+          type: "number",
+          label: "Title Size",
+        },
 
-    titleSize: {
-      type: "number",
-      label: "Title Size",
-    },
+        titleWeight: {
+          type: "number",
+          label: "Title Weight",
+        },
 
-    titleWeight: {
-      type: "number",
-      label: "Title Weight",
-    },
+        titleLineHeight: {
+          type: "number",
+          label: "Title Line Height",
+        },
 
-    titleLineHeight: {
-      type: "number",
-      label: "Title Line Height",
-    },
+        highlightSize: {
+          type: "number",
+          label: "Highlight Size",
+        },
 
-    highlightSize: {
-      type: "number",
-      label: "Highlight Size",
-    },
+        highlightWeight: {
+          type: "number",
+          label: "Highlight Weight",
+        },
 
-    highlightWeight: {
-      type: "number",
-      label: "Highlight Weight",
-    },
+        descriptionSize: {
+          type: "number",
+          label: "Description Size",
+        },
 
-    descriptionSize: {
-      type: "number",
-      label: "Description Size",
-    },
+        descriptionLineHeight: {
+          type: "number",
+          label: "Description Line Height",
+        },
 
-    descriptionLineHeight: {
-      type: "number",
-      label: "Description Line Height",
-    },
+        buttonSize: {
+          type: "number",
+          label: "Button Size",
+        },
 
-    buttonSize: {
-      type: "number",
-      label: "Button Size",
-    },
+        scrollTextSize: {
+          type: "number",
+          label: "Scroll Text Size",
+        },
 
-    scrollTextSize: {
-      type: "number",
-      label: "Scroll Text Size",
-    },
+        /* -------------------- COLOR -------------------- */
+        backgroundType: {
+          type: "select",
+          label: "Background Type",
+          options: [
+            { label: "Color", value: "color" },
+            { label: "Gradient", value: "gradient" },
+            { label: "Image", value: "image" },
+            { label: "Image + Color", value: "image+color" },
+            { label: "Image + Gradient", value: "image+gradient" },
+          ],
+        },
+        backgroundColor: {
+          type: "text",
+          label: "Background Color",
+        },
 
-    /* -------------------- COLOR -------------------- */
+        backgroundImage: {
+          type: "text",
+          label: "Background Image",
+        },
+        gradientColor1: {
+          type: "text",
+          label: "Gradient Color 1",
+        },
+        gradientColor2: {
+          type: "text",
+          label: "Gradient Color 2",
+        },
+        gradientDirection: {
+          type: "select",
+          label: "Gradient Direction",
+          options: [
+            { label: "Left → Right", value: "to right" },
+            { label: "Right → Left", value: "to left" },
+            { label: "Top → Bottom", value: "to bottom" },
+            { label: "Top Left → Bottom Right", value: "to bottom right" },
+            { label: "Top Right → Bottom Left", value: "to bottom left" },
+          ],
+        },
+        overlayColor: {
+          type: "text",
+          label: "Overlay Color",
+        },
+        overlayOpacity: {
+          type: "number",
+          label: "Overlay Opacity (0-1)",
+        },
+        titleColor: {
+          type: "text",
+          label: "Title Color",
+        },
 
-    backgroundColor: {
-      type: "text",
-      label: "Background",
-    },
+        highlightColor: {
+          type: "text",
+          label: "Highlight Color",
+        },
 
-    backgroundImage: {
-      type: "text",
-      label: "Background Image",
-    },
+        textColor: {
+          type: "text",
+          label: "Description Color",
+        },
 
-    titleColor: {
-      type: "text",
-      label: "Title Color",
-    },
+        badgeColor: {
+          type: "text",
+          label: "Badge Color",
+        },
 
-    highlightColor: {
-      type: "text",
-      label: "Highlight Color",
-    },
+        badgeBackground: {
+          type: "text",
+          label: "Badge Background",
+        },
 
-    textColor: {
-      type: "text",
-      label: "Description Color",
-    },
+        /* -------------------- LAYOUT -------------------- */
 
-    badgeColor: {
-      type: "text",
-      label: "Badge Color",
-    },
+        contentWidth: {
+          type: "number",
+          label: "Content Width",
+        },
 
-    badgeBackground: {
-      type: "text",
-      label: "Badge Background",
-    },
+        height: {
+          type: "number",
+          label: "Section Height",
+        },
 
-    /* -------------------- LAYOUT -------------------- */
+        reverse: {
+          type: "radio",
+          label: "Đảo Layout",
+          options: [
+            { label: "Image Right", value: false },
+            { label: "Image Left", value: true },
+          ],
+        },
 
-    contentWidth: {
-      type: "number",
-      label: "Content Width",
-    },
+        paddingTop: {
+          type: "number",
+          label: "Padding Top",
+        },
 
-    height: {
-      type: "number",
-      label: "Section Height",
-    },
+        paddingBottom: {
+          type: "number",
+          label: "Padding Bottom",
+        },
 
-    reverse: {
-      type: "radio",
-      label: "Đảo Layout",
-      options: [
-        { label: "Image Right", value: false },
-        { label: "Image Left", value: true },
-      ],
-    },
+        /* -------------------- SCROLL -------------------- */
 
-    paddingTop: {
-      type: "number",
-      label: "Padding Top",
-    },
+        showScroll: {
+          type: "radio",
+          label: "Hiện Scroll",
+          options: [
+            { label: "Hiện", value: true },
+            { label: "Ẩn", value: false },
+          ],
+        },
 
-    paddingBottom: {
-      type: "number",
-      label: "Padding Bottom",
-    },
+        scrollText: {
+          type: "text",
+          label: "Scroll Text",
+        },
+      },
 
-    /* -------------------- SCROLL -------------------- */
+      defaultProps: {
+        badge: "CÔNG NGHỆ TƯƠNG LAI",
+        showBadge: true,
 
-    showScroll: {
-      type: "radio",
-      label: "Hiện Scroll",
-      options: [
-        { label: "Hiện", value: true },
-        { label: "Ẩn", value: false },
-      ],
-    },
+        title: "Cung cấp thiết",
 
-    scrollText: {
-      type: "text",
-      label: "Scroll Text",
+        highlight: "HEXAGON Solutions",
+
+        description:
+          "HEXAGON kiến tạo các giải pháp chuyển đổi số toàn diện, từ phần mềm đến cung cấp các giải pháp internet, thiết bị CNTT.",
+
+        image: "https://metik.vn/wp-content/uploads/2026/06/globalmyc.webp",
+
+        imageAlt: "Banner",
+
+        imageWidth: 655,
+        imageHeight: 400,
+        imageRadius: 0,
+        imageShadow: false,
+
+        button1Text: "Khám phá Dịch vụ",
+        button1Link: "#",
+        button1Color: "#F7A600",
+        button1TextColor: "#FFFFFF",
+
+        showButton2: true,
+        button2Text: "Liên hệ Tư vấn",
+        button2Link: "#",
+        button2Color: "transparent",
+        button2TextColor: "#FFFFFF",
+
+        badgeSize: 13,
+
+        titleSize: 55,
+        titleWeight: 800,
+        titleLineHeight: 1.1,
+
+        highlightSize: 28,
+        highlightWeight: 800,
+
+        descriptionSize: 16,
+        descriptionLineHeight: 1.8,
+
+        buttonSize: 11,
+
+        scrollTextSize: 10,
+
+        backgroundType: "gradient",
+
+        backgroundColor: "#156C45",
+
+        backgroundImage: "",
+
+        gradientColor1: "#156C45",
+
+        gradientColor2: "#35B86B",
+
+        gradientDirection: "to right",
+
+        overlayColor: "#000000",
+
+        overlayOpacity: 0,
+        titleColor: "#FFFFFF",
+        highlightColor: "#F7B63F",
+        textColor: "#FFFFFF",
+
+        badgeColor: "#FDBA12",
+        badgeBackground: "transparent",
+
+        contentWidth: 620,
+
+        height: 800,
+
+        reverse: false,
+
+        paddingTop: 140,
+        paddingBottom: 40,
+
+        showScroll: true,
+        scrollText: "Cuộn xuống để khám phá",
+      },
+
+      render: Banner,
     },
   },
-
-  defaultProps: {
-
-    badge: "CÔNG NGHỆ TƯƠNG LAI",
-    showBadge: true,
-
-    title: "Cung cấp thiết",
-
-    highlight: "HEXAGON Solutions",
-
-    description:
-      "HEXAGON kiến tạo các giải pháp chuyển đổi số toàn diện, từ phần mềm đến cung cấp các giải pháp internet, thiết bị CNTT.",
-
-    image:
-      "https://metik.vn/wp-content/uploads/2026/06/globalmyc.webp",
-
-    imageAlt: "Banner",
-
-    imageWidth: 650,
-    imageHeight: 650,
-    imageRadius: 0,
-    imageShadow: false,
-
-    button1Text: "Khám phá Dịch vụ",
-    button1Link: "#",
-    button1Color: "#F7A600",
-    button1TextColor: "#FFFFFF",
-
-    showButton2: true,
-    button2Text: "Liên hệ Tư vấn",
-    button2Link: "#",
-    button2Color: "transparent",
-    button2TextColor: "#FFFFFF",
-
-    badgeSize: 18,
-
-    titleSize: 72,
-    titleWeight: 800,
-    titleLineHeight: 1.1,
-
-    highlightSize: 72,
-    highlightWeight: 800,
-
-    descriptionSize: 24,
-    descriptionLineHeight: 1.8,
-
-    buttonSize: 22,
-
-    scrollTextSize: 18,
-
-    backgroundColor: "#156C45",
-    backgroundImage: "",
-
-    titleColor: "#FFFFFF",
-    highlightColor: "#F7B63F",
-    textColor: "#FFFFFF",
-
-    badgeColor: "#FDBA12",
-    badgeBackground: "transparent",
-
-    contentWidth: 620,
-
-    height: 850,
-
-    reverse: false,
-
-    paddingTop: 120,
-    paddingBottom: 80,
-
-    showScroll: true,
-    scrollText: "Cuộn xuống để khám phá",
-  },
-
-  render: Banner,
-},
-
-  }
 };

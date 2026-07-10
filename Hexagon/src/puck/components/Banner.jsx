@@ -1,7 +1,15 @@
 export default function Banner({
   badge,
   showBadge,
+  showLanguage,
 
+  currentLang,
+
+  languageStyle,
+
+  languageColor,
+
+  languageActiveColor,
   title,
   highlight,
   description,
@@ -21,9 +29,21 @@ export default function Banner({
   button2Link,
 
   showButton2,
+  backgroundType,
 
   backgroundColor,
+
   backgroundImage,
+
+  gradientColor1,
+
+  gradientColor2,
+
+  gradientDirection,
+
+  overlayColor,
+
+  overlayOpacity,
 
   titleColor,
   highlightColor,
@@ -66,17 +86,62 @@ export default function Banner({
   scrollText,
   showScroll,
 }) {
+  let background = {};
+
+  switch (backgroundType) {
+    case "color":
+      background = {
+        background: backgroundColor,
+      };
+      break;
+
+    case "gradient":
+      background = {
+        background: `linear-gradient(${gradientDirection}, ${gradientColor1}, ${gradientColor2})`,
+      };
+      break;
+
+    case "image":
+      background = {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      };
+      break;
+
+    case "image+color":
+      background = {
+        backgroundImage: `linear-gradient(${backgroundColor}, ${backgroundColor}), url(${backgroundImage})`,
+        backgroundBlendMode: "multiply",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      };
+      break;
+
+    case "image+gradient":
+      background = {
+        backgroundImage: `linear-gradient(${gradientDirection}, ${gradientColor1}, ${gradientColor2}), url(${backgroundImage})`,
+        backgroundBlendMode: "multiply",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      };
+      break;
+
+    default:
+      background = {
+        background: backgroundColor,
+      };
+  }
+
   return (
     <section
       style={{
-        backgroundColor,
-        backgroundImage: backgroundImage
-          ? `url(${backgroundImage})`
-          : "",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        ...background,
+
         minHeight: `${height}px`,
+
         paddingTop,
+
         paddingBottom,
       }}
       className="relative overflow-hidden"
@@ -88,10 +153,7 @@ export default function Banner({
       >
         {/* Left */}
 
-        <div
-          style={{ maxWidth: contentWidth }}
-          className="flex-1"
-        >
+        <div style={{ maxWidth: contentWidth }} className="flex-1">
           {showBadge && (
             <div
               style={{
@@ -99,14 +161,14 @@ export default function Banner({
                 background: badgeBackground,
                 borderColor: badgeColor,
               }}
-             className="mb-10 inline-flex rounded-full border px-7 py-3 font-bold uppercase tracking-wider"
+              className="mb-10 inline-flex rounded-full border px-7 py-3 font-bold uppercase tracking-wider"
 
-style={{
-  color: badgeColor,
-  background: badgeBackground,
-  borderColor: badgeColor,
-  fontSize: badgeSize,
-}}
+              style={{
+                color: badgeColor,
+                background: badgeBackground,
+                borderColor: badgeColor,
+                fontSize: badgeSize,
+              }}
             >
               {badge}
             </div>
@@ -118,12 +180,12 @@ style={{
             }}
             className="mb-5"
 
-style={{
-  color: titleColor,
-  fontSize: titleSize,
-  fontWeight: titleWeight,
-  lineHeight: titleLineHeight,
-}}
+            style={{
+              color: titleColor,
+              fontSize: titleSize,
+              fontWeight: titleWeight,
+              lineHeight: titleLineHeight,
+            }}
           >
             {title}
           </h1>
@@ -134,11 +196,11 @@ style={{
             }}
             className="mb-8"
 
-style={{
-  color: highlightColor,
-  fontSize: highlightSize,
-  fontWeight: highlightWeight,
-}}
+            style={{
+              color: highlightColor,
+              fontSize: highlightSize,
+              fontWeight: highlightWeight,
+            }}
           >
             {highlight}
           </h2>
@@ -149,11 +211,11 @@ style={{
             }}
             className="mb-12 max-w-xl"
 
-style={{
-  color: textColor,
-  fontSize: descriptionSize,
-  lineHeight: descriptionLineHeight,
-}}
+            style={{
+              color: textColor,
+              fontSize: descriptionSize,
+              lineHeight: descriptionLineHeight,
+            }}
           >
             {description}
           </p>
@@ -167,11 +229,11 @@ style={{
               }}
               className="rounded-xl px-10 py-5 font-semibold shadow-xl"
 
-style={{
-  background: button1Color,
-  color: button1TextColor,
-  fontSize: buttonSize,
-}}
+              style={{
+                background: button1Color,
+                color: button1TextColor,
+                fontSize: buttonSize,
+              }}
             >
               {button1Text}
             </a>
@@ -186,11 +248,11 @@ style={{
                 }}
                 className="rounded-xl px-10 py-5 font-semibold shadow-xl transition hover:bg-white hover:text-black"
                 style={{
-  background: button2Color,
-  color: button2TextColor,
-  borderColor: button2TextColor,
-  fontSize: buttonSize,
-}}
+                  background: button2Color,
+                  color: button2TextColor,
+                  borderColor: button2TextColor,
+                  fontSize: buttonSize,
+                }}
               >
                 {button2Text}
               </a>
@@ -201,22 +263,16 @@ style={{
         {/* Right */}
 
         <div
-style={{
-  width: imageWidth,
-  height: imageHeight,
-  borderRadius: imageRadius,
-  boxShadow: imageShadow
-    ? "0 30px 80px rgba(0,0,0,.25)"
-    : "none",
-}}
-         className="object-contain"
+          style={{
+            width: imageWidth,
+            height: imageHeight,
+            borderRadius: imageRadius,
+            boxShadow: imageShadow ? "0 30px 80px rgba(0,0,0,.25)" : "none",
+          }}
+          className="object-contain"
         >
           {image && (
-            <img
-              src={image}
-              alt={imageAlt}
-              className="w-full object-contain"
-            />
+            <img src={image} alt={imageAlt} className="w-full object-contain" />
           )}
         </div>
       </div>
@@ -224,18 +280,16 @@ style={{
       {showScroll && (
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center text-white">
           <p
-  className="mb-3 opacity-80"
-  style={{
-    fontSize: scrollTextSize,
-    color: textColor,
-  }}
->
+            className="mb-3 opacity-80"
+            style={{
+              fontSize: scrollTextSize,
+              color: textColor,
+            }}
+          >
             {scrollText}
           </p>
 
-          <div className="animate-bounce text-3xl">
-            ↓
-          </div>
+          <div className="animate-bounce text-3xl">↓</div>
         </div>
       )}
     </section>
