@@ -8,16 +8,10 @@ import { config } from "../puck/config";
 
 export default function Editor({ page, back, save }) {
   const [openSetting, setOpenSetting] = useState(false);
-
-  // =============================
-  // Page Info
-  // =============================
-
   const [form, setForm] = useState(
     page || {
       id: crypto.randomUUID(),
 
-      // Nhóm bản dịch
       translationGroup: crypto.randomUUID(),
 
       title: "",
@@ -34,10 +28,6 @@ export default function Editor({ page, back, save }) {
     }
   );
 
-  // =============================
-  // Puck Data
-  // =============================
-
   const [data, setData] = useState(
     page?.data || {
       content: [],
@@ -46,10 +36,6 @@ export default function Editor({ page, back, save }) {
       },
     }
   );
-
-  // =============================
-  // Publish
-  // =============================
 
   const publish = () => {
     save({
@@ -64,7 +50,7 @@ export default function Editor({ page, back, save }) {
   return (
     <div className="flex h-screen flex-col bg-slate-100">
 
-      {/* Header */}
+      {}
 
       <div className="flex h-16 items-center justify-between border-b bg-white px-6">
 
@@ -104,7 +90,7 @@ export default function Editor({ page, back, save }) {
 
       </div>
 
-      {/* Puck */}
+      {}
 
       <div className="flex-1 overflow-hidden">
         <Puck
@@ -114,7 +100,7 @@ export default function Editor({ page, back, save }) {
         />
       </div>
 
-      {/* Setting */}
+      {}
 
       {openSetting && (
 
@@ -143,7 +129,7 @@ export default function Editor({ page, back, save }) {
 
             <div className="space-y-5 p-5">
 
-              {/* Title */}
+              {}
 
               <div>
 
@@ -164,7 +150,7 @@ export default function Editor({ page, back, save }) {
 
               </div>
 
-              {/* SEO */}
+              {}
 
               <div>
 
@@ -185,7 +171,7 @@ export default function Editor({ page, back, save }) {
 
               </div>
 
-              {/* Slug */}
+              {}
 
               <div>
 
@@ -206,7 +192,7 @@ export default function Editor({ page, back, save }) {
 
               </div>
 
-              {/* Language */}
+              {}
 
               <div>
 
@@ -230,7 +216,7 @@ export default function Editor({ page, back, save }) {
 
               </div>
 
-              {/* Translation Group */}
+              {}
 
               <div>
 

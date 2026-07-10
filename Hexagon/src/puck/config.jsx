@@ -6,7 +6,7 @@ export const config = {
       label: "Header",
 
       fields: {
-        /* Logo */
+     
 
         logo: {
           type: "text",

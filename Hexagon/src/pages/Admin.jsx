@@ -7,17 +7,12 @@ export default function Admin({
   openView,
 }) {
 
-  // =============================
-  // Tạo bản dịch
-  // =============================
-
   const handleTranslate = (page) => {
 
     const targetLang = page.lang === "vi" ? "en" : "vi";
 
     const group = page.translationGroup || page.slug || page.id;
 
-    // Kiểm tra đã có bản dịch chưa
     const exist = pages.find(
       (p) =>
         p.translationGroup === group &&
@@ -69,11 +64,6 @@ export default function Admin({
     );
 
   };
-
-  // =============================
-  // Xóa
-  // =============================
-
   const handleDelete = (id) => {
 
     if (!confirm("Bạn có chắc muốn xóa?"))
@@ -88,7 +78,7 @@ export default function Admin({
   return (
     <div className="min-h-screen bg-slate-100 p-10">
 
-      {/* Header */}
+      {}
 
       <div className="mb-8 flex items-start justify-between">
 
@@ -123,7 +113,7 @@ export default function Admin({
 
       </div>
 
-      {/* Table */}
+      {}
 
       <div className="overflow-hidden rounded-2xl bg-white shadow">
 
@@ -226,7 +216,7 @@ export default function Admin({
 
                   <div className="flex justify-center gap-5">
 
-                    {/* Translation */}
+                    {}
 
                     <Copy
                       size={20}
@@ -247,7 +237,7 @@ export default function Admin({
                       }
                     />
 
-                    {/* Delete */}
+                    {}
 
                     <Trash2
                       size={20}
