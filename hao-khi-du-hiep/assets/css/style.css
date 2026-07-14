@@ -1,0 +1,599 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    background:#000;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+/* Header */
+.main-header{
+    width:100%;
+    height:80px;
+
+    background:#8A008F;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+}
+.header-container{
+    width:100%;
+    max-width:1920px;
+
+    height:80px;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 8%;
+}
+
+.logo img{
+    width:270px;
+    height:auto;
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.icon-btn{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    text-decoration:none;
+
+    font-size:28px;
+
+    transition:.3s;
+}
+
+.icon-btn:hover{
+    color:#FFD700;
+}
+
+.login-btn img{
+    width:167px;
+    height:auto;
+}
+
+.hkdh-logo{
+    position:absolute;
+
+    width:24.21%;
+    max-width:465px;
+
+    left:50%;
+    top:-90px;
+
+    transform:translateX(-50%);
+
+    z-index:1200;
+}
+
+.hero-section{
+    position:relative;
+
+    width:100%;
+
+    min-height:1900px;
+
+    overflow:hidden;
+}
+
+.hero-bg{
+    width:100%;
+    min-height:100vh;
+
+    object-fit:cover;
+}
+.miss-mister-logo{
+    position:absolute;
+
+    width:39.06%;
+    max-width:750px;
+
+    left:50%;
+    top:6.5%;
+
+    transform:translateX(-50%);
+
+    z-index:20;
+}
+
+.miss-mister-logo img{
+    width:100%;
+}
+
+.menu-container{
+    position:absolute;
+
+    width:100%;
+    left:0;
+    z-index:50;
+    top: 17%;
+}
+
+.menu-background{
+    position:absolute;
+
+    width:76%;
+    max-width:1460px;
+
+    left:50%;
+    top : 55%;
+
+    transform:translateX(-50%);
+
+    z-index:1;
+}
+
+.menu-background img{
+    width:100%;
+}
+
+.menu-group{
+    position:relative;
+    
+    width:76%;
+    max-width:1460px;
+    margin: auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    z-index:10;
+}
+.menu-btn{
+    position:relative;
+
+    width:246px;
+    height:89px;
+    display:block;
+    text-decoration:none;
+    transition:all .3s ease-out;
+}
+
+.menu-btn:hover{
+    transform:translateY(-8px);
+}
+
+.menu-btn img{
+    width:100%;
+    height:100%;
+}
+.menu-btn{
+    position:relative;
+    top:-90px;
+}
+.menu-btn span{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    color:#fff;
+
+    font-size:clamp(14px,1.4vw,28px);
+    font-weight:700;
+
+    white-space:nowrap;
+}
+
+.join-btn{
+    position:relative;
+
+    width:274px;
+    height:254px;
+
+    margin-bottom:60px;
+
+    display:block;
+
+    text-decoration:none;
+
+    transition:.3s ease-out;
+
+    z-index:100;
+}
+
+.join-btn:hover{
+    transform:translateY(-5px);
+
+}
+
+.join-btn img{
+    width:100%;
+    height:100%;
+}
+
+.join-btn span{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:clamp(18px,1.8vw,34px);
+    font-weight:700;
+
+    line-height:1.2;
+}
+.register-area{
+    position:absolute;
+    top:44%;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:78%;
+    max-width:1400px;
+
+    z-index:60;
+}
+
+.register-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.register-title img{
+    width:420px;
+    margin:auto;
+}
+
+/* ==========================
+   CONTENT
+========================== */
+
+.register-content{
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+}
+
+/* ==========================
+   LEFT
+========================== */
+
+.register-left{
+    width:58%;
+}
+
+.main-upload{
+    position:relative;
+}
+
+.upload-frame{
+    width:100%;
+}
+
+.upload-overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+}
+
+.upload-overlay img{
+    width:120px;
+}
+
+.sub-upload-list{
+    display:flex;
+    gap:8px;
+    margin-top:8px;
+}
+
+.sub-upload{
+    flex:1;
+}
+
+.sub-upload img{
+    width:100%;
+}
+
+.upload-note{
+    text-align:center;
+    color:#fff;
+    font-style:italic;
+    margin-top:12px;
+    font-size:18px;
+}
+
+/* ==========================
+   RIGHT
+========================== */
+
+.register-right{
+    width:42%;
+}
+
+.character-info{
+    color:#fff;
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:10px;
+}
+
+.character-info span{
+    color:#ffe85c;
+    font-weight:700;
+}
+
+/* ==========================
+   MISS - MISSTER
+========================== */
+
+.contest-type{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.type-btn{
+    cursor:pointer;
+}
+
+.type-btn input{
+    display:none;
+}
+
+.type-btn img{
+    width:170px;
+}
+
+/* ==========================
+   INPUT
+========================== */
+
+.input-image{
+    position:relative;
+    margin-bottom:8px;
+}
+
+.input-image img{
+    width:100%;
+}
+
+.input-image input{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    border:none;
+    outline:none;
+    background:none;
+
+    color:#fff;
+    padding:0 18px;
+    font-size:14px;
+}
+
+.input-image input::placeholder{
+    color:#d7c5ff;
+}
+
+.double-input{
+    display:flex;
+    gap:10px;
+}
+
+/* ==========================
+   CCCD
+========================== */
+
+.cccd-title{
+    color:#fff;
+    font-size:18px;
+    margin:8px 0;
+}
+
+.upload-small-btn{
+    flex:1;
+    cursor:pointer;
+}
+
+.upload-small-btn img{
+    width:100%;
+}
+
+/* ==========================
+   TEXTAREA
+========================== */
+
+.textarea-image{
+    position:relative;
+    margin-top:8px;
+}
+
+.textarea-image img{
+    width:100%;
+}
+
+.textarea-image textarea{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    border:none;
+    outline:none;
+    resize:none;
+
+    background:none;
+
+    color:#fff;
+    padding:12px 18px;
+
+    font-size:14px;
+}
+
+.textarea-image textarea::placeholder{
+    color:#d7c5ff;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.action-area{
+    display:flex;
+    gap:12px;
+    margin-top:12px;
+}
+
+.action-area a{
+    flex:1;
+}
+
+.action-area img{
+    width:100%;
+    transition:.3s;
+}
+
+.action-area img:hover{
+    transform:translateY(-4px);
+}
+@media (max-width:1600px){
+
+    .menu-btn{
+        width:220px;
+        height:auto;
+    }
+
+    .join-btn{
+        width:240px;
+        height:auto;
+    }
+
+}
+
+@media (max-width:992px){
+
+    .logo img{
+        width:180px;
+    }
+
+    .login-btn img{
+        width:120px;
+    }
+
+    .hkdh-logo{
+        width:200px;
+        top:-30px;
+    }
+
+    .miss-mister-logo{
+        width:65%;
+        top:18%;
+    }
+
+    .menu-group{
+        width:95%;
+    }
+
+    .menu-btn{
+        width:140px;
+        margin-bottom:25px;
+    }
+
+    .join-btn{
+        width:180px;
+        margin-bottom:40px;
+    }
+}
+
+
+@media (max-width:768px){
+
+    .main-header{
+        height:70px;
+    }
+
+    .header-container{
+        padding:0 15px;
+    }
+
+    .logo img{
+        width:130px;
+    }
+
+    .login-btn img{
+        width:95px;
+    }
+
+    .icon-btn{
+        font-size:18px;
+    }
+
+    .hkdh-logo{
+        width:140px;
+        top:-20px;
+    }
+
+    .miss-mister-logo{
+        width:85%;
+        top:20%;
+    }
+
+    .menu-background{
+        display:none;
+    }
+
+    .menu-group{
+        width:100%;
+
+        flex-wrap:wrap;
+        justify-content:center;
+
+        gap:10px;
+
+        padding:0 10px 20px;
+    }
+
+    .join-btn{
+        width:140px;
+        order:-1;
+        margin-bottom:10px;
+    }
+
+    .menu-btn{
+        width:120px;
+        margin-bottom:0;
+    }
+}
