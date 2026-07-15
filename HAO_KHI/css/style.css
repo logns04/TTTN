@@ -1,0 +1,443 @@
+.header {
+  background: #8a008f;
+  z-index: 999;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  height: 76px;
+  width: auto;
+}
+
+.navbar-nav {
+  gap: 25px;
+}
+
+.icon-btn i {
+  color: #ffffff;
+  font-size: 35px;
+  transition: color 0.3s ease;
+}
+
+.icon-btn i:hover {
+  color: #1877f2;
+}
+
+.login-btn {
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.hero {
+  background-image: url("../images/BGTRANGVOTING.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  min-height: 900px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.hero-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -100px;
+  z-index: 99999;
+}
+
+.hero-logo img {
+  max-height: 465px;
+  max-width: 465px;
+}
+
+.hero-banner {
+  margin-top: 300px;
+  margin-left: -19px;
+}
+
+.hero-menu {
+  margin-top: 35px;
+  position: relative;
+}
+
+.hero-btn {
+  position: relative;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.hero-btn img {
+  width: 100%;
+}
+
+.hero-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.hero-btn:hover {
+  transform: scale(1.05);
+}
+
+.main-btn {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin-top: -30px;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.main-btn img {
+  width: 100%;
+}
+
+.main-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.main-btn:hover {
+  transform: scale(1.08);
+}
+
+.hero-bottom {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.register-section {
+  position: relative;
+  margin-top: 70px;
+  padding-bottom: 80px;
+}
+
+.register-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.register-title img {
+  max-width: 420px;
+  width: 100%;
+}
+
+.player-info {
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.player-info p {
+  margin-bottom: 6px;
+}
+
+.player-info span {
+  color: #ffe44a;
+  font-weight: bold;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-item input {
+  display: none;
+}
+
+.radio-circle {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: transparent;
+  transition: 0.25s;
+  flex-shrink: 0;
+}
+
+.radio-item input:checked + .radio-circle {
+  background: #ffffff;
+  box-shadow: 0 0 8px #fff;
+}
+
+.radio-image {
+  position: relative;
+  display: block;
+  transition: 0.25s;
+}
+
+.radio-image img {
+  display: block;
+  width: 145px;
+}
+
+.radio-item:hover .radio-image {
+  transform: scale(1.03);
+}
+
+.upload-main,
+.upload-small,
+.upload-card {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.upload-main img,
+.upload-small img,
+.upload-card img {
+  width: 100%;
+  transition: 0.35s;
+}
+
+.upload-main:hover img,
+.upload-small:hover img,
+.upload-card:hover img {
+  transform: scale(1.02);
+}
+
+.upload-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-note {
+  margin-top: 12px;
+  text-align: center;
+  color: #fff;
+  font-style: italic;
+}
+
+.image-input {
+  position: relative;
+  height: 54px;
+  margin-bottom: 12px;
+}
+
+.image-input img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-input input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 18px;
+  color: black;
+  font-size: 15px;
+}
+
+.image-input input::placeholder {
+  color: #dadada;
+}
+
+.image-textarea {
+  position: relative;
+  height: 120px;
+  margin: 15px 0;
+}
+
+.image-textarea img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-textarea textarea {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  color: black;
+  padding: 15px 18px;
+}
+
+.image-textarea textarea::placeholder {
+  color: #d8d8d8;
+}
+
+.cmnd-title {
+  color: #fff;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.image-button {
+  position: relative;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.image-button img {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.image-button span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.image-button:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+  .register-section {
+    margin-top: 50px;
+  }
+
+  .player-info {
+    margin-top: 30px;
+    font-size: 18px;
+  }
+
+  .radio-group {
+    flex-wrap: wrap;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .navbar-nav {
+    gap: 10px;
+  }
+
+  .login-btn {
+    width: 180px;
+    margin: auto;
+  }
+
+  .hero {
+    min-height: 820px;
+  }
+
+  .hero-logo img {
+    max-width: 180px;
+  }
+
+  .hero-banner {
+    margin-top: 120px;
+  }
+
+  .main-btn {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .register-title img {
+    max-width: 260px;
+  }
+
+  .player-info {
+    font-size: 16px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .radio-image img {
+    width: 120px;
+  }
+
+  .image-button {
+    margin-top: 10px;
+  }
+
+  .upload-note {
+    font-size: 14px;
+  }
+
+  .logo {
+    height: 42px;
+  }
+
+  .icon-link {
+    font-size: 22px;
+  }
+
+  .login-btn {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+
+  .hero {
+    min-height: 700px;
+  }
+
+  .hero-logo {
+    top: -20px;
+  }
+
+  .hero-logo img {
+    max-width: 150px;
+  }
+
+  .hero-banner {
+    margin-top: 90px;
+  }
+
+  .hero-btn span {
+    font-size: 16px;
+  }
+
+  .main-btn span {
+    font-size: 18px;
+  }
+}
