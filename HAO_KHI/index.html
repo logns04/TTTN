@@ -88,16 +88,26 @@
         <div class="container hero-menu">
           <div class="row align-items-end justify-content-center g-3">
             <div class="col-lg-2 col-md-4 col-6">
-              <a href="#" class="hero-btn">
-                <img src="images/button 1.png" class="img-fluid" />
-                <span>THỂ LỆ</span>
-              </a>
+<a href="#"
+   class="hero-btn popup-btn"
+   data-popup="rule">
+
+    <img src="images/button 1.png" class="img-fluid">
+
+    <span>THỂ LỆ</span>
+
+</a>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
-              <a href="#" class="hero-btn">
-                <img src="images/button 1.png" class="img-fluid" />
-                <span>HƯỚNG DẪN</span>
-              </a>
+<a href="#"
+   class="hero-btn popup-btn"
+   data-popup="guide">
+
+    <img src="images/button 1.png" class="img-fluid">
+
+    <span>HƯỚNG DẪN</span>
+
+</a>
             </div>
             <div class="col-lg-2 col-md-4 col-12">
               <a href="#" class="main-btn">
@@ -106,13 +116,13 @@
               </a>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
-              <a href="#" class="hero-btn">
+              <a href="https://hkdh.mye.vn/dl" class="hero-btn">
                 <img src="images/button 1.png" class="img-fluid" />
                 <span>TẢI GAME</span>
               </a>
             </div>
             <div class="col-lg-2 col-md-4 col-6">
-              <a href="#" class="hero-btn">
+              <a href="https://pay.mye.vn/" class="hero-btn">
                 <img src="images/button 1.png" class="img-fluid" />
                 <span>NẠP THẺ</span>
               </a>
@@ -252,9 +262,13 @@
                 </div>
                 <div class="row mt-3">
                   <div class="col-6">
-                    <button class="image-button">
-                      <img src="images/buttondongy.png" />
-                    </button>
+<button
+    class="image-button"
+    id="btnSubmit">
+
+    <img src="images/buttondongy.png">
+
+</button>
                   </div>
 
                   <div class="col-6">
@@ -269,7 +283,36 @@
         </div>
       </div>
     </section>
+<!-- POPUP -->
+<div id="popupOverlay" class="popup-overlay">
 
+    <div id="popupBox" class="popup-rule">
+
+        <div id="popupContent" class="popup-content">
+        </div>
+        <button id="closePopup" class="popup-close"></button>
+
+    </div>
+
+</div>
+<!-- Thành Công -->
+<div id="successPopup" class="success-overlay">
+
+    <div id="successBox" class="success-popup">
+
+        <div id="successContent" class="success-body">
+
+        </div>
+
+        <button
+            id="closeSuccess"
+            class="success-close">
+        </button>
+
+    </div>
+
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/popup.js"></script>
   </body>
 </html>

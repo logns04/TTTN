@@ -333,20 +333,116 @@
   transform: scale(1.05);
 }
 
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.75);
+    z-index:99999;
+
+}
+.popup-overlay.show{
+    display:flex;
+}
+.popup-rule{
+    position:relative;
+    width:980px;
+    height:620px;
+    max-width:95vw;
+    max-height:90vh;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:100% 100%;
+}
+
+.popup-content{
+    position:absolute;
+    left:130px;
+    top:120px;
+    bottom:40px;
+    overflow-y:auto;
+    color:#ffffff;
+    font-size:18px;
+    line-height:1.8;
+    padding-right:10px;
+}
+.popup-content::-webkit-scrollbar{
+    width:8px;
+}
+.success-overlay{
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.65);
+    z-index: 999999;
+}
+.success-overlay.show{
+    display: flex;
+}
+
+.success-popup{
+    position: relative;
+    width: 475px;
+    height: 308px;
+    max-width: 95vw;
+    max-height: 90vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+.success-body{
+    position: absolute;
+    left: 35px;
+    right: 35px;
+    top: 55px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+}
+.success-body h2{
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255,255,255,.8);
+}
+.success-body p{
+    margin: 0;
+    color: #dffcff;
+    font-size: 17px;
+    line-height: 1.6;
+}
+.success-close{
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
 @media (max-width: 991px) {
   .register-section {
     margin-top: 50px;
   }
-
   .player-info {
     margin-top: 30px;
     font-size: 18px;
   }
-
   .radio-group {
     flex-wrap: wrap;
   }
-
   .navbar-collapse {
     text-align: center;
     padding: 20px 0;
@@ -382,57 +478,44 @@
   .register-title img {
     max-width: 260px;
   }
-
   .player-info {
     font-size: 16px;
   }
-
   .radio-group {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .radio-image img {
     width: 120px;
   }
-
   .image-button {
     margin-top: 10px;
   }
-
   .upload-note {
     font-size: 14px;
   }
-
   .logo {
     height: 42px;
   }
-
   .icon-link {
     font-size: 22px;
   }
-
   .login-btn {
     font-size: 16px;
     padding: 8px 20px;
   }
-
   .hero {
     min-height: 700px;
   }
-
   .hero-logo {
     top: -20px;
   }
-
   .hero-logo img {
     max-width: 150px;
   }
-
   .hero-banner {
     margin-top: 90px;
   }
-
   .hero-btn span {
     font-size: 16px;
   }
