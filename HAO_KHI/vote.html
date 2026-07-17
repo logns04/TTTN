@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hào Khí Du Hiệp</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header sticky-top">
+      <nav class="navbar navbar-expand-lg py-1">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="images/iconapp.png" class="logo img-fluid" alt="logo" />
+          </a>
+          <button
+            class="navbar-toggler text-white border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu"
+          >
+            <i class="bi bi-list fs-2 text-white"></i>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="menu">
+            <ul class="navbar-nav align-items-lg-center ms-auto">
+              <li class="nav-item">
+                <a href="#" class="icon-btn">
+                  <i class="fa-solid fa-house"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="icon-btn">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="btn login-btn">
+                  <img src="images/đn.png" alt="Đăng nhập" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="hero-logo text-center">
+      <img src="images/Logo-HaoKhiDuHiep.png" class="img-fluid" alt="Logo" />
+    </div>
+    <!-- Hero -->
+    <section class="hero position-relative overflow-hidden">
+      <div class="container-fluid p-0">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9 col-11">
+              <div class="text-center">
+                <img
+                  src="images/text.png"
+                  class="img-fluid hero-banner"
+                  alt="Miss"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Menu -->
+<div class="container hero-menu">
+    <div class="row align-items-end justify-content-center g-3">
+        <!-- Hướng dẫn -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <a href="#"
+               class="hero-btn popup-btn"
+               data-popup="guide-vote">
+                <img src="images/button 1.png" class="img-fluid">
+                <span>HƯỚNG DẪN</span>
+            </a>
+        </div>
+        <!-- Hoa Free -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <a href="#"
+               class="hero-btn popup-btn"
+               data-popup="flower">
+                <img src="images/button 1.png" class="img-fluid">
+                <span>HOA FREE</span>
+            </a>
+        </div>
+        <!-- Vote -->
+        <div class="col-lg-2 col-md-4 col-12">
+            <a href="#contestants"
+               class="main-btn">
+                <img src="images/votebutton 1.png"
+                     class="img-fluid">
+                <span>VOTE NGAY</span>
+            </a>
+        </div>
+        <!-- Quà -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <a href="#reward"
+               class="hero-btn">
+                <img src="images/button 1.png"
+                     class="img-fluid">
+                <span>QUÀ TÍCH LŨY</span>
+            </a>
+        </div>
+        <!-- Nạp -->
+        <div class="col-lg-2 col-md-4 col-6">
+            <a href="https://pay.mye.vn/"
+               target="_blank"
+               class="hero-btn">
+                <img src="images/button 1.png"
+                     class="img-fluid">
+                <span>NẠP HOA</span>
+            </a>
+        </div>
+    </div>
+                <div class="container text-center mt-3">
+              <img
+                src="images/khungdautrang.png"
+                class="img-fluid hero-bottom"
+                alt="Bottom"
+              />
+            </div>
+</div>
+      </div>
+    </section>
+    <div id="popupOverlay" class="popup-overlay">
+    <div id="popupBox" class="popup-rule">
+        <div id="popupContent" class="popup-content">
+        </div>
+        <button id="closePopup"
+                class="popup-close">
+        </button>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/popup.js"></script>
+  </body>
+</html>

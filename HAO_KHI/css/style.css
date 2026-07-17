@@ -1,3 +1,7 @@
+html{
+
+    scroll-behavior:smooth;
+}
 .header {
   background: #8a008f;
   z-index: 999;
@@ -431,6 +435,52 @@
     border: none;
     cursor: pointer;
     z-index: 10;
+}
+/* Nhiệm vụ nhận hoa  */
+.flower-task{
+    position:relative;
+    width:100%;
+    margin-bottom:18px;
+}
+.task-bg{
+    width:100%;
+    display:block;
+}
+.task-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px 0 55px;
+}
+
+.task-text{
+    color:#fff;
+    font-size:28px;
+    font-weight:700;
+}
+.flower-btn{
+    width:170px;
+    position:relative;
+    background:none;
+    border:none;
+    padding:0;
+    flex-shrink:0;
+}
+.flower-btn img{
+    width:100%;
+    display:block;
+}
+.flower-btn span{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:28px;
+    font-weight:700;
 }
 @media (max-width: 991px) {
   .register-section {
