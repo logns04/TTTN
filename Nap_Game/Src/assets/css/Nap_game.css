@@ -1,0 +1,243 @@
+body {
+  background: #05163d;
+}
+.navbar {
+  background: #fff;
+}
+.logo {
+  height: 52px;
+}
+.navbar-nav {
+  gap: 18px;
+}
+.nav-link {
+  color: #203a8b;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.nav-link:hover {
+  color: #ff7b00;
+}
+.nav-link.active {
+  color: #ff7b00 !important;
+  font-weight: 700;
+  border-bottom: 3px solid #ff7b00;
+}
+.login-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 42px;
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  background: linear-gradient(#ffb348, #ff6200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.login-btn:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+.banner-section {
+  padding: 40px 0;
+}
+.banner {
+  position: relative;
+}
+.banner img {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+}
+.history-btn {
+  position: absolute;
+  right: 45px;
+  bottom: 35px;
+  width: 180px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  background: #173e86;
+  color: #fff;
+  border: 2px solid #4ea4ff;
+  transition: 0.3s;
+}
+.history-btn:hover {
+  background: #2153b1;
+}
+/* Danh sách game */
+.game-section {
+  background: #fff;
+  padding: 70px 0;
+}
+.game-title {
+  color: #174a99;
+  font-size: 48px;
+  font-weight: 700;
+}
+.search-box {
+  width: 300px;
+  margin-left: auto;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding-left: 45px;
+  outline: none;
+}
+.search-box i {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: #777;
+}
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+.category {
+  border: none;
+  background: #f2f2f2;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.category.active {
+  background: #fff;
+  border: 2px solid #174a99;
+}
+.category span {
+  margin-left: 10px;
+  background: #ddd;
+  border-radius: 20px;
+  padding: 3px 9px;
+}
+#gameList {
+  margin-top: 25px;
+}
+.game-card {
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.game-card:hover {
+  transform: translateY(-5px);
+}
+.game-thumb {
+  width: 160px;
+  height: 160px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+.game-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.game-card:hover .game-thumb img {
+  transform: scale(1.04);
+}
+.game-name {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #222;
+  text-transform: uppercase;
+  line-height: 18px;
+}
+.mye-card .game-name {
+  color: #ff6b00;
+  font-weight: 700;
+}
+.pagination-custom {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.pagination-custom span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+}
+.pagination-custom .active {
+  background: #ff7b00;
+}
+
+.footer {
+  background: #efefef;
+  padding: 60px 0;
+  text-align: center;
+}
+.footer-logo {
+  width: 110px;
+  margin-bottom: 20px;
+}
+.footer p {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+@media (max-width: 992px) {
+  .navbar-nav {
+    gap: 5px;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .login-btn {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .search-box {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .banner-section {
+    padding: 20px 0;
+  }
+  .history-btn {
+    width: 130px;
+    height: 38px;
+    right: 15px;
+    bottom: 15px;
+    font-size: 13px;
+  }
+  .search-box {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .search-box {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .logo {
+    height: 42px;
+  }
+  .history-btn {
+    width: 120px;
+    height: 34px;
+    font-size: 11px;
+  }
+  .game-name {
+    font-size: 13px;
+  }
+  .footer {
+    padding: 40px 20px;
+  }
+}
