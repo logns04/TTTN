@@ -17,7 +17,7 @@ services:
     runtime: node
     plan: free
     region: singapore
-    rootDir: server
+    rootDir: DATN/server
     # --include=dev là BẮT BUỘC: NODE_ENV=production ở dưới khiến `npm install`
     # bỏ qua devDependencies, mà `tsc` và CLI `prisma` nằm trong đó -> build fail.
     #
@@ -67,7 +67,7 @@ services:
   - type: web
     name: noithat-web
     runtime: static
-    rootDir: client
+    rootDir: DATN/client
     # Cùng lý do: vite, typescript, @vitejs/plugin-react đều là devDependencies.
     buildCommand: npm install --include=dev && npm run build
     staticPublishPath: dist
