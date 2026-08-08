@@ -51,7 +51,7 @@ services:
       # mà tên service đã cố định ngay trong file này nên đoán trước được.
       # Đổi tên service thì nhớ sửa dòng dưới. Nhận nhiều origin, cách nhau dấu phẩy.
       - key: CLIENT_URL
-        value: https://noithat-web-l9d3.onrender.com/
+        value: https://noithat-web-l9d3.onrender.com
 
       # local = ghi vào đĩa của service. Ảnh upload sẽ mất sau mỗi lần redeploy,
       # nhưng ảnh minh hoạ được sinh lại ở buildCommand nên site không bao giờ
@@ -81,7 +81,7 @@ services:
       #
       # Đổi tên service thì nhớ sửa dòng dưới.
       - key: VITE_API_URL
-        value: https://noithat-web-l9d3.onrender.com/
+        value: https://noithat-web-l9d3.onrender.com
     routes:
       # SPA: mọi đường dẫn trả về index.html, nếu không thì F5 ở /products ra 404.
       - type: rewrite
