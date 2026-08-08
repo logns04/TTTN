@@ -1,0 +1,19 @@
+node_modules/
+dist/
+build/
+*.log
+npm-debug.log*
+
+.env
+.env.local
+.env.*.local
+
+# Ảnh người dùng upload — không commit
+server/public/uploads/*
+!server/public/uploads/.gitkeep
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tsbuildinfo

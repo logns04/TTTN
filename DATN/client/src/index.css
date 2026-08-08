@@ -1,0 +1,156 @@
+@import 'tailwindcss';
+
+/* Tailwind 4 không còn darkMode: 'class' trong config — khai báo variant ở đây. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Palette trung tính ấm cho nội thất: nền be nhạt, chữ nâu đậm, một màu nhấn.
+  --primary do admin đổi được ở trang "Quản lý giao diện": settingsSlice ghi
+  trực tiếp vào biến này nên đổi màu là cả site đổi theo, cả light lẫn dark.
+*/
+:root {
+  --background: #faf8f5;
+  --foreground: #2c2620;
+
+  --card: #ffffff;
+  --card-foreground: #2c2620;
+
+  --muted: #f2ede6;
+  --muted-foreground: #7a6e62;
+
+  --border: #e5dcd0;
+  --input: #e5dcd0;
+  --ring: #8b5e3c;
+
+  --primary: #8b5e3c;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f2ede6;
+  --secondary-foreground: #3c342b;
+
+  --accent: #ede4d8;
+  --accent-foreground: #2c2620;
+
+  --destructive: #b3402f;
+  --destructive-foreground: #ffffff;
+
+  --success: #2f6f4e;
+  --warning: #b07d22;
+
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #17140f;
+  --foreground: #ede7de;
+
+  --card: #201c16;
+  --card-foreground: #ede7de;
+
+  --muted: #2a241d;
+  --muted-foreground: #a79c8e;
+
+  --border: #362f26;
+  --input: #362f26;
+
+  --secondary: #2a241d;
+  --secondary-foreground: #ede7de;
+
+  --accent: #332b22;
+  --accent-foreground: #ede7de;
+
+  --destructive: #d9573f;
+  --success: #4d9c74;
+  --warning: #d9a03f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: Georgia, 'Times New Roman', 'Songti SC', serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  /* Nội dung HTML từ editor tin tức và mô tả sản phẩm */
+  .prose-noithat :where(p) {
+    margin-block: 0.85em;
+    line-height: 1.75;
+  }
+  .prose-noithat :where(h2, h3) {
+    margin-block: 1.4em 0.6em;
+    font-weight: 600;
+    font-size: 1.15em;
+  }
+  .prose-noithat :where(ul, ol) {
+    margin-block: 0.85em;
+    padding-inline-start: 1.4em;
+    line-height: 1.75;
+  }
+  .prose-noithat :where(ul) {
+    list-style: disc;
+  }
+  .prose-noithat :where(ol) {
+    list-style: decimal;
+  }
+  .prose-noithat :where(strong) {
+    font-weight: 600;
+  }
+  .prose-noithat :where(a) {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+}
+
+/* Thanh cuộn mảnh cho vùng danh sách dài trong admin */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+}

@@ -1,0 +1,21 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: noithat-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: noithat123
+      MYSQL_DATABASE: noithat
+    ports:
+      # 3308 vì 3306 và 3307 trên máy này đã bị chiếm
+      - "3308:3306"
+    volumes:
+      - noithat_mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pnoithat123"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  noithat_mysql:

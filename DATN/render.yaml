@@ -1,0 +1,89 @@
+# Render Blueprint — tạo cả Backend và Frontend trong một lần.
+#
+# Cách dùng: Render Dashboard → New → Blueprint → chọn repo này.
+# Render chỉ hỏi DUY NHẤT một giá trị: DATABASE_URL.
+#
+# Hai service tự biết URL của nhau qua `fromService` nên không phải nối tay.
+# JWT_SECRET Render tự sinh. Cloudinary là tuỳ chọn (xem cuối file).
+#
+# KHÔNG có MySQL ở đây vì Render không cung cấp MySQL. Tạo DB ở nhà khác
+# (Aiven for MySQL hoặc Clever Cloud — MySQL 8 thật, hỗ trợ đầy đủ khoá ngoại)
+# rồi dán connection string vào DATABASE_URL khi Render hỏi.
+
+services:
+  # ---------- Backend ----------
+  - type: web
+    name: noithat-api
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: server
+    # --include=dev là BẮT BUỘC: NODE_ENV=production ở dưới khiến `npm install`
+    # bỏ qua devDependencies, mà `tsc` và CLI `prisma` nằm trong đó -> build fail.
+    #
+    # `placeholders` chạy mỗi lần deploy để ảnh minh hoạ luôn tồn tại trên đĩa,
+    # kể cả sau khi Render xoá sạch filesystem. Nhờ vậy demo không cần Cloudinary.
+    buildCommand: npm install --include=dev && npm run build && npm run placeholders && npx prisma migrate deploy
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # Giá trị DUY NHẤT bạn phải tự điền.
+      # Dạng: mysql://user:pass@host:port/db?sslaccept=strict
+      - key: DATABASE_URL
+        sync: false
+
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+
+      # Origin của frontend, dùng cho CORS.
+      #
+      # Cố ý ghi thẳng chứ không dùng `fromService ... property: host`: đã thử
+      # và Render KHÔNG truyền được host của static site qua đường đó, biến này
+      # bị bỏ trống -> backend rơi về giá trị mặc định localhost -> chặn hết
+      # request từ frontend thật, browser báo lỗi network rất khó lần.
+      #
+      # URL của static site trên Render là https://<tên service>.onrender.com,
+      # mà tên service đã cố định ngay trong file này nên đoán trước được.
+      # Đổi tên service thì nhớ sửa dòng dưới. Nhận nhiều origin, cách nhau dấu phẩy.
+      - key: CLIENT_URL
+        value: https://noithat-web.onrender.com
+
+      # local = ghi vào đĩa của service. Ảnh upload sẽ mất sau mỗi lần redeploy,
+      # nhưng ảnh minh hoạ được sinh lại ở buildCommand nên site không bao giờ
+      # trắng. Đủ cho demo.
+      #
+      # Muốn ảnh upload không mất: đổi thành `cloudinary` rồi thêm ba biến
+      # CLOUDINARY_CLOUD_NAME / CLOUDINARY_API_KEY / CLOUDINARY_API_SECRET
+      # trong tab Environment. Không cần sửa code.
+      - key: STORAGE_DRIVER
+        value: local
+
+  # ---------- Frontend ----------
+  - type: web
+    name: noithat-web
+    runtime: static
+    rootDir: client
+    # Cùng lý do: vite, typescript, @vitejs/plugin-react đều là devDependencies.
+    buildCommand: npm install --include=dev && npm run build
+    staticPublishPath: dist
+    envVars:
+      # Origin của backend.
+      #
+      # Cố ý ghi thẳng. Đã thử `fromService ... property: host` và nó trả về
+      # ĐÚNG TÊN SERVICE (`noithat-api`) chứ không phải hostname
+      # (`noithat-api.onrender.com`). Kết quả: client gọi https://noithat-api,
+      # tên miền không tồn tại, browser báo lỗi network rất khó lần ra.
+      #
+      # Đổi tên service thì nhớ sửa dòng dưới.
+      - key: VITE_API_URL
+        value: https://noithat-api.onrender.com
+    routes:
+      # SPA: mọi đường dẫn trả về index.html, nếu không thì F5 ở /products ra 404.
+      - type: rewrite
+        source: /*
+        destination: /index.html
