@@ -13,8 +13,6 @@ interface ConfirmDialogProps {
   loading?: boolean;
   onConfirm: () => void;
 }
-
-/** Hộp xác nhận cho các hành động không hoàn tác được (xoá). */
 export const ConfirmDialog = ({
   open,
   onOpenChange,

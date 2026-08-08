@@ -1,6 +1,4 @@
 import { Switch } from '@/components/ui/switch';
-
-/** Một dòng công tắc có nhãn và mô tả, dùng cho các cờ trong form admin. */
 export const SwitchField = ({
   label,
   description,

@@ -15,7 +15,6 @@ import { useAppDispatch } from '@/store';
 import { applySettings } from '@/store/slices/settingsSlice';
 import type { AdminSetting } from '@/types';
 
-/** Vài màu nhấn gợi ý, tông gỗ và trung tính phù hợp nội thất. */
 const COLOR_PRESETS = [
   { value: '#8B5E3C', label: 'Nâu gỗ' },
   { value: '#2F6F4E', label: 'Xanh rừng' },

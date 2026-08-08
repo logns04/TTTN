@@ -24,8 +24,6 @@ const dateOnly = new Intl.DateTimeFormat('vi-VN', {
 });
 
 export const formatCurrency = (value: number) => currency.format(value);
-
-/** 12.900.000đ -> "12,9 Tr" cho nhãn biểu đồ và số liệu tổng. */
 export const formatCompact = (value: number) => compact.format(value);
 
 export const formatNumber = (value: number) => value.toLocaleString('vi-VN');
@@ -33,8 +31,6 @@ export const formatNumber = (value: number) => value.toLocaleString('vi-VN');
 export const formatDateTime = (value: string | Date) => dateTime.format(new Date(value));
 
 export const formatDate = (value: string | Date) => dateOnly.format(new Date(value));
-
-/** Phần trăm giảm giá để hiện badge trên thẻ sản phẩm. */
 export const discountPercent = (price: number, salePrice?: number | null): number | null => {
   if (!salePrice || salePrice >= price || price <= 0) return null;
   return Math.round(((price - salePrice) / price) * 100);

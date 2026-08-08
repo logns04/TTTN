@@ -8,18 +8,11 @@ import { cn } from '@/lib/utils';
 import { SafeImage } from './SafeImage';
 
 interface ImageUploaderProps {
-  /** Danh sách URL ảnh. Ảnh đầu tiên là ảnh đại diện. */
   value: string[];
   onChange: (urls: string[]) => void;
   max?: number;
-  /** Chỉ cho một ảnh (banner, logo, ảnh tin tức). */
   single?: boolean;
 }
-
-/**
- * Upload ảnh lên backend rồi giữ lại URL. Component chỉ làm việc với URL, không
- * biết ảnh được lưu ở ổ đĩa hay Cloudinary — đó là việc của StorageProvider.
- */
 export const ImageUploader = ({
   value,
   onChange,
@@ -59,7 +52,6 @@ export const ImageUploader = ({
 
   const removeAt = (index: number) => onChange(value.filter((_, i) => i !== index));
 
-  /** Đưa ảnh lên đầu để làm ảnh đại diện. */
   const makePrimary = (index: number) => {
     if (index === 0) return;
     const next = [...value];

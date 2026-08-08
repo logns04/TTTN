@@ -5,12 +5,6 @@ interface TooltipRow {
   value: ReactNode;
 }
 
-/**
- * Tooltip dùng chung cho mọi biểu đồ trong dashboard.
- *
- * Chữ trong tooltip mặc token text (foreground / muted-foreground), không mặc
- * màu của series — màu chỉ nằm ở chấm nhỏ bên cạnh để chỉ danh tính.
- */
 export const ChartTooltipCard = ({
   title,
   rows,

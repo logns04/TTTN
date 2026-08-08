@@ -19,11 +19,11 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-/** Tài khoản demo để chấm bài nhanh, không phải bịa dữ liệu. */
+/** Tài khoản demo đăng nhập nhanh */
 const DEMO_ACCOUNTS = [
-  { email: 'superadmin@noithat.vn', label: 'Super Admin' },
-  { email: 'admin@noithat.vn', label: 'Admin' },
-  { email: 'editor@noithat.vn', label: 'Biên tập' },
+  { email: 'superadmin@noithat.vn', label: 'Admin' },
+  { email: 'admin@noithat.vn', label: 'Quản lý' },
+  { email: 'editor@noithat.vn', label: 'Nhân viên' },
   { email: 'user@noithat.vn', label: 'Khách hàng' },
 ];
 

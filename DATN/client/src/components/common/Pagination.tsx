@@ -2,10 +2,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { PageMeta } from '@/types';
 
-/**
- * Rút gọn dãy số trang quanh trang hiện tại: 1 … 4 5 [6] 7 8 … 20.
- * Với 40 sản phẩm thì không cần, nhưng danh sách đơn hàng có thể dài.
- */
 const buildPages = (current: number, total: number): (number | 'gap')[] => {
   if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);
 

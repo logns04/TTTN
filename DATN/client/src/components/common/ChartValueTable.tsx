@@ -3,17 +3,6 @@ interface Row {
   value: string;
 }
 
-/**
- * Bảng giá trị đi kèm biểu đồ cột.
- *
- * Có hai lý do, không phải để trang trí:
- * 1. Người đọc lấy được số chính xác thay vì phải ước lượng theo chiều dài cột.
- * 2. Đây là "table view" mà quy tắc accessibility đòi khi màu mark không đạt
- *    tương phản 3:1 trên nền — thông tin không bao giờ chỉ nằm ở màu.
- *
- * Cố ý dùng HTML chứ không dùng nhãn SVG của Recharts: nhãn SVG phụ thuộc
- * phiên bản và có thể im lặng không render.
- */
 export const ChartValueTable = ({ rows, columns = 2 }: { rows: Row[]; columns?: 1 | 2 }) => {
   if (rows.length === 0) return null;
 

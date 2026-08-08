@@ -8,7 +8,6 @@ import { getErrorMessage } from '@/services/axios';
 import { paymentApi } from '@/services/shop.api';
 import type { PaymentInfo } from '@/types';
 
-/** Bao lâu dò một lần, và dừng sau bao lâu để khỏi gọi API mãi. */
 const POLL_MS = 5000;
 const STOP_AFTER_MS = 10 * 60 * 1000;
 
@@ -16,8 +15,7 @@ const CopyRow = ({ label, value }: { label: string; value: string }) => (
   <div className="flex items-start justify-between gap-3 border-b border-border py-2 last:border-0">
     <span className="shrink-0 py-0.5 text-sm text-muted-foreground">{label}</span>
     <span className="flex min-w-0 items-start gap-1.5">
-      {/* Xuống dòng thay vì cắt bớt: tên chủ tài khoản bị cắt thì người dùng
-          không đối chiếu được với app ngân hàng. */}
+      {}
       <span className="break-words py-0.5 text-right font-medium">{value}</span>
       <Button
         variant="ghost"
@@ -34,12 +32,6 @@ const CopyRow = ({ label, value }: { label: string; value: string }) => (
   </div>
 );
 
-/**
- * Màn chuyển khoản: QR + thông tin tài khoản, tự dò khi tiền về.
- *
- * Việc dò là cần thiết vì tiền về qua webhook từ SePay ở phía máy chủ — trình
- * duyệt không có cách nào biết nếu không hỏi lại.
- */
 export const BankTransferPanel = ({ orderId }: { orderId: number }) => {
   const [info, setInfo] = useState<PaymentInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -55,8 +47,6 @@ export const BankTransferPanel = ({ orderId }: { orderId: number }) => {
         if (cancelled) return;
         setInfo(data);
         setError(null);
-
-        // Dừng khi đã nhận tiền, hoặc quá lâu — khách sẽ tự tải lại trang.
         if (data.paid || Date.now() - startedAt.current > STOP_AFTER_MS) return;
       } catch (caught) {
         if (!cancelled) setError(getErrorMessage(caught, 'Không kiểm tra được thanh toán'));

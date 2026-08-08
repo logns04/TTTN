@@ -46,7 +46,7 @@ const CategoryMenu = ({ tree }: { tree: Category[] }) => (
       <ChevronDown className="size-4" />
     </button>
 
-    {/* Mở bằng hover: menu 2 cấp, đủ dùng cho desktop. Mobile dùng menu trong Sheet. */}
+    {}
     <div className="invisible absolute left-0 top-full z-40 w-max opacity-0 transition-all group-hover:visible group-hover:opacity-100">
       <div className="mt-1 grid grid-cols-2 gap-x-6 gap-y-4 rounded-xl border border-border bg-card p-4 shadow-xl lg:grid-cols-4">
         {tree.map((parent) => (
@@ -92,11 +92,6 @@ export const ClientLayout = () => {
   useEffect(() => {
     categoryApi.tree().then(setTree).catch(() => setTree([]));
   }, []);
-
-  // Giỏ hàng chỉ tồn tại khi đã đăng nhập. Chỉ tải khi store chưa có dữ liệu:
-  // mọi thao tác thêm/sửa/xoá đều trả về giỏ đầy đủ và tự cập nhật store, nên
-  // layout không cần gọi lại — nếu không sẽ có vài request /api/cart trùng nhau
-  // mỗi lần đổi trang.
   useEffect(() => {
     if (status === 'authenticated' && !cart) void dispatch(fetchCart());
   }, [status, cart, dispatch]);

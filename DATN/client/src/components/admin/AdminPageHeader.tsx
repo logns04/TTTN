@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-/** Đầu trang admin: tiêu đề, số lượng và nút hành động chính. */
 export const AdminPageHeader = ({
   title,
   description,

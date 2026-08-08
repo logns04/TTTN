@@ -18,7 +18,6 @@ import { useAddToCart } from './useAddToCart';
 const BannerSlider = ({ banners }: { banners: Banner[] }) => {
   const [index, setIndex] = useState(0);
 
-  // Tự chuyển slide sau 6s. Dừng lại khi chỉ có một banner.
   useEffect(() => {
     if (banners.length <= 1) return;
     const timer = setInterval(() => setIndex((current) => (current + 1) % banners.length), 6000);
@@ -145,10 +144,6 @@ const ProductSection = ({
   );
 };
 
-/**
- * Sản phẩm nằm ở danh mục con, nên danh mục cha phải cộng dồn số của các con —
- * nếu chỉ đọc _count của chính nó thì thẻ nào cũng hiện "0 sản phẩm".
- */
 const countProducts = (category: Category): number =>
   (category._count?.products ?? 0) +
   (category.children ?? []).reduce((sum, child) => sum + (child._count?.products ?? 0), 0);
@@ -209,7 +204,7 @@ export const HomePage = () => {
     <div>
       <BannerSlider banners={banners} />
 
-      {/* Ba cam kết: lấp khoảng trống dưới banner và trả lời câu hỏi người mua nội thất hay hỏi nhất */}
+      {}
       <section className="border-b border-border bg-card">
         <div className="mx-auto grid max-w-7xl gap-4 px-4 py-6 sm:grid-cols-3">
           {TRUST_ITEMS.map((item) => (

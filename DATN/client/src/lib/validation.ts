@@ -1,7 +1,4 @@
 import { z } from 'zod';
-
-// Dùng regex thay cho z.string().email() để không phụ thuộc API email đổi giữa
-// các bản Zod, và để khớp đúng luật validate ở server.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export const emailSchema = z
@@ -19,8 +16,6 @@ export const phoneSchema = z
   .string()
   .trim()
   .regex(/^0\d{9}$/, 'Số điện thoại phải gồm 10 số và bắt đầu bằng 0');
-
-/** Số điện thoại không bắt buộc: để trống thì bỏ qua. */
 export const optionalPhoneSchema = z
   .union([phoneSchema, z.literal('')])
   .optional()

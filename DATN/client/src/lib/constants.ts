@@ -8,7 +8,6 @@ export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
   CANCELLED: 'Đã huỷ',
 };
 
-/** Màu badge trạng thái. Dùng chung ở "Đơn hàng của tôi" và admin. */
 export const ORDER_STATUS_CLASSES: Record<OrderStatus, string> = {
   PENDING: 'bg-warning/15 text-warning border-warning/30',
   CONFIRMED: 'bg-primary/15 text-primary border-primary/30',
@@ -17,11 +16,6 @@ export const ORDER_STATUS_CLASSES: Record<OrderStatus, string> = {
   CANCELLED: 'bg-destructive/15 text-destructive border-destructive/30',
 };
 
-/**
- * Các trạng thái được phép chuyển tới từ trạng thái hiện tại.
- * Phải khớp ALLOWED_TRANSITIONS ở server/src/modules/orders/service.ts —
- * đây chỉ để ẩn bớt lựa chọn trên UI, server vẫn là nơi chốt.
- */
 export const NEXT_ORDER_STATUSES: Record<OrderStatus, OrderStatus[]> = {
   PENDING: ['CONFIRMED', 'CANCELLED'],
   CONFIRMED: ['SHIPPING', 'CANCELLED'],
@@ -51,7 +45,6 @@ export const PRODUCT_SORT_OPTIONS = [
   { value: 'name_desc', label: 'Tên Z → A' },
 ] as const;
 
-/** Các mốc lọc giá, đơn vị đồng. */
 export const PRICE_RANGES = [
   { label: 'Dưới 2 triệu', min: 0, max: 2_000_000 },
   { label: '2 – 5 triệu', min: 2_000_000, max: 5_000_000 },

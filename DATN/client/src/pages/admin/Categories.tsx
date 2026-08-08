@@ -70,11 +70,6 @@ export const AdminCategoriesPage = () => {
   }, [reloadKey]);
 
   const parents = categories.filter((item) => item.parentId === null);
-
-  /**
-   * Sắp xếp hiển thị: cha rồi tới các con của nó, để bảng đọc ra cấu trúc cây
-   * mà không cần component tree riêng.
-   */
   const ordered = parents.flatMap((parent) => [
     parent,
     ...categories.filter((item) => item.parentId === parent.id),

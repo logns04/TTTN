@@ -27,14 +27,9 @@ interface NavItem {
   to: string;
   label: string;
   icon: typeof LayoutDashboard;
-  /** Role được thấy mục này. Không khai báo = mọi nhân viên. */
   roles?: Role[];
 }
 
-/**
- * Sidebar hiện theo role — khớp ma trận quyền ở spec mục 6. Đây chỉ là lớp
- * hiển thị; server vẫn chặn độc lập nếu gọi API trực tiếp.
- */
 const NAV_ITEMS: NavItem[] = [
   { to: '/admin', label: 'Tổng quan', icon: LayoutDashboard },
   { to: '/admin/orders', label: 'Đơn hàng', icon: ShoppingBag, roles: ['SUPERADMIN', 'ADMIN'] },
