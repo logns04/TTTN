@@ -213,7 +213,7 @@ ${textLines(wrap(title, 40, 2), 400, 400, 30, palette.text)}
 const buildLogo = (): string => {
   const palette = PALETTES[0]!;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="440" height="120"
-     viewBox="0 0 440 120" role="img" aria-label="Nội Thất Thành Long">
+     viewBox="0 0 440 120" role="img" aria-label="NT Thành Long">
   <g transform="translate(60 60) scale(0.44) translate(-100 -100)"
      fill="none" stroke="#8B5E3C" stroke-width="7"
      stroke-linecap="round" stroke-linejoin="round">

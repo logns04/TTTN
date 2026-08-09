@@ -13,7 +13,7 @@ interface SettingsState {
  * hay hiện chuỗi rỗng ở header.
  */
 const fallback: PublicSettings = {
-  siteName: 'Nội Thất Thành Long',
+  siteName: 'NT Thành Long',
   logo: '',
   primaryColor: '#8B5E3C',
   hotline: '',
