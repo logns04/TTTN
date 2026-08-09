@@ -7,8 +7,6 @@ import { addItemSchema, updateItemSchema } from './schema';
 
 export const cartRouter = Router();
 
-// Theo spec mục 3.8: phải đăng nhập mới có giỏ hàng. Không có giỏ hàng cho
-// khách vô danh, nên không cần xử lý merge localStorage.
 cartRouter.use(requireAuth);
 
 cartRouter.get('/', controller.get);

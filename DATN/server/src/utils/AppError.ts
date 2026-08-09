@@ -1,8 +1,3 @@
-/**
- * Lỗi có chủ đích — nghĩa là lỗi mình tự throw ra vì nghiệp vụ không cho phép,
- * khác với lỗi ngoài ý muốn (bug, mất kết nối DB...).
- * errorHandler dựa vào đây để biết được phép trả message ra cho client hay không.
- */
 export class AppError extends Error {
   readonly statusCode: number;
   readonly details?: unknown;

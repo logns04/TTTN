@@ -7,8 +7,6 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
-
-# Ảnh người dùng upload — không commit
 server/public/uploads/*
 !server/public/uploads/.gitkeep
 

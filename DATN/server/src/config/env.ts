@@ -1,15 +1,6 @@
 import 'dotenv/config';
 import { z } from 'zod';
 
-/**
- * Đọc và validate biến môi trường một lần duy nhất lúc khởi động.
- * Thiếu hoặc sai biến thì process chết ngay tại đây, thay vì lỗi mơ hồ lúc chạy.
- */
-/**
- * Chấp nhận cả `https://x.com` và `x.com`.
- * Render Blueprint truyền host của service khác qua `fromService` mà không kèm
- * scheme — không muốn người deploy phải nhớ tự thêm `https://`.
- */
 const originField = (fallback: string) =>
   z
     .string()
@@ -35,10 +26,6 @@ const envSchema = z.object({
   CLOUDINARY_API_KEY: z.string().optional(),
   CLOUDINARY_API_SECRET: z.string().optional(),
 
-  // ---- SePay: nhận thanh toán chuyển khoản tự động ----
-  // Khoá SePay gửi kèm mỗi webhook ở header `Authorization: Apikey <khoá>`.
-  // Thiếu khoá này thì endpoint webhook TỪ CHỐI mọi request — fail-closed, vì
-  // nếu không ai cũng có thể giả webhook để đánh dấu đơn đã thanh toán.
   SEPAY_WEBHOOK_API_KEY: z.string().optional(),
   SEPAY_BANK_ACCOUNT: z.string().optional(),
   SEPAY_BANK_CODE: z.string().optional(),
@@ -58,8 +45,6 @@ if (!parsed.success) {
 
 export const env = parsed.data;
 
-// Chọn cloudinary thì buộc phải có đủ 3 khoá, không thì fail ngay lúc boot
-// chứ đừng để tới lúc user bấm upload mới lỗi.
 if (env.STORAGE_DRIVER === 'cloudinary') {
   const missing = (
     ['CLOUDINARY_CLOUD_NAME', 'CLOUDINARY_API_KEY', 'CLOUDINARY_API_SECRET'] as const
@@ -74,6 +59,4 @@ if (env.STORAGE_DRIVER === 'cloudinary') {
 }
 
 export const isProduction = env.NODE_ENV === 'production';
-
-/** Có đủ thông tin tài khoản để sinh mã QR chuyển khoản hay chưa. */
 export const isSepayConfigured = Boolean(env.SEPAY_BANK_ACCOUNT && env.SEPAY_BANK_CODE);

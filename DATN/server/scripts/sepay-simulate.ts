@@ -1,18 +1,3 @@
-/**
- * Giả lập một giao dịch SePay bắn vào webhook.
- *
- * Vì sao cần: SePay KHÔNG có môi trường sandbox. Tài liệu chỉ có nút "Gửi thử"
- * trên dashboard hoặc chuyển khoản thật. Script này thay cả hai — demo được
- * toàn bộ luồng mà không đụng tới tiền thật.
- *
- * Dùng ở máy (DB local, backend local):
- *   npm run sepay:simulate -- DHXXXX
- *   npm run sepay:simulate -- DHXXXX --amount 1000        # thử trả thiếu
- *
- * Bắn lên bản đã deploy (đơn nằm trên DB của server, máy này không đọc được
- * nên phải tự nhập số tiền):
- *   npm run sepay:simulate -- DHXXXX --amount 990000 --url https://noithat-api.onrender.com --key <khoá trên Render>
- */
 import 'dotenv/config';
 
 const arg = (name: string): string | undefined => {
@@ -20,10 +5,6 @@ const arg = (name: string): string | undefined => {
   return index > -1 ? process.argv[index + 1] : undefined;
 };
 
-/**
- * Tra đơn trong DB để lấy sẵn số tiền. Chỉ là tiện ích: DB không với tới được
- * (ví dụ đang bắn lên bản deploy) thì bỏ qua, miễn là người dùng truyền --amount.
- */
 const lookupOrder = async (code: string) => {
   try {
     const { PrismaClient } = await import('@prisma/client');
@@ -77,7 +58,6 @@ const main = async () => {
     console.log(`Đơn ${orderCode}: không tra được ở database này, dùng số tiền bạn truyền vào.`);
   }
 
-  // Đúng định dạng SePay gửi, kể cả field mình không dùng tới.
   const payload = {
     id: Math.floor(Date.now() / 1000),
     gateway: 'MBBank',
@@ -85,7 +65,6 @@ const main = async () => {
     accountNumber: process.env.SEPAY_BANK_ACCOUNT ?? '0123456789',
     subAccount: null,
     code: orderCode,
-    // Ngân hàng thường viết hoa, bỏ dấu và chèn thêm chữ quanh nội dung.
     content: `CHUYEN TIEN ${orderCode} GD ${Math.floor(Math.random() * 900000 + 100000)}`,
     transferType: 'in',
     description: 'Giao dich gia lap tu script',

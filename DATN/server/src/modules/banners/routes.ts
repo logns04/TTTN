@@ -22,7 +22,6 @@ bannerRouter.get(
   controller.detail,
 );
 
-// EDITOR tạo và sửa được banner nhưng không xoá (spec mục 6).
 const editGuard = [requireAuth, requireRole(...STAFF_ROLES)] as const;
 const deleteGuard = [requireAuth, requireRole(...ADMIN_ROLES)] as const;
 

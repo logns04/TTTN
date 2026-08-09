@@ -11,9 +11,9 @@ export const categoryBodySchema = z.object({
 });
 
 export const categoryListQuerySchema = z.object({
-  /** true = danh sách phẳng cho dropdown; mặc định trả kèm thông tin cha. */
+
   flat: booleanish.optional(),
-  /** true = chỉ lấy danh mục đang bật, dùng cho phía client. */
+
   activeOnly: booleanish.optional(),
 });
 

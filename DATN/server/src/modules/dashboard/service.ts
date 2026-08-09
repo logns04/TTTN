@@ -3,7 +3,6 @@ import { prisma } from '../../config/prisma';
 
 const LOW_STOCK_THRESHOLD = 5;
 
-/** Bốn số tổng theo đề bài, cộng thêm vài số hữu ích cho người quản lý. */
 export const stats = async () => {
   const [products, categories, orders, users, revenue, pendingOrders, lowStock] =
     await Promise.all([
@@ -36,13 +35,6 @@ interface RevenueRow {
   orders: unknown;
 }
 
-/**
- * Doanh thu 12 tháng của một năm, chỉ tính đơn COMPLETED.
- *
- * Dùng $queryRaw vì Prisma không group được theo biểu thức MONTH(createdAt).
- * Tháng không có đơn vẫn phải xuất hiện với giá trị 0, nếu không biểu đồ sẽ
- * nhảy trục và trông như mất dữ liệu.
- */
 export const revenueByMonth = async (year: number) => {
   const rows = await prisma.$queryRaw<RevenueRow[]>`
     SELECT MONTH(createdAt) AS month,
@@ -89,7 +81,6 @@ export const ordersByStatus = async () => {
 
   const counts = new Map(grouped.map((row) => [row.status, row._count._all]));
 
-  // Trả đủ 5 trạng thái để biểu đồ donut có chú giải ổn định.
   return (Object.keys(STATUS_LABELS) as OrderStatus[]).map((status) => ({
     status,
     label: STATUS_LABELS[status],
@@ -97,13 +88,6 @@ export const ordersByStatus = async () => {
   }));
 };
 
-/**
- * Top sản phẩm bán chạy.
- *
- * Group theo productName (bản snapshot trong order_items) chứ không theo
- * productId: sản phẩm đã bị xoá vẫn phải được tính vào báo cáo bán hàng.
- * Đơn đã huỷ không tính.
- */
 export const topProducts = async (take = 5) => {
   const grouped = await prisma.orderItem.groupBy({
     by: ['productName'],
@@ -120,7 +104,6 @@ export const topProducts = async (take = 5) => {
   }));
 };
 
-/** Số sản phẩm theo danh mục cha, đã gộp cả các danh mục con. */
 export const productsByCategory = async () => {
   const parents = await prisma.category.findMany({
     where: { parentId: null },

@@ -1,7 +1,6 @@
 -- AlterTable
 ALTER TABLE `orders` ADD COLUMN `paidAt` DATETIME(3) NULL;
 
--- CreateTable
 CREATE TABLE `payments` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `sepayId` INTEGER NOT NULL,
@@ -22,5 +21,4 @@ CREATE TABLE `payments` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- AddForeignKey
 ALTER TABLE `payments` ADD CONSTRAINT `payments_orderId_fkey` FOREIGN KEY (`orderId`) REFERENCES `orders`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

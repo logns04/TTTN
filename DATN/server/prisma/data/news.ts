@@ -5,7 +5,6 @@ export interface NewsSeed {
   summary: string;
   content: string;
   icon: IconName;
-  /** Số ngày lùi về trước so với lúc seed, để bài viết có thứ tự thời gian. */
   daysAgo: number;
 }
 

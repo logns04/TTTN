@@ -5,36 +5,23 @@ import type { AuthUser } from '../../types/auth';
 import { badRequest, forbidden, notFoundError } from '../../utils/AppError';
 import type { SepayWebhookPayload } from './schema';
 
-/** Mã đơn sinh ở orders/service.ts có dạng DH + base36 in hoa. */
+
 const ORDER_CODE_PATTERN = /DH[A-Z0-9]{4,}/;
 
-/**
- * Tìm mã đơn trong thông tin chuyển khoản.
- *
- * Ưu tiên `code` (SePay tự tách theo tiền tố đã cấu hình). Nếu không có thì dò
- * trong `content`, vì ngân hàng hay chèn thêm chữ và bỏ dấu — ví dụ
- * "CHUYEN TIEN DHMSHXZRTF72 GD 123456".
- */
 export const extractOrderCode = (code?: string | null, content = ''): string | null => {
   const haystack = `${code ?? ''} ${content}`.toUpperCase().replace(/[^A-Z0-9]/g, ' ');
   return haystack.match(ORDER_CODE_PATTERN)?.[0] ?? null;
 };
 
 export interface WebhookResult {
-  /** SePay gửi lại giao dịch đã ghi nhận trước đó. */
+
   duplicated: boolean;
   matchedOrder: string | null;
   markedPaid: boolean;
   reason?: string;
 }
 
-/**
- * Ghi nhận một giao dịch SePay báo về.
- *
- * Nguyên tắc: LUÔN lưu giao dịch, kể cả khi không khớp đơn nào hoặc thiếu tiền.
- * Khách chuyển sai nội dung là chuyện thường, và lúc đó cần tra được là tiền đã
- * về hay chưa. Chỉ phần đánh dấu đơn đã trả mới có điều kiện.
- */
+
 export const handleSepayWebhook = async (
   payload: SepayWebhookPayload,
 ): Promise<WebhookResult> => {
@@ -43,7 +30,6 @@ export const handleSepayWebhook = async (
     select: { id: true, order: { select: { code: true } } },
   });
 
-  // Idempotent: SePay có thể gửi lại khi lần trước timeout.
   if (existing) {
     return {
       duplicated: true,
@@ -96,7 +82,7 @@ export const handleSepayWebhook = async (
     if (order.status === OrderStatus.CANCELLED) {
       return { ...base, markedPaid: false, reason: 'Đơn đã huỷ' };
     }
-    // Thiếu tiền thì vẫn lưu giao dịch nhưng không xác nhận — để người bán tự xử.
+  
     if (payload.transferAmount < Number(order.total)) {
       return {
         ...base,
@@ -109,7 +95,7 @@ export const handleSepayWebhook = async (
       where: { id: order.id },
       data: {
         paidAt: new Date(),
-        // Nhận đủ tiền thì tự xác nhận luôn, đỡ một thao tác tay.
+  
         ...(order.status === OrderStatus.PENDING ? { status: OrderStatus.CONFIRMED } : {}),
       },
     });
@@ -118,7 +104,6 @@ export const handleSepayWebhook = async (
   });
 };
 
-/** Thông tin để phía client dựng màn chuyển khoản. */
 export const getPaymentInfo = async (orderId: number, actor: AuthUser) => {
   const order = await prisma.order.findUnique({
     where: { id: orderId },
@@ -150,7 +135,7 @@ export const getPaymentInfo = async (orderId: number, actor: AuthUser) => {
     bankAccount: env.SEPAY_BANK_ACCOUNT ?? null,
     bankCode: env.SEPAY_BANK_CODE ?? null,
     accountName: env.SEPAY_ACCOUNT_NAME ?? null,
-    /** Nội dung chuyển khoản — phải giữ nguyên thì webhook mới khớp được đơn. */
+
     transferContent: order.code,
     qrUrl: isSepayConfigured
       ? `https://qr.sepay.vn/img?acc=${encodeURIComponent(env.SEPAY_BANK_ACCOUNT!)}` +
@@ -160,7 +145,6 @@ export const getPaymentInfo = async (orderId: number, actor: AuthUser) => {
   };
 };
 
-/** Danh sách giao dịch để admin đối soát. */
 export const listPayments = async (limit = 50) =>
   prisma.payment.findMany({
     take: Math.min(limit, 200),
@@ -180,8 +164,7 @@ export const listPayments = async (limit = 50) =>
 
 export const assertWebhookConfigured = () => {
   if (!env.SEPAY_WEBHOOK_API_KEY) {
-    // Fail-closed: chưa cấu hình khoá thì không nhận webhook, tránh ai đó giả
-    // request để đánh dấu đơn đã thanh toán.
+
     throw badRequest('Webhook SePay chưa được cấu hình trên máy chủ');
   }
 };

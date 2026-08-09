@@ -15,8 +15,6 @@ export const store = configureStore({
   },
 });
 
-// Axios interceptor không import store được (sẽ thành vòng phụ thuộc), nên store
-// tự đăng ký hàm xử lý 401 vào đó.
 setUnauthorizedHandler(() => {
   store.dispatch(logout());
 });

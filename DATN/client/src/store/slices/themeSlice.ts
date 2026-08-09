@@ -4,7 +4,6 @@ export type Theme = 'light' | 'dark';
 
 const STORAGE_KEY = 'noithat_theme';
 
-/** Ưu tiên lựa chọn đã lưu, chưa có thì theo thiết lập hệ điều hành. */
 const readInitialTheme = (): Theme => {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved === 'light' || saved === 'dark') return saved;

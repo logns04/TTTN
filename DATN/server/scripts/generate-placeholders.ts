@@ -1,12 +1,3 @@
-/**
- * Sinh ảnh placeholder nội thất dạng SVG vào server/public/uploads/seed/.
- *
- * Vì sao tự sinh chứ không lấy ảnh từ Unsplash: demo phải luôn có hình, kể cả
- * khi máy không có mạng hoặc link ảnh ngoài đổi/chết. SVG lại nhẹ (vài KB) và
- * nét ở mọi kích thước. Muốn thay ảnh thật thì chỉ cần upload đè ở trang admin.
- *
- * Chạy: npm run placeholders
- */
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -34,8 +25,6 @@ interface Palette {
   text: string;
 }
 
-// Tông trung tính ấm — be, nâu nhạt, xám xanh. Cố ý không dùng màu rực để ảnh
-// placeholder trông như một phần của thiết kế chứ không như ảnh lỗi.
 const PALETTES: Palette[] = [
   { from: '#F4ECE2', to: '#DCC9B2', ink: '#7A6350', text: '#6B5646' },
   { from: '#EFEAE4', to: '#CFC4B6', ink: '#6E6257', text: '#5F554B' },
@@ -45,7 +34,6 @@ const PALETTES: Palette[] = [
   { from: '#F5EFE5', to: '#E0CDAF', ink: '#806B4A', text: '#6E5B3F' },
 ];
 
-/** Hash ổn định để cùng một tên luôn ra cùng một màu giữa các lần chạy. */
 const hash = (input: string): number => {
   let h = 0;
   for (let i = 0; i < input.length; i += 1) {
@@ -65,7 +53,6 @@ const escapeXml = (value: string): string =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 
-/** Cắt chuỗi thành các dòng không vượt quá maxChars, cắt theo từ. */
 const wrap = (text: string, maxChars: number, maxLines: number): string[] => {
   const words = text.split(/\s+/);
   const lines: string[] = [];
@@ -133,12 +120,6 @@ ${spans}
   </text>`;
 };
 
-/**
- * Ảnh vuông cho sản phẩm và danh mục.
- *
- * `fraction` là tỷ lệ chiều rộng khung mà icon chiếm (0.5 = nửa khung).
- * Icon vẽ trong hệ toạ độ 200 đơn vị, nên scale = size × fraction ÷ 200.
- */
 const buildSquare = (options: {
   icon: IconName;
   label: string;
@@ -165,7 +146,6 @@ ${textLines(lines, size / 2, size * 0.845, size * 0.043, palette.text)}
 `;
 };
 
-/** Banner ngang: chữ bên trái, icon bên phải. */
 const buildBanner = (options: {
   icon: IconName;
   headline: string;
@@ -190,7 +170,6 @@ ${textLines(wrap(subline, 44, 2), 120, 258 + headlineLines.length * 78, 30, pale
 `;
 };
 
-/** Ảnh bài viết: khổ ngang 8:5. */
 const buildNewsImage = (options: {
   icon: IconName;
   title: string;
@@ -223,7 +202,7 @@ ${ICONS.sofa}
     NỘI THẤT
   </text>
   <text x="128" y="92" font-family="${FONT}" font-size="30" font-weight="500" fill="#8B5E3C" letter-spacing="5">
-    AN VIÊN
+    THANH LONG
   </text>
 </svg>
 `;
@@ -269,8 +248,6 @@ const main = () => {
     }
   }
 
-  // Ba biến thể mỗi sản phẩm để gallery không phải ba ảnh giống hệt nhau:
-  // đổi màu nền, cỡ icon và nghiêng nhẹ.
   const variants = [
     { fraction: 0.54, rotate: 0, offset: 0 },
     { fraction: 0.66, rotate: -4, offset: 2 },

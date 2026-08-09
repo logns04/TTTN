@@ -12,8 +12,6 @@ export interface CategorySeed {
   icon: IconName;
   children: SubCategorySeed[];
 }
-
-/** 8 danh mục cha, mỗi cha có các danh mục con. Đúng 2 cấp, không sâu hơn. */
 export const CATEGORIES: CategorySeed[] = [
   {
     name: 'Phòng khách',

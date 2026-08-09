@@ -325,7 +325,7 @@ export const ClientLayout = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="hover:text-primary">
+                <Link to="/news" className="hover:text-primary">2026
                   Tin tức &amp; kinh nghiệm
                 </Link>
               </li>

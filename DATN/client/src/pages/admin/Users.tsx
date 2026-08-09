@@ -53,7 +53,6 @@ export const AdminUsersPage = () => {
   useDocumentTitle('Quản lý người dùng');
 
   const currentUser = useAppSelector((state) => state.auth.user);
-  // ADMIN chỉ được xem; mọi thao tác ghi thuộc SUPERADMIN (spec mục 6).
   const canWrite = currentUser?.role === 'SUPERADMIN';
 
   const [users, setUsers] = useState<User[]>([]);
@@ -128,7 +127,6 @@ export const AdminUsersPage = () => {
         phone: form.phone || undefined,
         address: form.address || undefined,
         isActive: form.isActive,
-        // Sửa: chuỗi rỗng = giữ mật khẩu cũ. Tạo mới: bắt buộc có.
         ...(form.password ? { password: form.password } : {}),
       };
 

@@ -9,7 +9,7 @@ export const list = async (req: Request, res: Response) => {
 };
 
 export const tree = async (req: Request, res: Response) => {
-  // Khu vực admin cần thấy cả danh mục đang tắt; phía client chỉ thấy đang bật.
+
   const includeHidden = Boolean(req.user) && req.query.all === 'true';
   ok(res, await service.tree(!includeHidden));
 };

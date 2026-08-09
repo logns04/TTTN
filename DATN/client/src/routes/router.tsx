@@ -15,13 +15,6 @@ import { ProductsPage } from '@/pages/client/Products';
 import { RegisterPage } from '@/pages/client/Register';
 import { ProtectedRoute, RoleRoute } from './guards';
 
-/**
- * Khu vực admin tải chậm (lazy).
- *
- * Recharts và TipTap chỉ dùng ở admin nhưng lại là hai thư viện nặng nhất. Nếu
- * gộp vào bundle chính thì khách vào xem sản phẩm cũng phải tải chúng — vô ích,
- * và đáng kể trên mạng chậm hoặc hosting free.
- */
 const AdminLayout = lazy(() =>
   import('@/layouts/AdminLayout').then((m) => ({ default: m.AdminLayout })),
 );
@@ -54,7 +47,7 @@ const STAFF = ['SUPERADMIN', 'ADMIN', 'EDITOR'] as const;
 const ADMIN = ['SUPERADMIN', 'ADMIN'] as const;
 
 export const router = createBrowserRouter([
-  // Khu vực quản trị. Đặt trước để '/admin' không bị route '*' của client bắt.
+
   {
     path: 'admin',
     element: <RoleRoute roles={[...STAFF]} />,
@@ -72,7 +65,6 @@ export const router = createBrowserRouter([
           { path: 'banners', element: <AdminBannersPage /> },
           { path: 'news', element: <AdminNewsPage /> },
 
-          // Đơn hàng và người dùng: EDITOR không được vào.
           {
             path: 'orders',
             element: <RoleRoute roles={[...ADMIN]} />,
@@ -84,7 +76,6 @@ export const router = createBrowserRouter([
             children: [{ index: true, element: <AdminUsersPage /> }],
           },
 
-          // Quản lý giao diện: chỉ SUPERADMIN.
           {
             path: 'appearance',
             element: <RoleRoute roles={['SUPERADMIN']} />,
@@ -97,7 +88,6 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // Khu vực bán hàng
   {
     element: <ClientLayout />,
     children: [
@@ -109,7 +99,6 @@ export const router = createBrowserRouter([
       { path: 'login', element: <LoginPage /> },
       { path: 'register', element: <RegisterPage /> },
 
-      // Giỏ hàng, đặt hàng và đơn hàng đều cần đăng nhập.
       {
         element: <ProtectedRoute />,
         children: [

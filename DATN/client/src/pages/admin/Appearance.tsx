@@ -55,7 +55,6 @@ export const AdminAppearancePage = () => {
     try {
       const updated = await settingsApi.update(values);
       setSettings(updated);
-      // Áp ngay vào store để header, logo và màu nhấn đổi mà không cần F5.
       dispatch(applySettings(Object.fromEntries(updated.map((item) => [item.key, item.value]))));
       toast.success('Đã lưu cấu hình giao diện');
     } catch (error) {

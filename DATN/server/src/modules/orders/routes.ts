@@ -11,12 +11,10 @@ orderRouter.use(requireAuth);
 
 orderRouter.post('/', validate({ body: checkoutSchema }), controller.checkout);
 
-// Đặt trước '/:id' để 'my' không bị hiểu thành id.
 orderRouter.get('/my', controller.listMine);
 
 orderRouter.get('/', requireRole(...ADMIN_ROLES), controller.listAll);
-// Kiểm quyền xem chi tiết nằm trong service: khách xem được đơn của mình,
-// nhân viên xem được tất cả.
+
 orderRouter.get('/:id', validate({ params: idParam }), controller.detail);
 
 orderRouter.patch(

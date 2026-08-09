@@ -67,11 +67,9 @@ const buildWhere = async (query: ProductListQuery): Promise<Prisma.ProductWhereI
 
   if (query.category) {
     const ids = await resolveCategoryIds(query.category);
-    // Danh mục không tồn tại thì phải ra 0 kết quả, không phải ra tất cả.
     where.categoryId = { in: ids.length > 0 ? ids : [-1] };
   }
 
-  // Lọc trên effectivePrice (giá khách thực trả), không phải giá gốc.
   if (query.minPrice != null || query.maxPrice != null) {
     where.effectivePrice = {
       ...(query.minPrice != null ? { gte: query.minPrice } : {}),
@@ -136,7 +134,6 @@ export const related = async (id: number, take = 8) => {
   });
 };
 
-/** Ảnh gallery: ảnh đại diện luôn đứng đầu, không trùng lặp. */
 const galleryFrom = (body: ProductBody): string[] => {
   const urls = [body.image, ...(body.images ?? [])];
   return [...new Set(urls)].slice(0, 8);
@@ -184,8 +181,6 @@ export const update = async (id: number, body: ProductBody) => {
   const slug =
     body.name === current.name ? undefined : await uniqueSlug(body.name, slugTaken(id));
 
-  // Xoá hết rồi tạo lại gallery: đơn giản và luôn đúng thứ tự, thay vì so khớp
-  // từng ảnh để biết cái nào thêm/xoá/đổi vị trí.
   return prisma.$transaction(async (tx) => {
     await tx.productImage.deleteMany({ where: { productId: id } });
 
@@ -206,12 +201,5 @@ export const update = async (id: number, body: ProductBody) => {
 export const remove = async (id: number) => {
   const product = await prisma.product.findUnique({ where: { id }, select: { id: true } });
   if (!product) throw notFoundError('Không tìm thấy sản phẩm');
-
-  // product_images và cart_items xoá theo cascade; order_items giữ lại với
-  // productId = NULL nhờ onDelete SetNull, nên đơn hàng cũ không bị hỏng.
-  //
-  // File ảnh trên ổ đĩa/Cloudinary không xoá theo: DB chỉ lưu URL chứ không lưu
-  // storage key, và ảnh có thể đang được đơn hàng cũ tham chiếu. Ảnh mồ côi là
-  // đánh đổi có ý thức, không phải sót.
   await prisma.product.delete({ where: { id } });
 };

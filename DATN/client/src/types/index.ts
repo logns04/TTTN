@@ -10,7 +10,6 @@ export interface PageMeta {
   totalPages: number;
 }
 
-/** Hình dạng response chung của toàn bộ API. */
 export interface ApiEnvelope<T> {
   success: boolean;
   data: T;

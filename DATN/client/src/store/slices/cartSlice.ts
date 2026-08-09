@@ -7,13 +7,12 @@ import { logout } from './authSlice';
 interface CartState {
   data: Cart | null;
   loading: boolean;
-  /** Đang gửi thao tác thêm/sửa/xoá — dùng để disable nút, tránh double click. */
+
   mutating: boolean;
 }
 
 const initialState: CartState = { data: null, loading: false, mutating: false };
 
-/** Mọi endpoint giỏ hàng đều trả về giỏ đầy đủ, nên thunk nào cũng thay cả state. */
 const cartThunk = <Arg>(name: string, run: (arg: Arg) => Promise<Cart>, fallback: string) =>
   createAsyncThunk(`cart/${name}`, async (arg: Arg, { rejectWithValue }) => {
     try {
@@ -49,7 +48,6 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    /** Sau khi đặt hàng thành công, server đã dọn giỏ nên chỉ cần dọn ở client. */
     resetCart(state) {
       state.data = null;
     },
@@ -66,7 +64,7 @@ const cartSlice = createSlice({
       .addCase(fetchCart.rejected, (state) => {
         state.loading = false;
       })
-      // Đăng xuất thì phải bỏ giỏ hàng, không thì badge còn số của người trước.
+
       .addCase(logout, (state) => {
         state.data = null;
       })

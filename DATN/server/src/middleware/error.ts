@@ -24,13 +24,6 @@ const fail = (
     message,
     ...(errors ? { errors } : {}),
   });
-
-/**
- * Nơi duy nhất quyết định lỗi nào ra HTTP status nào.
- * Nguyên tắc: chỉ lộ message của lỗi mình chủ động throw (AppError) và lỗi
- * validate. Mọi lỗi ngoài dự kiến đều trả 500 với message chung, chi tiết chỉ
- * ghi vào log — tránh rò rỉ cấu trúc DB ra ngoài.
- */
 export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   if (err instanceof ZodError) {
     const errors = err.issues.map((issue) => ({
@@ -61,15 +54,10 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
       );
     }
   }
-
-  // body-parser dựng lỗi kiểu http-errors khi JSON gửi lên sai cú pháp.
-  // Không bắt riêng thì nó rơi xuống nhánh 500, làm lỗi của client trông như
-  // lỗi của server.
   if (err instanceof SyntaxError && 'body' in err) {
     return fail(res, 400, 'Body JSON không hợp lệ');
   }
 
-  // Multer: file quá lớn hoặc sai field name
   if (err && typeof err === 'object' && 'code' in err) {
     const code = (err as { code?: string }).code;
     if (code === 'LIMIT_FILE_SIZE') {
@@ -79,9 +67,6 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
       return fail(res, 400, 'Tên field upload không đúng');
     }
   }
-
-  // Các lỗi http-errors khác (payload quá lớn, charset không hỗ trợ...) đã mang
-  // sẵn statusCode 4xx — tôn trọng nó thay vì gộp hết vào 500.
   if (err && typeof err === 'object' && 'statusCode' in err) {
     const status = Number((err as { statusCode?: unknown }).statusCode);
     if (Number.isInteger(status) && status >= 400 && status < 500) {

@@ -1,10 +1,6 @@
 import { z } from 'zod';
 import { SETTING_KEYS } from './keys';
 
-/**
- * Nhận một object phẳng { key: value }. Khoá lạ bị loại thẳng thay vì lưu vào
- * DB — bảng settings không phải chỗ để client tuỳ ý ghi dữ liệu.
- */
 export const updateSettingsSchema = z
   .record(z.string(), z.union([z.string(), z.boolean(), z.number()]))
   .transform((input) => {

@@ -9,10 +9,6 @@ export interface Pagination {
 
 const MAX_LIMIT = 100;
 
-/**
- * Chuẩn hoá page/limit từ query string. Giá trị rác (âm, chữ, quá lớn)
- * bị kẹp về khoảng an toàn thay vì để Prisma nhận NaN.
- */
 export const parsePagination = (
   query: { page?: unknown; limit?: unknown },
   defaultLimit = 12,

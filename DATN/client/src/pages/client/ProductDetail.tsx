@@ -234,7 +234,6 @@ export const ProductDetailPage = () => {
               <h2 className="mb-2 text-lg font-semibold">Thông tin sản phẩm</h2>
               <div
                 className="prose-noithat text-sm"
-                // Nội dung do admin nhập trong trang quản trị, không phải từ người dùng cuối.
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>

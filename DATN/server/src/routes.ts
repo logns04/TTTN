@@ -12,10 +12,6 @@ import { settingsRouter } from './modules/settings/routes';
 import { uploadRouter } from './modules/upload/routes';
 import { userRouter } from './modules/users/routes';
 
-/**
- * Điểm mount duy nhất cho toàn bộ API. Mỗi module tự khai báo router của nó,
- * ở đây chỉ ghép vào prefix — app.ts không cần biết có bao nhiêu module.
- */
 export const apiRouter = Router();
 
 apiRouter.get('/health', (_req, res) => {

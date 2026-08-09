@@ -19,10 +19,6 @@ const slugTaken = (excludeId?: number) => async (slug: string) => {
   return found ? found.id !== excludeId : false;
 };
 
-/**
- * Danh mục chỉ được sâu 2 cấp. Cha của một danh mục phải là danh mục gốc,
- * và một danh mục đang có con thì không được biến thành con của ai.
- */
 const assertValidParent = async (parentId: number | null, selfId?: number) => {
   if (parentId == null) return;
   if (parentId === selfId) throw badRequest('Danh mục không thể là cha của chính nó');
@@ -62,7 +58,6 @@ export const list = async (query: CategoryListQuery) => {
   return categories;
 };
 
-/** Cây 2 cấp cho menu và cho bộ lọc ở trang danh sách sản phẩm. */
 export const tree = async (activeOnly = true) => {
   const where = activeOnly ? { status: true } : {};
 
@@ -117,7 +112,6 @@ export const update = async (id: number, body: CategoryBody) => {
   const parentId = body.parentId ?? null;
   await assertValidParent(parentId, id);
 
-  // Chỉ đổi slug khi tên đổi, để link cũ không chết vô cớ.
   const slug =
     body.name === current.name ? undefined : await uniqueSlug(body.name, slugTaken(id));
 
@@ -143,7 +137,6 @@ export const remove = async (id: number) => {
   });
   if (!category) throw notFoundError('Không tìm thấy danh mục');
 
-  // Chặn ở tầng này để trả message rõ ràng, thay vì để MySQL bắn lỗi khoá ngoại.
   if (category._count.children > 0) {
     throw conflict(
       `Danh mục đang có ${category._count.children} danh mục con, hãy xoá hoặc chuyển chúng trước`,
@@ -158,10 +151,6 @@ export const remove = async (id: number) => {
   await prisma.category.delete({ where: { id } });
 };
 
-/**
- * Trả về danh sách id gồm chính danh mục và các con của nó.
- * Nhờ vậy chọn danh mục cha ở bộ lọc sẽ ra sản phẩm của tất cả danh mục con.
- */
 export const resolveCategoryIds = async (
   identifier: string | number,
 ): Promise<number[]> => {

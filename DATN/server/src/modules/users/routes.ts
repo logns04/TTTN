@@ -10,7 +10,6 @@ export const userRouter = Router();
 
 userRouter.use(requireAuth);
 
-// ADMIN chỉ được xem danh sách; mọi thao tác ghi thuộc SUPERADMIN (spec mục 6).
 const viewGuard = requireRole(...ADMIN_ROLES);
 const writeGuard = requireRole(Role.SUPERADMIN);
 

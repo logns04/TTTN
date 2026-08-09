@@ -9,7 +9,6 @@ import type { LoginInput, RegisterInput, UpdateProfileInput } from './schema';
 
 const BCRYPT_ROUNDS = 10;
 
-/** Các field được phép trả ra ngoài — cố ý không có `password`. */
 const publicFields = {
   id: true,
   name: true,
@@ -45,8 +44,7 @@ export const register = async (input: RegisterInput) => {
       password: await bcrypt.hash(input.password, BCRYPT_ROUNDS),
       phone: input.phone,
       address: input.address,
-      // Role cố định USER. Không bao giờ đọc role từ body — nếu không thì ai
-      // cũng tự đăng ký được tài khoản SUPERADMIN.
+
       role: Role.USER,
     },
     select: publicFields,
@@ -58,8 +56,6 @@ export const register = async (input: RegisterInput) => {
 export const login = async (input: LoginInput) => {
   const user = await prisma.user.findUnique({ where: { email: input.email } });
 
-  // Cùng một message cho "không có email" và "sai mật khẩu" để không giúp
-  // người ngoài dò ra email nào đã tồn tại trong hệ thống.
   const invalid = unauthorized('Email hoặc mật khẩu không đúng');
   if (!user) throw invalid;
   if (!(await bcrypt.compare(input.password, user.password))) throw invalid;

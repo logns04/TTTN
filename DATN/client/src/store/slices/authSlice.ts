@@ -6,7 +6,7 @@ import type { Role, User } from '@/types';
 interface AuthState {
   user: User | null;
   token: string | null;
-  /** 'checking' = đang xác minh token có sẵn lúc mở app. */
+
   status: 'checking' | 'guest' | 'authenticated';
   submitting: boolean;
   error: string | null;
@@ -15,8 +15,7 @@ interface AuthState {
 const initialState: AuthState = {
   user: null,
   token: tokenStore.get(),
-  // Có token sẵn thì phải gọi /auth/me xác minh trước khi coi là đã đăng nhập,
-  // vì token có thể đã hết hạn từ phiên trước.
+
   status: tokenStore.get() ? 'checking' : 'guest',
   submitting: false,
   error: null,

@@ -10,8 +10,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    // Dev: proxy sang backend để frontend gọi /api cùng origin, không cần CORS.
-    // Production: dùng VITE_API_URL (xem src/services/axios.ts).
+
     proxy: {
       '/api': { target: 'http://localhost:5000', changeOrigin: true },
       '/uploads': { target: 'http://localhost:5000', changeOrigin: true },

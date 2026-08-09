@@ -1,13 +1,7 @@
 @import 'tailwindcss';
 
-/* Tailwind 4 không còn darkMode: 'class' trong config — khai báo variant ở đây. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/*
-  Palette trung tính ấm cho nội thất: nền be nhạt, chữ nâu đậm, một màu nhấn.
-  --primary do admin đổi được ở trang "Quản lý giao diện": settingsSlice ghi
-  trực tiếp vào biến này nên đổi màu là cả site đổi theo, cả light lẫn dark.
-*/
 :root {
   --background: #faf8f5;
   --foreground: #2c2620;
@@ -116,8 +110,6 @@
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
-
-  /* Nội dung HTML từ editor tin tức và mô tả sản phẩm */
   .prose-noithat :where(p) {
     margin-block: 0.85em;
     line-height: 1.75;
@@ -147,7 +139,6 @@
   }
 }
 
-/* Thanh cuộn mảnh cho vùng danh sách dài trong admin */
 @layer utilities {
   .scrollbar-thin {
     scrollbar-width: thin;

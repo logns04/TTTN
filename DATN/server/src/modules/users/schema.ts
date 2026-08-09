@@ -25,7 +25,7 @@ export const userCreateSchema = z.object({
 export const userUpdateSchema = z.object({
   name: z.string().trim().min(2, 'Họ tên tối thiểu 2 ký tự').max(120),
   email: emailField,
-  /** Bỏ trống nghĩa là giữ mật khẩu cũ. */
+
   password: passwordField.optional().or(z.literal('')),
   role: roleField,
   phone: optionalText(20),

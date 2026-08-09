@@ -7,7 +7,6 @@ import { updateSettingsSchema } from './schema';
 
 export const settingsRouter = Router();
 
-// Public: client cần logo, tên site, màu nhấn và các cờ ẩn/hiện section.
 settingsRouter.get('/', controller.getPublic);
 
 settingsRouter.get(
@@ -17,7 +16,6 @@ settingsRouter.get(
   controller.getForAdmin,
 );
 
-// Chỉ SUPERADMIN được đổi giao diện (spec mục 6).
 settingsRouter.put(
   '/',
   requireAuth,

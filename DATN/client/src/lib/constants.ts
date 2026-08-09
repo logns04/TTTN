@@ -25,9 +25,9 @@ export const NEXT_ORDER_STATUSES: Record<OrderStatus, OrderStatus[]> = {
 };
 
 export const ROLE_LABELS: Record<Role, string> = {
-  SUPERADMIN: 'Super Admin',
-  ADMIN: 'Admin',
-  EDITOR: 'Biên tập',
+  SUPERADMIN: 'Admin',
+  ADMIN: 'Quản Lý',
+  EDITOR: 'Nhân Viên',
   USER: 'Khách hàng',
 };
 

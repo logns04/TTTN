@@ -3,7 +3,6 @@ import { unauthorized } from '../../utils/AppError';
 import { ok } from '../../utils/apiResponse';
 import * as service from './service';
 
-/** Mọi route giỏ hàng đều sau requireAuth, nhưng TS không biết nên kiểm lại. */
 const actorId = (req: Request): number => {
   if (!req.user) throw unauthorized();
   return req.user.id;

@@ -1,8 +1,3 @@
-/**
- * Line-art nội thất dùng cho ảnh placeholder.
- * Mỗi icon vẽ trong hệ toạ độ 200×200, chỉ dùng stroke để scale lên kích cỡ
- * nào cũng nét. Bộ sinh ảnh tự lo việc scale và căn giữa.
- */
 export type IconName =
   | 'sofa'
   | 'armchair'

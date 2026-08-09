@@ -3,10 +3,6 @@ import { LoadingBlock } from '@/components/ui/feedback';
 import { useAppSelector } from '@/store';
 import type { Role } from '@/types';
 
-/**
- * Chặn khi chưa đăng nhập. Giữ lại đường dẫn đang muốn vào trong state để sau
- * khi đăng nhập quay lại đúng chỗ, thay vì luôn về trang chủ.
- */
 export const ProtectedRoute = () => {
   const status = useAppSelector((state) => state.auth.status);
   const location = useLocation();
@@ -19,7 +15,6 @@ export const ProtectedRoute = () => {
   return <Outlet />;
 };
 
-/** Chặn theo role. Đăng nhập rồi nhưng sai quyền thì về trang chủ. */
 export const RoleRoute = ({ roles }: { roles: Role[] }) => {
   const { status, user } = useAppSelector((state) => state.auth);
   const location = useLocation();

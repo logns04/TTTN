@@ -11,7 +11,6 @@ const writeGuard = [requireAuth, requireRole(...ADMIN_ROLES)] as const;
 
 productRouter.get('/', optionalAuth, controller.list);
 
-// Đặt trước '/:slug' để 'admin/:id' không bị hiểu thành một slug.
 productRouter.get('/admin/:id', ...writeGuard, validate({ params: idParam }), controller.detailById);
 productRouter.get('/:id/related', validate({ params: idParam }), controller.related);
 productRouter.get('/:slug', optionalAuth, controller.detailBySlug);

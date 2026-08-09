@@ -37,7 +37,7 @@ export const productBodySchema = z
     isSale: booleanish.optional(),
     isBest: booleanish.optional(),
     status: booleanish.optional(),
-    /** Ảnh gallery. Ảnh đầu tiên nên trùng với `image`. */
+
     images: z.array(z.string().trim().min(1).max(400)).max(8).optional(),
   })
   .refine((data) => data.salePrice == null || data.salePrice < data.price, {
@@ -49,7 +49,6 @@ export const productListQuerySchema = z.object({
   page: optionalNumberQuery(1),
   limit: optionalNumberQuery(1),
   search: optionalStringQuery(200),
-  /** id hoặc slug của danh mục; chọn danh mục cha thì gộp cả các con. */
   category: optionalStringQuery(200),
   minPrice: optionalNumberQuery(0),
   maxPrice: optionalNumberQuery(0),
@@ -57,7 +56,6 @@ export const productListQuerySchema = z.object({
   isNew: optionalBooleanQuery,
   isSale: optionalBooleanQuery,
   isBest: optionalBooleanQuery,
-  /** Admin: lấy cả sản phẩm đang tắt. */
   all: optionalBooleanQuery,
 });
 

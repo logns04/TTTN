@@ -1,8 +1,3 @@
-/**
- * Seed dữ liệu mẫu nội thất. Chạy được nhiều lần — mỗi lần xoá sạch rồi tạo lại.
- *
- * Chạy: npm run db:seed   (cần `npm run placeholders` trước để có ảnh)
- */
 import { OrderStatus, PaymentMethod, PrismaClient, Role } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
@@ -17,17 +12,8 @@ import { photoUrl } from './data/photos';
 import { PRODUCTS } from './data/products';
 
 const prisma = new PrismaClient();
-
-/**
- * Đường dẫn tương đối, không kèm origin. Nhờ vậy cùng một bộ dữ liệu seed chạy
- * được ở localhost và trên hosting mà không phải seed lại.
- */
 const seedUrl = (fileName: string) => buildUploadPath(`${SEED_IMAGE_DIR}/${fileName}`);
 
-/**
- * PRNG có seed cố định thay cho Math.random: chạy seed hai lần cho ra cùng một
- * bộ đơn hàng, nên số liệu dashboard không nhảy mỗi lần reset DB.
- */
 let randomState = 20260807;
 const random = (): number => {
   randomState = (randomState * 1103515245 + 12345) % 2147483648;
@@ -47,8 +33,6 @@ const clean = async () => {
   await prisma.news.deleteMany();
   await prisma.banner.deleteMany();
   await prisma.setting.deleteMany();
-  // Danh mục con trước, cha sau — self-relation dùng NoAction nên xoá sai thứ
-  // tự sẽ vướng khoá ngoại.
   await prisma.category.deleteMany({ where: { parentId: { not: null } } });
   await prisma.category.deleteMany();
   await prisma.user.deleteMany();
@@ -60,17 +44,17 @@ const seedUsers = async () => {
   const staff = await Promise.all([
     prisma.user.create({
       data: {
-        name: 'Nguyễn Quản Trị',
+        name: 'Nguyễn Trương Thành Long',
         email: 'superadmin@noithat.vn',
         password,
         role: Role.SUPERADMIN,
         phone: '0901000001',
-        address: '128 Nguyễn Văn Trỗi, Phú Nhuận, TP.HCM',
+        address: 'Quận 7, Phú Nhuận, TP.HCM',
       },
     }),
     prisma.user.create({
       data: {
-        name: 'Trần Quản Lý',
+        name: 'Nguyễn Trương Thành Long',
         email: 'admin@noithat.vn',
         password,
         role: Role.ADMIN,
@@ -80,7 +64,7 @@ const seedUsers = async () => {
     }),
     prisma.user.create({
       data: {
-        name: 'Lê Biên Tập',
+        name: 'Quản Lý',
         email: 'editor@noithat.vn',
         password,
         role: Role.EDITOR,
@@ -105,7 +89,6 @@ const seedUsers = async () => {
 };
 
 const seedCategories = async () => {
-  /** Tên danh mục con -> id, để phần seed sản phẩm tra ra khoá ngoại. */
   const subCategoryIds = new Map<string, number>();
   let parentOrder = 0;
 
@@ -151,8 +134,6 @@ const seedProducts = async (subCategoryIds: Map<string, number>) => {
         `Sản phẩm "${product.name}" trỏ tới danh mục con "${product.category}" không tồn tại trong categories.ts`,
       );
     }
-
-    // Mỗi ảnh gallery khoá vào một tấm khác nhau bằng cách đổi seed.
     const image = photoUrl(product.icon, product.name);
 
     const created = await prisma.product.create({
@@ -173,7 +154,6 @@ const seedProducts = async (subCategoryIds: Map<string, number>) => {
         viewCount: between(20, 900),
         images: {
           create: Array.from({ length: PRODUCT_IMAGE_COUNT }, (_, index) => ({
-            // Ảnh đầu trùng ảnh đại diện, hai ảnh sau đổi seed để ra tấm khác.
             url:
               index === 0
                 ? image
@@ -232,7 +212,7 @@ const seedNews = async (authorId: number) => {
 const seedSettings = async () => {
   for (const setting of SETTING_DEFS) {
     let value = setting.value;
-    // Logo giữ SVG tự sinh: logo là đồ hoạ, không phải ảnh chụp.
+
     if (setting.key === 'logo') value = seedUrl(logoImageFile());
     if (setting.key === 'homeBanner' && BANNERS[0]) {
       value = photoUrl(BANNERS[0].icon, BANNERS[0].title, 1600, 600);
@@ -244,13 +224,6 @@ const seedSettings = async () => {
   }
 };
 
-/**
- * Đơn hàng mẫu rải trong 12 tháng gần nhất.
- *
- * Có chủ đích: Dashboard của đề bài yêu cầu "Tổng đơn hàng" và "Biểu đồ thống
- * kê". Nếu không seed đơn thì mọi biểu đồ đều rỗng, nhìn như tính năng bị lỗi.
- * Phần lớn đơn ở trạng thái COMPLETED để biểu đồ doanh thu có đường cong thật.
- */
 const seedOrders = async (
   customers: { id: number; name: string; phone: string | null; email: string; address: string | null }[],
   products: { id: number; name: string; image: string; price: number }[],
@@ -270,9 +243,6 @@ const seedOrders = async (
 
     for (let n = 0; n < ordersThisMonth; n += 1) {
       sequence += 1;
-
-      // Tháng hiện tại chỉ được rải tới hôm nay, không thì sinh ra đơn có ngày
-      // đặt trong tương lai — nhìn là biết dữ liệu giả.
       const lastDay = monthsAgo === 0 ? Math.max(1, today.getDate()) : 27;
 
       const createdAt = new Date(
@@ -282,8 +252,6 @@ const seedOrders = async (
         between(8, 20),
         between(0, 59),
       );
-
-      // Đơn cũ coi như đã xong; đơn trong 2 tháng gần nhất mới còn đang chạy.
       let status: OrderStatus;
       if (monthsAgo >= 2) {
         status = random() < 0.12 ? OrderStatus.CANCELLED : OrderStatus.COMPLETED;

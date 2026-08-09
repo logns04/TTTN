@@ -37,7 +37,6 @@ export const updateStatusSchema = z.object({
 export const orderListQuerySchema = z.object({
   page: optionalNumberQuery(1),
   limit: optionalNumberQuery(1),
-  /** Tìm theo mã đơn, tên hoặc số điện thoại khách. */
   search: optionalStringQuery(200),
   status: z.enum(ORDER_STATUSES).optional(),
 });

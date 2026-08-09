@@ -2,7 +2,6 @@ import type { IconName } from './icons';
 
 export interface ProductSeed {
   name: string;
-  /** Tên danh mục con — seed sẽ tra ra id. */
   category: string;
   icon: IconName;
   price: number;
@@ -27,7 +26,6 @@ const p = (
   <li><strong>Giao hàng:</strong> miễn phí nội thành, lắp đặt tại nhà</li>
 </ul>`;
 
-/** 40 sản phẩm rải đều các danh mục con, 12 sản phẩm có giá khuyến mãi. */
 export const PRODUCTS: ProductSeed[] = [
   {
     name: 'Sofa Băng Gỗ Sồi 3 Chỗ Bọc Nỉ',

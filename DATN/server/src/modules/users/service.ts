@@ -44,10 +44,7 @@ export const getById = async (id: number) => {
   return user;
 };
 
-/**
- * Luôn phải còn ít nhất một SUPERADMIN đang hoạt động, không thì không ai vào
- * được trang quản lý người dùng và quản lý giao diện nữa.
- */
+
 const assertNotLastSuperadmin = async (userId: number) => {
   const target = await prisma.user.findUnique({
     where: { id: userId },
@@ -91,7 +88,6 @@ export const update = async (id: number, input: UserUpdateInput, actorId: number
   const roleChanged = current.role !== input.role;
   const deactivating = input.isActive === false;
 
-  // Tự hạ quyền chính mình là cách nhanh nhất để tự khoá mình ra ngoài.
   if (id === actorId && roleChanged) {
     throw badRequest('Không thể tự thay đổi vai trò của chính mình');
   }
@@ -117,7 +113,7 @@ export const update = async (id: number, input: UserUpdateInput, actorId: number
       phone: input.phone,
       address: input.address,
       isActive: input.isActive ?? true,
-      // Chuỗi rỗng = không đổi mật khẩu.
+
       ...(input.password ? { password: await bcrypt.hash(input.password, 10) } : {}),
     },
     select,
@@ -135,8 +131,6 @@ export const remove = async (id: number, actorId: number) => {
 
   await assertNotLastSuperadmin(id);
 
-  // orders.userId dùng onDelete Restrict để không mất lịch sử đơn hàng.
-  // Trả message rõ ràng thay vì để lỗi khoá ngoại đi ra ngoài.
   if (user._count.orders > 0) {
     throw conflict(
       `Người dùng này có ${user._count.orders} đơn hàng nên không thể xoá. Hãy khoá tài khoản thay vì xoá.`,

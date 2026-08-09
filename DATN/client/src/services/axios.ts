@@ -10,10 +10,6 @@ export const tokenStore = {
   clear: () => localStorage.removeItem(TOKEN_KEY),
 };
 
-/**
- * Dev: gọi '/api' cùng origin, Vite proxy sang backend nên không cần CORS.
- * Production: đặt VITE_API_URL = origin của backend (ví dụ trên Render).
- */
 export const api = axios.create({
   baseURL: `${API_ORIGIN}/api`,
   timeout: 20_000,
@@ -25,8 +21,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Store đăng ký hàm này lúc khởi tạo. Tránh để services import store (và store
-// import services) gây vòng phụ thuộc.
 let unauthorizedHandler: (() => void) | null = null;
 export const setUnauthorizedHandler = (handler: () => void) => {
   unauthorizedHandler = handler;
@@ -35,9 +29,7 @@ export const setUnauthorizedHandler = (handler: () => void) => {
 api.interceptors.response.use(
   (response) => response,
   (error: unknown) => {
-    // Token hết hạn hoặc bị thu hồi: dọn sạch rồi để store đẩy về /login.
-    // Chỉ xử lý khi đang có token, không thì 401 của endpoint public sẽ gây
-    // redirect vô cớ.
+
     if (axios.isAxiosError(error) && error.response?.status === 401 && tokenStore.get()) {
       tokenStore.clear();
       unauthorizedHandler?.();
@@ -46,10 +38,8 @@ api.interceptors.response.use(
   },
 );
 
-/** Bóc `data` ra khỏi envelope { success, data, message }. */
 export const unwrap = <T>(response: AxiosResponse<ApiEnvelope<T>>): T => response.data.data;
 
-/** Dùng cho endpoint có phân trang. */
 export const unwrapPage = <T>(
   response: AxiosResponse<ApiEnvelope<T[]>>,
 ): { items: T[]; meta: PageMeta } => ({
@@ -63,10 +53,6 @@ export const unwrapPage = <T>(
     },
 });
 
-/**
- * Lấy message tiếng Việt mà server đã soạn. Lỗi validate trả về mảng field nên
- * gộp lại để người dùng thấy đủ, thay vì chỉ "Dữ liệu không hợp lệ".
- */
 export const getErrorMessage = (
   error: unknown,
   fallback = 'Có lỗi xảy ra, vui lòng thử lại',

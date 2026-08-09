@@ -8,10 +8,6 @@ interface SettingsState {
   loaded: boolean;
 }
 
-/**
- * Giá trị mặc định để lần render đầu (trước khi API trả về) không bị nhảy layout
- * hay hiện chuỗi rỗng ở header.
- */
 const fallback: PublicSettings = {
   siteName: 'NT Thành Long',
   logo: '',
@@ -28,10 +24,6 @@ const fallback: PublicSettings = {
 
 const initialState: SettingsState = { data: fallback, loaded: false };
 
-/**
- * Màu nhấn do admin chọn được ghi vào biến CSS --primary. Mọi class Tailwind
- * dùng màu primary đọc từ biến này nên đổi một chỗ là cả site đổi, ở cả hai theme.
- */
 const applyPrimaryColor = (color: string) => {
   if (!/^#[0-9a-fA-F]{6}$/.test(color)) return;
   document.documentElement.style.setProperty('--primary', color);
@@ -53,7 +45,7 @@ const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    /** Admin lưu cấu hình xong thì áp ngay, không cần tải lại trang. */
+
     applySettings(state, action: { payload: PublicSettings }) {
       state.data = { ...state.data, ...action.payload };
       applyPrimaryColor(state.data.primaryColor ?? '');
@@ -71,5 +63,4 @@ const settingsSlice = createSlice({
 export const { applySettings } = settingsSlice.actions;
 export default settingsSlice.reducer;
 
-/** Cờ ẩn/hiện section lưu dạng chuỗi 'true'/'false' trong bảng settings. */
 export const isEnabled = (value?: string) => value !== 'false';

@@ -21,10 +21,6 @@ const itemSelect = {
   },
 } as const;
 
-/**
- * Giỏ hàng được tạo lười: chỉ sinh row khi người dùng thực sự cần tới nó.
- * upsert thay vì find-rồi-create để không có khoảng trống race condition.
- */
 const getOrCreateCart = (userId: number) =>
   prisma.cart.upsert({
     where: { userId },
@@ -48,7 +44,7 @@ export const getCart = async (userId: number) => {
       ...item,
       unitPrice,
       lineTotal: unitPrice * item.quantity,
-      /** Sản phẩm bị ẩn hoặc hết hàng sau khi đã cho vào giỏ. */
+
       unavailable: !item.product.status || item.product.quantity < item.quantity,
     };
   });
@@ -82,8 +78,6 @@ export const addItem = async (userId: number, input: AddItemInput) => {
     select: { id: true, quantity: true },
   });
 
-  // Cộng dồn với số đã có trong giỏ rồi mới so với tồn kho, chứ không chỉ so
-  // riêng lượng vừa thêm.
   const nextQuantity = (existing?.quantity ?? 0) + input.quantity;
   if (nextQuantity > product.quantity) {
     throw conflict(
@@ -102,7 +96,6 @@ export const addItem = async (userId: number, input: AddItemInput) => {
   return getCart(userId);
 };
 
-/** Chỉ cho phép sửa item nằm trong giỏ của chính người gọi. */
 const findOwnItem = async (userId: number, itemId: number) => {
   const item = await prisma.cartItem.findFirst({
     where: { id: itemId, cart: { userId } },

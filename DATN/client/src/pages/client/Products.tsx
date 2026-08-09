@@ -21,8 +21,7 @@ import { useAddToCart } from './useAddToCart';
 const DEFAULT_META: PageMeta = { page: 1, limit: 12, total: 0, totalPages: 1 };
 
 export const ProductsPage = () => {
-  // Toàn bộ bộ lọc nằm trong URL: F5 hay chia sẻ link vẫn giữ nguyên kết quả,
-  // và nút back của browser hoạt động đúng.
+
   const [params, setParams] = useSearchParams();
 
   const [tree, setTree] = useState<Category[]>([]);
@@ -42,7 +41,7 @@ export const ProductsPage = () => {
   const isSale = params.get('isSale') === 'true';
   const isBest = params.get('isBest') === 'true';
 
-  // Ô tìm kiếm giữ state riêng để gõ không bị giật, chỉ đẩy vào URL sau 400ms.
+
   const [searchInput, setSearchInput] = useState(params.get('search') ?? '');
   const debouncedSearch = useDebounce(searchInput, 400);
   const activeSearch = params.get('search') ?? '';
@@ -51,7 +50,6 @@ export const ProductsPage = () => {
     categoryApi.tree().then(setTree).catch(() => setTree([]));
   }, []);
 
-  /** Cập nhật một hoặc nhiều tham số, luôn reset về trang 1 trừ khi đổi chính page. */
   const updateParams = (changes: Record<string, string | undefined>) => {
     const next = new URLSearchParams(params);
 
@@ -68,8 +66,7 @@ export const ProductsPage = () => {
     if (debouncedSearch !== activeSearch) {
       updateParams({ search: debouncedSearch || undefined });
     }
-    // updateParams đọc `params` mới nhất ở mỗi lần render nên không cần đưa vào deps
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [debouncedSearch]);
 
   useEffect(() => {

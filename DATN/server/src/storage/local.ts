@@ -19,14 +19,6 @@ const extensionFor = (file: UploadedFile): string => {
   const fromName = path.extname(file.originalname).replace('.', '').toLowerCase();
   return fromName || 'bin';
 };
-
-/**
- * Lưu ảnh xuống ổ đĩa của server, chia theo thư mục yyyy-mm để một thư mục
- * không phình ra hàng nghìn file.
- *
- * Lưu ý khi deploy Render free: filesystem là ephemeral, ảnh upload sẽ mất sau
- * mỗi lần redeploy. Đổi STORAGE_DRIVER=cloudinary để tránh (xem storage/cloudinary.ts).
- */
 export const localStorage: StorageProvider = {
   name: 'local',
 
@@ -43,7 +35,6 @@ export const localStorage: StorageProvider = {
   },
 
   async remove(key: string): Promise<void> {
-    // Chặn path traversal: key luôn phải nằm trong ROOT.
     const target = path.resolve(ROOT, key);
     if (!target.startsWith(path.resolve(ROOT))) return;
 

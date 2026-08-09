@@ -53,7 +53,7 @@ export const orderApi = {
 };
 
 export const paymentApi = {
-  /** Thông tin chuyển khoản của một đơn; dùng để hiện QR và dò trạng thái. */
+
   info: (orderId: number) => api.get(`/payments/order/${orderId}`).then(unwrap<PaymentInfo>),
 };
 

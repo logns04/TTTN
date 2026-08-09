@@ -45,10 +45,6 @@ const detailSelect = {
   },
 } as const satisfies Prisma.OrderSelect;
 
-/**
- * Chuyển trạng thái chỉ được đi tiến theo đúng luồng, không nhảy bậc và không
- * lùi. Đơn đã hoàn thành hoặc đã huỷ là trạng thái cuối.
- */
 const ALLOWED_TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
   [OrderStatus.PENDING]: [OrderStatus.CONFIRMED, OrderStatus.CANCELLED],
   [OrderStatus.CONFIRMED]: [OrderStatus.SHIPPING, OrderStatus.CANCELLED],
@@ -60,11 +56,6 @@ const ALLOWED_TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
 const generateCode = (): string =>
   `DH${Date.now().toString(36).toUpperCase()}${crypto.randomBytes(1).toString('hex').toUpperCase()}`;
 
-/**
- * Checkout chạy trong một transaction: kiểm tồn kho, tạo đơn, trừ kho và dọn
- * giỏ hàng phải cùng thành công hoặc cùng thất bại. Nếu không thì có thể tạo
- * được đơn mà kho không trừ, hoặc trừ kho rồi đơn lại lỗi.
- */
 export const checkout = async (userId: number, input: CheckoutInput) => {
   return prisma.$transaction(async (tx) => {
     const cart = await tx.cart.findUnique({
@@ -104,7 +95,6 @@ export const checkout = async (userId: number, input: CheckoutInput) => {
         );
       }
 
-      // Giá chốt tại thời điểm đặt hàng.
       const price = Number(product.effectivePrice);
       return {
         productId: product.id,
@@ -218,8 +208,6 @@ export const updateStatus = async (id: number, next: OrderStatus) => {
       );
     }
 
-    // Huỷ đơn thì trả hàng về kho. Bỏ qua item có productId = null (sản phẩm
-    // đã bị xoá) vì không còn kho nào để cộng lại.
     if (next === OrderStatus.CANCELLED) {
       for (const item of order.items) {
         if (item.productId == null) continue;

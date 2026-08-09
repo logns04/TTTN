@@ -5,13 +5,6 @@ import type { SavedFile, StorageProvider, UploadedFile } from './types';
 
 const FOLDER = 'noithat';
 
-/**
- * Upload trực tiếp qua REST API của Cloudinary bằng fetch có sẵn của Node 22 —
- * cố ý không thêm SDK `cloudinary` vào dependency cho một việc chỉ cần hai
- * endpoint.
- *
- * Chữ ký: sha1 của các tham số đã sort theo alphabet, nối api_secret vào cuối.
- */
 const sign = (params: Record<string, string>): string => {
   const canonical = Object.keys(params)
     .sort()
@@ -61,9 +54,6 @@ export const cloudinaryStorage: StorageProvider = {
     form.append('api_key', env.CLOUDINARY_API_KEY!);
     form.append('timestamp', timestamp);
     form.append('signature', signature);
-
-    // Xoá thất bại thì chỉ log: không đáng để làm fail cả request nghiệp vụ
-    // chỉ vì một file rác còn sót trên Cloudinary.
     const response = await fetch(endpoint('destroy'), { method: 'POST', body: form });
     if (!response.ok) {
       console.warn('[cloudinary] xoá ảnh thất bại:', key, await response.text());

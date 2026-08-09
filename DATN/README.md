@@ -50,9 +50,9 @@ Mật khẩu chung: **`123456`**. Trang đăng nhập có nút bấm để đi�
 
 | Email | Vai trò | Vào được |
 |---|---|---|
-| `superadmin@noithat.vn` | Super Admin | Tất cả, kể cả Người dùng và Quản lý giao diện |
-| `admin@noithat.vn` | Admin | Sản phẩm, danh mục, banner, tin tức, đơn hàng; chỉ **xem** người dùng |
-| `editor@noithat.vn` | Biên tập | Tin tức và banner (tạo/sửa, **không xoá**); xem dashboard |
+| `superadmin@noithat.vn` | Admin | Tất cả, kể cả Người dùng và Quản lý giao diện |
+| `admin@noithat.vn` | Quản lý | Sản phẩm, danh mục, banner, tin tức, đơn hàng; chỉ **xem** người dùng |
+| `editor@noithat.vn` | Nhân viên | Tin tức và banner (tạo/sửa, **không xoá**); xem dashboard |
 | `user@noithat.vn` | Khách hàng | Mua hàng phía client |
 
 ### Dữ liệu mẫu

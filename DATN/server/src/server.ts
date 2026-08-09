@@ -3,8 +3,7 @@ import { env } from './config/env';
 import { prisma } from './config/prisma';
 
 const start = async () => {
-  // Kết nối trước khi listen: thà chết ngay lúc boot còn hơn nhận request rồi
-  // mới phát hiện không có DB.
+
   await prisma.$connect();
 
   const app = createApp();

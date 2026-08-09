@@ -100,7 +100,6 @@ export const NewsDetailPage = () => {
 
         <div
           className="prose-noithat mt-6"
-          // Nội dung do biên tập viên nhập ở trang quản trị, không phải từ người dùng cuối.
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
       </article>

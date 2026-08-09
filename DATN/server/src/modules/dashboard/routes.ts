@@ -3,8 +3,6 @@ import { STAFF_ROLES, requireAuth, requireRole } from '../../middleware/auth';
 import * as controller from './controller';
 
 export const dashboardRouter = Router();
-
-// EDITOR cũng vào được khu vực admin nên được xem dashboard ở chế độ đọc.
 dashboardRouter.use(requireAuth, requireRole(...STAFF_ROLES));
 
 dashboardRouter.get('/stats', controller.stats);
