@@ -1,7 +1,6 @@
 import type { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 
-/** Bọc trong div overflow-x-auto: bảng admin nhiều cột không được làm trang trượt ngang. */
 export const TableWrapper = ({ className, ...props }: ComponentProps<'div'>) => (
   <div
     className={cn('scrollbar-thin w-full overflow-x-auto rounded-xl border border-border', className)}

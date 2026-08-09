@@ -264,7 +264,7 @@ export const HomePage = () => {
 
       {isEnabled(settings.showBestProducts) ? (
         <ProductSection
-          title="Bán chạy nhất"
+          title="Bán chạy"
           description="Được khách chọn nhiều nhất"
           to="/products?isBest=true"
           products={bestProducts}

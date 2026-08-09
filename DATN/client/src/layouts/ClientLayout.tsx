@@ -336,7 +336,7 @@ export const ClientLayout = () => {
               </li>
             </ul>
             <Badge variant="muted" className="mt-3">
-              Đồ án môn Web Fullstack
+              Nguyễn Trương Thành Long 221A010028
             </Badge>
           </div>
         </div>

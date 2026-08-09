@@ -40,7 +40,6 @@ export const EmptyState = ({
   </div>
 );
 
-/** Lưới skeleton cho danh sách sản phẩm đang tải. */
 export const ProductGridSkeleton = ({ count = 8 }: { count?: number }) => (
   <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
     {Array.from({ length: count }, (_, index) => (

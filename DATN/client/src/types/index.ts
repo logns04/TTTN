@@ -157,20 +157,18 @@ export interface OrderSummary {
   total: number;
   status: OrderStatus;
   paymentMethod: PaymentMethod;
-  /** null = chưa nhận được tiền. Đơn COD luôn null. */
+
   paidAt: string | null;
   createdAt: string;
   _count: { items: number };
 }
 
-/** Thông tin để dựng màn chuyển khoản (QR + nội dung). */
 export interface PaymentInfo {
   orderCode: string;
   amount: number;
   paid: boolean;
   paidAt: string | null;
   status: OrderStatus;
-  /** false = máy chủ chưa cấu hình tài khoản nhận tiền. */
   configured: boolean;
   bankAccount: string | null;
   bankCode: string | null;
@@ -189,7 +187,6 @@ export interface OrderDetail extends OrderSummary {
   items: OrderItem[];
 }
 
-/** Cấu hình công khai: object phẳng { key: value }, luôn đủ mọi khoá. */
 export type PublicSettings = Record<string, string>;
 
 export interface AdminSetting {

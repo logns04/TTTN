@@ -4,12 +4,6 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { addToCart } from '@/store/slices/cartSlice';
 import type { Product } from '@/types';
 
-/**
- * Thêm vào giỏ dùng chung cho trang chủ, danh sách và chi tiết sản phẩm.
- *
- * Giỏ hàng chỉ tồn tại khi đã đăng nhập (spec mục 3.8), nên khách chưa đăng nhập
- * được đưa sang /login kèm đường dẫn hiện tại để quay lại đúng chỗ.
- */
 export const useAddToCart = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

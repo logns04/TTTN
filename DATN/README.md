@@ -1,4 +1,4 @@
-# Nội Thất An Viên — Website thương mại điện tử nội thất
+# Nội Thất Thành Long — Website thương mại điện tử nội thất
 
 Đồ án môn **Web Fullstack**. Website bán nội thất gồm hai khu vực tách biệt: **Client** (khách hàng) và **Admin** (quản trị).
 

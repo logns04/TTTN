@@ -106,7 +106,7 @@ export const LoginPage = () => {
       <Card>
         <CardContent className="space-y-2">
           <p className="text-xs font-medium text-muted-foreground">
-            Tài khoản demo (mật khẩu: 123456) — bấm để điền nhanh
+            Tài khoản demo (mật khẩu: 123456) Đăng nhập nhanh
           </p>
           <div className="grid grid-cols-2 gap-2">
             {DEMO_ACCOUNTS.map((account) => (

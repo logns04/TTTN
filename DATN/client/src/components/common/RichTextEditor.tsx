@@ -33,8 +33,6 @@ const ToolbarButton = ({
     {children}
   </button>
 );
-
-/** Editor cho nội dung tin tức. Lưu HTML, render lại bằng class .prose-noithat. */
 export const RichTextEditor = ({ value, onChange, placeholder }: RichTextEditorProps) => {
   const editor = useEditor({
     extensions: [StarterKit],
@@ -48,8 +46,6 @@ export const RichTextEditor = ({ value, onChange, placeholder }: RichTextEditorP
     onUpdate: ({ editor: instance }) => onChange(instance.getHTML()),
   });
 
-  // Form load dữ liệu về sau (sửa bài viết) thì phải đẩy vào editor. So sánh
-  // trước khi set để không phá vị trí con trỏ khi người dùng đang gõ.
   useEffect(() => {
     if (editor && value !== editor.getHTML()) {
       editor.commands.setContent(value, { emitUpdate: false });

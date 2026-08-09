@@ -12,10 +12,6 @@ export const Textarea = ({ className, ...props }: ComponentProps<'textarea'>) =>
   <textarea className={cn(fieldClass, 'min-h-24 resize-y', className)} {...props} />
 );
 
-/**
- * Select dùng thẻ <select> gốc thay vì Radix: ít code hơn nhiều, hoạt động tốt
- * trên mobile (mở picker của hệ điều hành) và không cần quản lý trạng thái mở.
- */
 export const Select = ({ className, ...props }: ComponentProps<'select'>) => (
   <select className={cn(fieldClass, 'h-10 cursor-pointer pr-8', className)} {...props} />
 );
@@ -27,6 +23,5 @@ export const Label = ({ className, ...props }: ComponentProps<'label'>) => (
   />
 );
 
-/** Thông báo lỗi dưới mỗi field, dùng chung cho mọi form. */
 export const FieldError = ({ message }: { message?: string }) =>
   message ? <p className="mt-1 text-xs text-destructive">{message}</p> : null;
