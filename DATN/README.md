@@ -26,4 +26,6 @@ npm run dev
 
 # 2. Đã deloy lên Render
 
-## Link : https://noithat-web-l9d3.onrender.com/
+## Link trang khách hàng : https://noithat-web-l9d3.onrender.com/
+## Link trang admin : https://noithat-web-l9d3.onrender.com/admin 
+
