@@ -1,11 +1,9 @@
 @import "tailwindcss";
 
-body {
-  margin: 0;
-  background: #f5f7fb;
-  font-family: Inter, sans-serif;
+@theme {
+  --color-gold-accent: #d97706;
 }
 
-* {
-  box-sizing: border-box;
+html {
+  scroll-behavior: smooth;
 }

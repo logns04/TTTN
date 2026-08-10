@@ -34,7 +34,7 @@ const BannerSlider = ({ banners }: { banners: Banner[] }) => {
     <section className="relative overflow-hidden bg-muted">
       <Link to={current.link ?? '/products'} className="block">
         <SafeImage
-          src={current.image}
+          src={current.image} 
           alt={current.title}
           className="h-[240px] w-full object-cover sm:h-[320px] lg:h-[420px]"
         />

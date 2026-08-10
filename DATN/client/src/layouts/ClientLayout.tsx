@@ -146,6 +146,7 @@ export const ClientLayout = () => {
                 alt={settings.siteName}
                 className="h-9 w-auto object-contain"
               />
+              //LOGO
             ) : (
               <span className="font-display text-lg font-bold">{settings.siteName}</span>
             )}
